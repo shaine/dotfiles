@@ -1,11 +1,15 @@
 set nocompatible
 
 call pathogen#infect()
-syntax enable
+" syntax enable
 set encoding=utf-8
 set showcmd
 filetype plugin indent on
 au BufNewFile,BufRead *.inc set filetype=php
+
+"let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -44,10 +48,6 @@ set directory=~/.vim/tmp/swap//
 " Undo files
 set undofile
 set undodir=~/.vim/tmp/undos//
-
-"let g:solarized_termcolors=256
-set background=light
-colorscheme solarized
 
 :let mapleader = ","
 map <Leader>g :Gstatus<CR>

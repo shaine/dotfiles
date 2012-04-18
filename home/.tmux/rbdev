@@ -1,0 +1,8 @@
+set visual-activity off
+new-window
+splitw -h -p 30
+splitw -v -p 50
+selectp -L
+splitw -v -p 85
+select-window -t 1
+

@@ -1,0 +1,21 @@
+[user]
+	name = Shaine Hatch
+	email = shaine@digitaltrike.com
+[core]
+	whitespace = trailing-space,space-before-tab
+	editor = vim
+[color]
+  ui = auto
+[merge]
+	stat = true
+	tool = opendiff
+[github]
+	user = shaine
+	token = 2bce1c47c1cdcc7b5d7013e733605a12
+
+[alias]
+        st = status
+        co = checkout
+        com = commit -am
+        ignore = update-index --assume-unchanged
+        unignore = update-index --no-assume-unchanged

@@ -78,6 +78,8 @@ export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='exgxfxfxcxdxdxhbadbxbx'
 
+unset RUBYOPT
+
 function zle-keymap-select {
   VIMODE="${${KEYMAP/vicmd/ command}/(main|viins)/}"
   zle reset-prompt

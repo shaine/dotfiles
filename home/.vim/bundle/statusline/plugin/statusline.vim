@@ -33,7 +33,7 @@ function! StatuslineTabWarning()
         if tabs && spaces
             let b:statusline_tab_warning =  '[mixed-indenting]'
         elseif (spaces && !&et) || (tabs && &et)
-            let b:statusline_tab_warning = '[&et]'
+            let b:statusline_tab_warning = '[ :( ]'
         else
             let b:statusline_tab_warning = ''
         endif

@@ -1,40 +1,48 @@
-set nocompatible
+" Setup
+set nocompatible " Don't need vi compatibility
+call pathogen#infect() " Start Pathogen to load bundles
+syntax enable " Enable syntax highlighting
+set encoding=utf-8 " Files should always be UTF8
+filetype plugin indent on " Auto indent
+au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes
 
-call pathogen#infect()
-syntax enable
-set encoding=utf-8
-set showcmd
-filetype plugin indent on
-au BufNewFile,BufRead *.inc set filetype=php
-
+" Colorscheme
 "let g:solarized_termcolors=256
 set background=light
 colorscheme solarized
 
+" Key mappings for pane selection
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Extra escape bindings
 :imap jj <Esc>
 :imap kk <Esc>
 
-set nowrap
-set tabstop=2 shiftwidth=2
-set expandtab
-set softtabstop=2
-set backspace=indent,eol,start
-set number
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set hidden
-set fdc=2
-set laststatus=2
-set t_Co=256
-set isk+=$
+" Other custom keymappings
+:let mapleader = ","
+map <Leader>g :Gstatus<CR>
 
+set showcmd " Show location info in lower right
+set nowrap " Don't line wrap
+set tabstop=2 shiftwidth=2 " Set tabs to softab 2
+set expandtab " Turn tabs to spaces
+set softtabstop=2 " Something else about tabs
+set backspace=indent,eol,start " Set what we can backspace through
+set number " Show line numbers
+set hlsearch " Highlight search matches
+set incsearch " Show next match while typing search
+set ignorecase " Case insensitive searches
+set smartcase " Searches respect case if it's obvious that it's important
+set hidden " Allow unsaved buffers to be 'closed'
+set fdc=0 " Column for folding indicators
+set laststatus=2 " Always show status line
+set t_Co=256 " 256 colors
+set isk+=$ " Add word characters
+
+" Ctrlp settings
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn|\.DS_Store$'
@@ -49,9 +57,6 @@ set directory=~/.vim/tmp/swap//
 set undofile
 set undodir=~/.vim/tmp/undos//
 
-:let mapleader = ","
-map <Leader>g :Gstatus<CR>
-
 if has("gui_running")
   set guioptions=egmrt
 endif
@@ -60,12 +65,11 @@ if !exists("autocommands_loaded")
   let autocommands_loaded = 1
 
   au! BufWritePost .vimrc source %
-
 endif
- " Enable autosave
-  :au FocusLost * :%s/\s\+$//e
-  :au FocusLost * silent! wa
 
+" Enable autosave
+:au FocusLost * :%s/\s\+$//e
+:au FocusLost * silent! wa
 au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -133,10 +137,10 @@ function! SetArrowKeysAsTextShifters()
     " insert mode
     imap <silent> <Left> <C-D>
     imap <silent> <Right> <C-T>
-    inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
-    inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
-    inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
-    inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+    "inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
+    "inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+    "inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
+    "inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
 
     " disable modified versions we are not using
     " nnoremap  <S-Up>     <NOP>

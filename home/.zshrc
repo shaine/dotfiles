@@ -68,7 +68,7 @@ alias pecl="php /usr/lib/php/pear/peclcmd.php"
 alias git-com="nocorrect git-com"
 alias tmux="tmux -2 -u"
 alias phperrors="tail -f /var/log/apache2/error_log"
-alias tmuxcopy="tmux show-buffer | pbcopy"
+alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
 alias ls="ls -GF"
 

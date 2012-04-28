@@ -1,6 +1,7 @@
 " Setup
 set nocompatible " Don't need vi compatibility
 call pathogen#infect() " Start Pathogen to load bundles
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
@@ -42,10 +43,11 @@ set laststatus=2 " Always show status line
 set t_Co=256 " 256 colors
 set isk+=$ " Add word characters
 
-" Ctrlp settings
+" Plugin settings
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn|\.DS_Store$'
+let g:Powerline_symbols = 'fancy'
 
 " Backups
 set history=1000

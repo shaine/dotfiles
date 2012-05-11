@@ -26,6 +26,9 @@ map <C-l> <C-w>l
 :let mapleader = ","
 map <Leader>g :Gstatus<CR>
 
+" ZoomWin configuration
+map <Leader><Leader> :ZoomWin<CR>
+
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap
 set tabstop=2 shiftwidth=2 " Set tabs to softab 2

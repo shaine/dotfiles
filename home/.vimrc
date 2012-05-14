@@ -1,6 +1,7 @@
 " Setup
 set nocompatible " Don't need vi compatibility
 call pathogen#infect() " Start Pathogen to load bundles
+call pathogen#helptags() " Pathogen to load help tags
 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
@@ -9,6 +10,7 @@ au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes
 
 " Colorscheme
 "let g:solarized_termcolors=256
+"let g:solarized_termtrans = 1
 set background=light
 colorscheme solarized
 
@@ -24,16 +26,36 @@ map <C-l> <C-w>l
 
 " Other custom keymappings
 :let mapleader = ","
+
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Fugitive
 map <Leader>g :Gstatus<CR>
 
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
+
+" CtrlP
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn|\.DS_Store$'
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+" let g:Powerline_theme='skwp'
+let g:Powerline_colorscheme='skwp'
 
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap
 set tabstop=2 shiftwidth=2 " Set tabs to softab 2
 set expandtab " Turn tabs to spaces
 set softtabstop=2 " Something else about tabs
+set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
 set number " Show line numbers
 set hlsearch " Highlight search matches
@@ -45,22 +67,20 @@ set fdc=0 " Column for folding indicators
 set laststatus=2 " Always show status line
 set t_Co=256 " 256 colors
 set isk+=$ " Add word characters
+set scrolloff=8 "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
 
 " Plugin settings
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn|\.DS_Store$'
-let g:Powerline_symbols = 'fancy'
-
-" Backups
-set history=1000
-set undolevels=1000
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
 
 " Undo files
+set history=1000
+set undolevels=1000
 set undofile
 set undodir=~/.vim/tmp/undos//
+set noswapfile
+set nobackup
+set nowb
 
 if has("gui_running")
   set guioptions=egmrt
@@ -73,10 +93,10 @@ if !exists("autocommands_loaded")
 endif
 
 " Enable autosave
-:au FocusLost * :%s/\s\+$//e
-:au FocusLost * silent! wa
-au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
-autocmd BufWritePre * :%s/\s\+$//e
+au FocusLost * :%s/\s\+$//e " Remove trailing spaces on focus lost
+au FocusLost * silent! wa " Write file on focus lost
+au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>") " Leave focus mode on focus lost
+autocmd BufWritePre * :%s/\s\+$//e " Remove trailing space on save
 
 " Awesome arrow bindings
 " ------------------

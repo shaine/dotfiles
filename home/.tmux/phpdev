@@ -3,6 +3,6 @@ new-window
 splitw -h -p 30
 splitw -v -p 50
 selectp -L
-link-window -s eq:3
+link-window -s system:2
 select-window -t 1
 

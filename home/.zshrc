@@ -72,6 +72,7 @@ alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
 alias ls="ls -GF"
+alias lol="fortune | cowsay | lolcat"
 
 tm () { tmux attach-session -t $* || tmux new-session -s $* }
 rm () { mv $* ~/.Trash }

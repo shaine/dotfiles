@@ -73,7 +73,6 @@ alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
 alias ls="ls -GF"
 alias lol="fortune | cowthink | lolcat"
-alias setiterm="export ITERM_PROFILE=foo"
 
 tm () { tmux attach-session -t $* || tmux new-session -s $* }
 rm () { mv $* ~/.Trash }

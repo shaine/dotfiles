@@ -19,6 +19,8 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+nnoremap _ :sp<CR><C-w>j
+nnoremap \| :vsp<CR><C-w>l
 
 " Extra escape bindings
 :imap jj <Esc>

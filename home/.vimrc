@@ -21,6 +21,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 nnoremap _ :sp<CR><C-w>j
 nnoremap \| :vsp<CR><C-w>l
+noremap <leader>t :tabe<CR>
 
 " Extra escape bindings
 :imap jj <Esc>
@@ -42,8 +43,26 @@ map <Leader>g :Gstatus<CR>
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
 
+" Gundo configuration
+map <Leader>u :GundoToggle<CR>
+
 " Other bindings
 nmap <silent> // :nohlsearch<CR> " Clear search
+
+let g:user_zen_settings = {
+\  'indentation' : '  ',
+\  'php' : {
+\    'aliases' : {
+\      'req' : 'require '
+\    },
+\    'snippets' : {
+\      'php' : "<?php | ?>",
+\      'yii' : "Yii::app()->",
+\      'yiijs' : "Yii::app()->clientScript->registerScriptFile(\"|\");",
+\      'yiicss' : "Yii::app()->clientScript->registerCssFile(\"|\");",
+\    }
+\  }
+\}
 
 " CtrlP
 let g:ctrlp_working_path_mode = 2

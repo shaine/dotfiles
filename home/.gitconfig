@@ -17,3 +17,5 @@
         ignore = update-index --assume-unchanged
         unignore = update-index --no-assume-unchanged
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --
+[github]
+	user = shaine

@@ -68,6 +68,7 @@ let g:user_zen_settings = {
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn|\.DS_Store$'
+let g:ctrlp_map = '<Leader>f'
 
 " Powerline
 let g:Powerline_symbols = 'fancy'

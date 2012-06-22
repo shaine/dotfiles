@@ -30,7 +30,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 #export PATH=/opt/local/bin:/opt/local/sbin:/Users/shaine/.rvm/gems/ruby-1.9.2-p290/bin:/Users/shaine/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/shaine/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/shaine/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/shaine/.rvm/bin:/Users/shaine/.rvm/bin
-export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
 function collapse_pwd {

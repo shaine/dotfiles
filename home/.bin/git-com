@@ -1,0 +1,6 @@
+#!/bin/bash
+MSG=$*
+git add .
+if [[ $? -eq 0 ]]; then
+        git commit -am "${MSG}"
+fi

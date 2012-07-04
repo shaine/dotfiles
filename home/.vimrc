@@ -7,6 +7,7 @@ syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
 au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes
+let mapleader = ","
 
 " Colorscheme
 "let g:solarized_termcolors=256
@@ -15,20 +16,17 @@ set background=light
 colorscheme solarized
 
 " Key mappings for pane selection
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 nnoremap _ :sp<CR><C-w>j
 nnoremap \| :vsp<CR><C-w>l
-noremap <leader>t :tabe<CR>
+nnoremap <leader>t :tabe<CR>
 
 " Extra escape bindings
-:imap jj <Esc>
-:imap kk <Esc>
-
-" Other custom keymappings
-:let mapleader = ","
+inoremap jj <Esc>
+inoremap kk <Esc>
 
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
@@ -45,6 +43,12 @@ map <Leader><Leader> :ZoomWin<CR>
 
 " Gundo configuration
 map <Leader>u :GundoToggle<CR>
+
+" Tabularize configuration
+if exists(":Tabularize")
+  nmap <Leader>a :Tabularize<CR>
+  vmap <Leader>a :Tabularize<CR>
+endif
 
 " Other bindings
 nmap <silent> // :nohlsearch<CR> " Clear search
@@ -113,7 +117,6 @@ endif
 
 if !exists("autocommands_loaded")
   let autocommands_loaded = 1
-
   au! BufWritePost .vimrc source %
 endif
 
@@ -187,10 +190,10 @@ function! SetArrowKeysAsTextShifters()
     " insert mode
     imap <silent> <Left> <C-D>
     imap <silent> <Right> <C-T>
-    "inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
-    "inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
-    "inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
-    "inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+    inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
+    inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+    inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
+    inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
 
     " disable modified versions we are not using
     " nnoremap  <S-Up>     <NOP>

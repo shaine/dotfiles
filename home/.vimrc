@@ -56,6 +56,9 @@ vmap <Leader>a: :Tabularize /:<CR>
 " Other bindings
 nmap <silent> // :nohlsearch<CR> " Clear search
 
+nnoremap ' ` " Move the less-useful line-mark to backtick
+nnoremap ` ' " Move the more-useful place-mark to single quote
+
 let g:user_zen_settings = {
 \  'indentation' : '  ',
 \  'php' : {

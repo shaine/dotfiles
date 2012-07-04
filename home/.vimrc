@@ -45,10 +45,12 @@ map <Leader><Leader> :ZoomWin<CR>
 map <Leader>u :GundoToggle<CR>
 
 " Tabularize configuration
-if exists(":Tabularize")
-  nmap <Leader>a :Tabularize<CR>
-  vmap <Leader>a :Tabularize<CR>
-endif
+nmap <Leader>aa :Tabularize<CR>
+vmap <Leader>aa :Tabularize<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
 
 " Other bindings
 nmap <silent> // :nohlsearch<CR> " Clear search

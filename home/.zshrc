@@ -93,5 +93,7 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 
 bindkey -v
+bindkey -s "^[[O" ''
+bindkey -s "^[[I" ''
 
 cd .

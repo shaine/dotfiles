@@ -72,11 +72,10 @@ alias tmux="tmux -2 -u"
 alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
-alias ls="ls -GF"
+alias ls="ls -alhGF"
 alias lol="fortune | cowthink | lolcat"
 
 tm () { tmux attach-session -t $* || tmux new-session -s $* }
-rm () { mv $* ~/.Trash }
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export LS_OPTIONS='--color=auto'

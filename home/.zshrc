@@ -42,18 +42,19 @@ function prompt_char {
   echo '○'
 }
 
-function battery_charge {
-  echo `$BAT_CHARGE` 2>/dev/null
-}
-
 function virtualenv_info {
   [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
-
-PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)
+prompt_on() {
+  PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)
 $(virtualenv_info)$(prompt_char) '
+}
+prompt_off() {
+  PROMPT='\$ '
+}
+prompt_on
 
-RPROMPT='$VIMODE'
+RPROMPT="%T"
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" ("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"

@@ -29,6 +29,12 @@ nnoremap <leader>t :tabe<CR>
 inoremap jj <Esc>
 inoremap kk <Esc>
 
+" Other bindings
+nmap <silent> // :nohlsearch<CR> " Clear search
+
+nnoremap ' ` " Move the less-useful line-mark to backtick
+nnoremap ` ' " Move the more-useful place-mark to single quote
+
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
@@ -53,12 +59,7 @@ vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:<CR>
 vmap <Leader>a: :Tabularize /:<CR>
 
-" Other bindings
-nmap <silent> // :nohlsearch<CR> " Clear search
-
-nnoremap ' ` " Move the less-useful line-mark to backtick
-nnoremap ` ' " Move the more-useful place-mark to single quote
-
+" Zen Code
 let g:user_zen_settings = {
 \  'indentation' : '  ',
 \  'php' : {
@@ -82,8 +83,10 @@ let g:ctrlp_map = '<Leader>f'
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
-" let g:Powerline_theme='skwp'
 let g:Powerline_colorscheme='skwp'
+
+" Yankring
+let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
 
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap

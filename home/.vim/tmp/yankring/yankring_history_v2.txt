@@ -1,2 +1,0 @@
-" Setup,V
-Completed moving everything into Fatwire, and the .fr version of the pages now redirect to the Fatwire version. X-browser tested. http://www.equinix.com/en_US/whoisin/,v

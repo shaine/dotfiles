@@ -32,8 +32,8 @@ inoremap kk <Esc>
 " Other bindings
 nmap <silent> // :nohlsearch<CR> " Clear search
 
-nnoremap ' ` " Move the less-useful line-mark to backtick
-nnoremap ` ' " Move the more-useful place-mark to single quote
+nnoremap ' `
+nnoremap ` '
 
 " Yank text to the OS X clipboard
 noremap <leader>y "*y

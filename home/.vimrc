@@ -111,8 +111,7 @@ set isk+=$ " Add word characters
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-
-" Plugin settings
+set cursorline
 
 " Undo files
 set history=1000

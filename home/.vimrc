@@ -117,7 +117,7 @@ set cursorline
 set history=1000
 set undolevels=1000
 set undofile
-set undodir=~/.vim/tmp/undos//
+set undodir=~/.vim/tmp/undo//
 set noswapfile
 set nobackup
 set nowb

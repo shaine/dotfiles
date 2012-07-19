@@ -32,20 +32,20 @@ mail_count+=(["separator"]="${separator_left_bold}")
 
 declare -A now_playing
 if [ "$PLATFORM" == "linux" ]; then
-	now_playing+=(["script"]="${segments_path}/np_mpd.sh")
-	#now_playing+=(["script"]="${segments_path}/np_spotify_linux_wine.sh")
-	#now_playing+=(["script"]="${segments_path}/np_spotify_linux_native.sh")
-	#now_playing+=(["script"]="${segments_path}/np_rhythmbox.sh")
-	#now_playing+=(["script"]="${segments_path}/np_banshee.sh")
-	#now_playing+=(["script"]="${segments_path}/np_audacious.sh")
+  now_playing+=(["script"]="${segments_path}/np_mpd.sh")
+  #now_playing+=(["script"]="${segments_path}/np_spotify_linux_wine.sh")
+  #now_playing+=(["script"]="${segments_path}/np_spotify_linux_native.sh")
+  #now_playing+=(["script"]="${segments_path}/np_rhythmbox.sh")
+  #now_playing+=(["script"]="${segments_path}/np_banshee.sh")
+  #now_playing+=(["script"]="${segments_path}/np_audacious.sh")
 elif [ "$PLATFORM" == "mac" ]; then
-	now_playing+=(["script"]="${segments_path}/np_itunes_mac.sh")
+  now_playing+=(["script"]="${segments_path}/np_itunes_mac.sh")
 fi
 if [[ ${now_playing["script"]} ]]; then
-	now_playing+=(["foreground"]="colour37")
-	now_playing+=(["background"]="colour234")
-	now_playing+=(["separator"]="${separator_left_bold}")
-	register_segment "now_playing"
+  now_playing+=(["foreground"]="colour37")
+  now_playing+=(["background"]="colour234")
+  now_playing+=(["separator"]="${separator_left_bold}")
+  register_segment "now_playing"
 fi
 
 declare -A load
@@ -55,11 +55,18 @@ load+=(["background"]="colour237")
 load+=(["separator"]="${separator_left_bold}")
 #register_segment "load"
 
+declare -A adium
+adium+=(["script"]="${segments_path}/adium.sh")
+adium+=(["foreground"]="colour234")
+adium+=(["background"]="colour148")
+adium+=(["separator"]="${separator_left_bold}")
+register_segment "adium"
+
 declare -A battery
 if [ "$PLATFORM" == "mac" ]; then
-	battery+=(["script"]="${segments_path}/battery_mac.sh")
+  battery+=(["script"]="${segments_path}/battery_mac.sh")
 else
-	battery+=(["script"]="${segments_path}/battery.sh")
+  battery+=(["script"]="${segments_path}/battery.sh")
 fi
 battery+=(["foreground"]="colour127")
 battery+=(["background"]="colour137")

@@ -30,8 +30,10 @@ inoremap jj <Esc>
 inoremap kk <Esc>
 
 " Other bindings
-nmap <silent> // :nohlsearch<CR> " Clear search
+nmap <silent> // :nohlsearch<CR>" Clear search
+nmap <leader>r :redraw!<CR>" Force redraw
 
+" Swap ` and ' for better tmux integration
 nnoremap ' `
 nnoremap ` '
 

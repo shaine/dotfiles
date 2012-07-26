@@ -90,7 +90,12 @@ let g:ctrlp_map = '<Leader>f'
 "let g:ctrlp_max_files = 200000
 
 " Powerline
-let g:Powerline_symbols = 'fancy'
+if exists("$PANIC_PROMPT")
+  " For iPad
+  let g:Powerline_symbols='unicode'
+else
+  let g:Powerline_symbols='fancy'
+endif
 let g:Powerline_colorscheme='skwp'
 
 " Yankring

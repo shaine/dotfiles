@@ -10,9 +10,12 @@ au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes
 let mapleader = ","
 
 " Colorscheme
-"let g:solarized_termcolors=256
+if exists("$PANIC_PROMPT")
+  " Execute this if Prompt started our session
+  let g:solarized_termcolors=256
+endif
 "let g:solarized_termtrans = 1
-let g:solarized_contrast="high"
+"let g:solarized_contrast="high"
 set background=light
 colorscheme solarized
 

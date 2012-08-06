@@ -75,6 +75,7 @@ alias "tmux ns"="tmux new-session -s "
 alias ls="ls -GF"
 alias ll="ls -alhGF"
 alias lol="fortune | cowthink | lolcat"
+alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 
 tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -t $* || tmux new-session -s $*; fi }
 

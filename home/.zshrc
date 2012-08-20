@@ -77,7 +77,7 @@ alias ll="ls -alhGF"
 alias lol="fortune | cowthink | lolcat"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 
-tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -t $* || tmux new-session -s $*; fi }
+tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export LS_OPTIONS='--color=auto'

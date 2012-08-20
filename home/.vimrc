@@ -116,6 +116,23 @@ let g:Powerline_colorscheme='skwp'
 " Syntastic
 let g:syntastic_auto_loc_list=1
 
+" Tagbar
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
+
 " Yankring
 let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
 

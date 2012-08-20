@@ -110,6 +110,9 @@ else
 endif
 let g:Powerline_colorscheme='skwp'
 
+" Syntastic
+let g:syntastic_auto_loc_list=1
+
 " Yankring
 let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
 

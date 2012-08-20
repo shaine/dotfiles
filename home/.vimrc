@@ -101,6 +101,9 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|assets$\|\.png$
 let g:ctrlp_map = '<Leader>f'
 "let g:ctrlp_max_files = 200000
 
+" NERDTree
+nnoremap <leader>F :NERDTreeToggle<cr>
+
 " Powerline
 if exists("$PANIC_PROMPT")
   " For iPad

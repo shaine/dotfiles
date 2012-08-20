@@ -54,6 +54,8 @@ nnoremap ` '
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
+" Paste at the end of the line
+nnoremap <Leader>P ma$p`a
 
 " Paste toggle
 nnoremap <F2> :set invpaste paste?<CR>

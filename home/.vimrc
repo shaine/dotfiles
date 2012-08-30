@@ -30,13 +30,13 @@ nnoremap \| :vsp<CR><C-w>l
 nnoremap <leader>t :tabe<CR>
 
 " Swap word left/right
-nnoremap <leader>h "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o><C-l>:nohlsearch<CR>
-nnoremap <leader>l "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o>/\w\+\_W\+<CR><C-l>:nohlsearch<CR>
+nnoremap H "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o><C-l>:nohlsearch<CR>
+nnoremap L "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o>/\w\+\_W\+<CR><C-l>:nohlsearch<CR>
 " Swap line(s) up/down
-nnoremap <silent> <Up> :m-2<CR>==
-nnoremap <silent> <Down> :m+<CR>==
-vnoremap <silent> <Up> :m-2<CR>gv=gv
-vnoremap <silent> <Down> :m'>+<CR>gv=gv
+nnoremap K :m-2<CR>==
+vnoremap K :m-2<CR>gv=gv
+nnoremap J :m+<CR>==
+vnoremap J :m'>+<CR>gv=gv
 
 " Extra escape bindings
 inoremap jj <Esc>
@@ -230,26 +230,26 @@ function! SetArrowKeysAsTextShifters()
     " normal mode
     nmap <silent> <Left> <<
     nmap <silent> <Right> >>
-    " nnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>
-    " nnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>
-    " nnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>
-    " nnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>
+    nnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>
+    nnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>
+    nnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>
+    nnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>
 
     " visual mode
     vmap <silent> <Left> <
     vmap <silent> <Right> >
-    " vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
-    " vnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>gv
-    " vnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
-    " vnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>gv
+    vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
+    vnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>gv
+    vnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
+    vnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>gv
 
     " insert mode
     imap <silent> <Left> <C-D>
     imap <silent> <Right> <C-T>
-    " inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
-    " inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
-    " inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
-    " inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+    inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
+    inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+    inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
+    inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
 
     " disable modified versions we are not using
     " nnoremap  <S-Up>     <NOP>

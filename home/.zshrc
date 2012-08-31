@@ -24,7 +24,7 @@ ZSH=$HOME/.oh-my-zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode osx)
+plugins=(git vi-mode osx brew gem)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -32,6 +32,25 @@ source $ZSH/oh-my-zsh.sh
 #export PATH=/opt/local/bin:/opt/local/sbin:/Users/shaine/.rvm/gems/ruby-1.9.2-p290/bin:/Users/shaine/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/shaine/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/shaine/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/shaine/.rvm/bin:/Users/shaine/.rvm/bin
 export PATH=/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
+
+GRC=`which grc`
+if [ "$TERM" != dumb ] && [ -n GRC ]
+then
+    alias colourify="$GRC -es --colour=auto"
+    alias configure='colourify ./configure'
+    alias diff='colourify diff'
+    alias make='colourify make'
+    alias gcc='colourify gcc'
+    alias g++='colourify g++'
+    alias as='colourify as'
+    alias gas='colourify gas'
+    alias ld='colourify ld'
+    alias netstat='colourify netstat'
+    alias ping='colourify ping'
+    alias traceroute='colourify /usr/sbin/traceroute'
+    alias tail='colourify tail'
+    alias head='colourify head'
+fi
 
 function collapse_pwd {
   echo $(pwd | sed -e "s,^$HOME,~,")

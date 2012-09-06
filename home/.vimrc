@@ -71,6 +71,13 @@ map <Leader><Leader> :ZoomWin<CR>
 " Gundo configuration
 map <Leader>u :GundoToggle<CR>
 
+" Space.vim related
+let g:space_no_second_prev_mapping = 1
+let g:space_no_jump = 1
+nmap <Tab> <Plug>SmartspaceNext
+nmap <BS> <Plug>SmartspacePrev
+nnoremap <Space> a_<Esc>r
+
 " Tabularize configuration
 nmap <Leader>aa :Tabularize<CR>
 vmap <Leader>aa :Tabularize<CR>

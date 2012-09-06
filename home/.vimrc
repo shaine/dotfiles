@@ -58,8 +58,8 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR> " Preserve indentati
 nnoremap <Leader>P ma$p`a
 
 " Paste toggle
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+nnoremap <Leader>v :set invpaste paste?<CR>
+set pastetoggle=<Leader>v
 set showmode
 
 " Fugitive

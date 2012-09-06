@@ -18,7 +18,7 @@ endif
 "let g:solarized_contrast="high"
 set background=light
 colorscheme solarized
-call togglebg#map("<F5>")
+call togglebg#map("<Leader>b")
 
 " Key mappings for pane selection
 noremap <C-h> <C-w>h

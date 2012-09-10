@@ -275,3 +275,52 @@ function! SetArrowKeysAsTextShifters()
     " inoremap  <S-Right>  <NOP>
 endfunction
 call SetArrowKeysAsTextShifters()
+
+
+" custom tab pages line with tab numbers - modified version of script by JonSkanes
+" http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
+set tabline=%!MyTabLine()
+function! MyTabLine()
+  let s = ''
+  let t = tabpagenr()
+  let i = 1
+  while i <= tabpagenr('$')
+    let buflist = tabpagebuflist(i)
+    let winnr = tabpagewinnr(i)
+    let s .= '%#TabLine# '
+    let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= '['
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . i . 'T'
+    " set page number string
+    let s .=  i . ']'
+    let m = 0 " &modified counter
+    let bufnr = buflist[winnr - 1]
+    let file = bufname(bufnr)
+    let buftype = getbufvar(bufnr, 'buftype')
+    if buftype == 'nofile'
+      if file =~ '\/.'
+        let file = substitute(file, '.*\/\ze.', '', '')
+      endif
+    else
+      let file = fnamemodify(file, ':p:t')
+    endif
+    if file == ''
+      let file = '[No Name]'
+    endif
+    for b in buflist
+      " check and ++ tab's &modified count
+      if getbufvar( b, "&modified" )
+        let m += 1
+      endif
+    endfor
+    if m > 0
+      let s.= '[+]'
+    endif
+    let s .= file
+    let i = i + 1
+  endwhile
+  let s .= '%T%#TabLineFill#%='
+  let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+  return s
+endfunction

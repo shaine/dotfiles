@@ -279,21 +279,38 @@ call SetArrowKeysAsTextShifters()
 
 " custom tab pages line with tab numbers - modified version of script by JonSkanes
 " http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
+hi TabLineFill cterm=none ctermfg=234 ctermbg=234
+hi TabLine cterm=none ctermfg=245 ctermbg=236
+hi TabLineSel cterm=none ctermfg=234 ctermbg=31
+hi TabLineEnd cterm=none ctermfg=236 ctermbg=234
+hi TabLineSelStart cterm=none ctermfg=236 ctermbg=31
+hi TabLineSelEnd cterm=none ctermfg=31 ctermbg=236
+hi TabLineEndSelEnd cterm=none ctermfg=31 ctermbg=234
 set tabline=%!MyTabLine()
 function! MyTabLine()
   let s = ''
   let t = tabpagenr()
   let i = 1
-  while i <= tabpagenr('$')
+  let len = tabpagenr('$')
+  while i <= len
     let buflist = tabpagebuflist(i)
     let winnr = tabpagewinnr(i)
-    let s .= '%#TabLine# '
-    let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= '['
+    let s .= '%#TabLine#'
+    if i != 1
+      if i == t
+        let s .= ' %#TabLineSelStart#⮀'
+      elseif i-1 != t
+        let s .= ' ⮁'
+      endif
+    endif
+    let s .= (i == t ? '%#TabLineSel# ' : '%#TabLine# ')
     " set the tab page number (for mouse clicks)
     let s .= '%' . i . 'T'
     " set page number string
-    let s .=  i . ']'
+    let s .=  i . ' '
+    if i == t
+      let s .= '⮁ '
+    endif
     let m = 0 " &modified counter
     let bufnr = buflist[winnr - 1]
     let file = bufname(bufnr)
@@ -318,8 +335,18 @@ function! MyTabLine()
       let s.= '[+]'
     endif
     let s .= file
+    if i == t
+      if i == len
+        let s .= ' %#TabLineEndSelEnd#⮀'
+      else
+        let s .= ' %#TabLineSelEnd#⮀'
+      endif
+    endif
     let i = i + 1
   endwhile
+  if i-1 != t
+    let s .= ' %#TabLineEnd#⮀'
+  endif
   let s .= '%T%#TabLineFill#%='
   let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
   return s

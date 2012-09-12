@@ -281,11 +281,11 @@ call SetArrowKeysAsTextShifters()
 " http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
 hi TabLineFill cterm=none ctermfg=234 ctermbg=234
 hi TabLine cterm=none ctermfg=245 ctermbg=236
-hi TabLineSel cterm=none ctermfg=234 ctermbg=31
+hi TabLineSel cterm=none ctermfg=234 ctermbg=33
 hi TabLineEnd cterm=none ctermfg=236 ctermbg=234
-hi TabLineSelStart cterm=none ctermfg=236 ctermbg=31
-hi TabLineSelEnd cterm=none ctermfg=31 ctermbg=236
-hi TabLineEndSelEnd cterm=none ctermfg=31 ctermbg=234
+hi TabLineSelStart cterm=none ctermfg=236 ctermbg=33
+hi TabLineSelEnd cterm=none ctermfg=33 ctermbg=236
+hi TabLineEndSelEnd cterm=none ctermfg=33 ctermbg=234
 set tabline=%!MyTabLine()
 function! MyTabLine()
   let s = ''

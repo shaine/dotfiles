@@ -279,6 +279,7 @@ call SetArrowKeysAsTextShifters()
 
 " custom tab pages line with tab numbers - modified version of script by JonSkanes
 " http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
+hi Search cterm=reverse ctermfg=DarkBlue
 hi TabLineFill cterm=none ctermfg=234 ctermbg=234
 hi TabLine cterm=none ctermfg=245 ctermbg=236
 hi TabLineSel cterm=none ctermfg=234 ctermbg=33

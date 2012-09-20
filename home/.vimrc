@@ -121,6 +121,7 @@ else
   let g:Powerline_symbols='fancy'
 endif
 let g:Powerline_colorscheme='skwp'
+let g:Powerline_stl_path_style='short'
 
 " Syntastic
 let g:syntastic_auto_loc_list=1

@@ -11,11 +11,12 @@
   stat = true
   tool = opendiff
 [alias]
-        st = status
-        co = checkout
-        com = commit -am
-        ignore = update-index --assume-unchanged
-        unignore = update-index --no-assume-unchanged
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --
+  st = status
+  co = checkout
+  com = commit -am
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --
+  ignored = ls-files -v
 [github]
-	user = shaine
+  user = shaine

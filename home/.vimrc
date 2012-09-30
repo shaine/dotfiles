@@ -53,26 +53,34 @@ nmap <leader>r :redraw!<CR>" Force redraw
 nnoremap ' `
 nnoremap ` '
 
-" Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
-" Paste at the end of the line
-nnoremap <Leader>P ma$p`a
-
-" Paste toggle
-nnoremap <Leader>v :set invpaste paste?<CR>
-set pastetoggle=<Leader>v
-set showmode
+" CtrlP
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|assets$\|\.png$\|\.jpg$\|\.gif$\|\.bak$\|\.pdf'
+let g:ctrlp_map = '<Leader>f'
+"let g:ctrlp_max_files = 200000
 
 " Fugitive
 map <Leader>g :Gstatus<CR>
 
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
-
 " Gundo configuration
 map <Leader>u :GundoToggle<CR>
+
+" NERDTree
+nnoremap <leader>F :NERDTreeToggle<cr>
+
+" Paste toggle
+nnoremap <Leader>v :set invpaste paste?<CR>
+set showmode
+
+" Powerline
+if exists("$PANIC_PROMPT")
+  " For iPad
+  let g:Powerline_symbols='unicode'
+else
+  let g:Powerline_symbols='fancy'
+endif
+let g:Powerline_colorscheme='skwp'
+let g:Powerline_stl_path_style='short'
 
 " Space.vim related
 let g:space_no_second_prev_mapping = 1
@@ -80,6 +88,9 @@ let g:space_no_jump = 1
 nmap <Tab> <Plug>SmartspaceNext
 nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
+
+" Syntastic
+let g:syntastic_auto_loc_list=1
 
 " Tabularize configuration
 nmap <Leader>aa :Tabularize<CR>
@@ -90,6 +101,43 @@ nmap <Leader>a=> :Tabularize /=><CR>
 vmap <Leader>a=> :Tabularize /=><CR>
 nmap <Leader>a: :Tabularize /:<CR>
 vmap <Leader>a: :Tabularize /:<CR>
+
+" Tagbar
+nnoremap <leader>T :TagbarToggle<cr>
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
+
+" Undo files
+set history=1000
+set undolevels=1000
+set undofile
+set undodir=~/.vim/tmp/undo//
+set noswapfile
+set nobackup
+set nowb
+
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
+" Paste at the end of the line
+nnoremap <Leader>P ma$p`a
+
+" Yankring
+let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
 
 " Zen Code
 let g:user_zen_settings = {
@@ -107,47 +155,8 @@ let g:user_zen_settings = {
 \  }
 \}
 
-" CtrlP
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|assets$\|\.png$\|\.jpg$\|\.gif$\|\.bak$\|\.pdf'
-let g:ctrlp_map = '<Leader>f'
-"let g:ctrlp_max_files = 200000
-
-" NERDTree
-nnoremap <leader>F :NERDTreeToggle<cr>
-
-" Powerline
-if exists("$PANIC_PROMPT")
-  " For iPad
-  let g:Powerline_symbols='unicode'
-else
-  let g:Powerline_symbols='fancy'
-endif
-let g:Powerline_colorscheme='skwp'
-let g:Powerline_stl_path_style='short'
-
-" Syntastic
-let g:syntastic_auto_loc_list=1
-
-" Tagbar
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
-
-" Yankring
-let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
+" ZoomWin configuration
+map <Leader><Leader> :ZoomWin<CR>
 
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap
@@ -170,15 +179,6 @@ set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 set cursorline
-
-" Undo files
-set history=1000
-set undolevels=1000
-set undofile
-set undodir=~/.vim/tmp/undo//
-set noswapfile
-set nobackup
-set nowb
 
 if has("gui_running")
   set guioptions=egmrt

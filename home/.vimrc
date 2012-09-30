@@ -8,6 +8,7 @@ set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
 au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes
 let mapleader = ","
+nnoremap <leader>S :so ~/.vimrc<cr>
 
 " Colorscheme
 if exists("$PANIC_PROMPT")

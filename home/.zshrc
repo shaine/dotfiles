@@ -86,24 +86,24 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 
-alias pear="php /usr/lib/php/pear/pearcmd.php"
-alias pecl="php /usr/lib/php/pear/peclcmd.php"
-alias git-com="nocorrect git-com"
-alias tmux="tmux -2 -u"
-alias phperrors="tail -f /var/log/apache2/error_log"
-alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
-alias "tmux ns"="tmux new-session -s "
-alias ls="ls -GF"
-alias ll="ls -alhGF"
-alias lol="fortune | cowthink | lolcat"
-alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
+alias fact      = "elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
+alias git-com   = "nocorrect git-com"
+alias ll        = "ls -alhGF"
+alias lol       = "fortune | cowthink | lolcat"
+alias ls        = "ls -GF"
+alias pear      = "php /usr/lib/php/pear/pearcmd.php"
+alias pecl      = "php /usr/lib/php/pear/peclcmd.php"
+alias phperrors = "tail -f /var/log/apache2/error_log"
+alias tmux      = "tmux -2 -u"
+alias tmuxcopy  = "tmux show-buffer | tr -d '\n' | pbcopy"
+alias "tmux ns" = "tmux new-session -s "
 
 tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
 
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-export LS_OPTIONS='--color=auto'
-export CLICOLOR='Yes'
-export LSCOLORS='exgxfxfxcxdxdxhbadbxbx'
+export GREP_OPTIONS = '--color = auto' GREP_COLOR = '1;32'
+export LS_OPTIONS   = '--color = auto'
+export CLICOLOR     = 'Yes'
+export LSCOLORS     = 'exgxfxfxcxdxdxhbadbxbx'
 
 unset RUBYOPT
 

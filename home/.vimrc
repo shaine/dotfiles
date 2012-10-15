@@ -44,6 +44,7 @@ vnoremap J :m'>+<CR>gv=gv
 " Extra escape bindings
 inoremap jj <Esc>
 inoremap kk <Esc>
+inoremap jk <Esc>
 
 " Other bindings
 nmap <silent> // :nohlsearch<CR>" Clear search
@@ -55,7 +56,7 @@ nnoremap ` '
 
 " CtrlP
 let g:ctrlp_working_path_mode = 2
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|assets$\|\.png$\|\.jpg$\|\.gif$\|\.bak$\|\.pdf'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.png$\|\.jpg$\|\.gif$\|\.bak$\|\.pdf'
 let g:ctrlp_map = '<Leader>f'
 "let g:ctrlp_max_files = 200000
 

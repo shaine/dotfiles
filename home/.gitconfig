@@ -11,7 +11,8 @@
   stat = true
   tool = opendiff
 [alias]
-  st = status
+  st = status -sb
+  d = diff --word-diff
   co = checkout
   com = commit -am
   ignore = update-index --assume-unchanged

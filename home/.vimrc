@@ -14,12 +14,14 @@ nnoremap <leader>S :so ~/.vimrc<cr>
 if exists("$PANIC_PROMPT")
   " Execute this if Prompt started our session
   let g:solarized_termcolors=256
+  set background=light
+else
+  set background=dark
 endif
 "let g:solarized_termtrans = 1
 "let g:solarized_contrast="high"
-set background=light
 colorscheme solarized
-"call togglebg#map("<Leader>b")
+call togglebg#map("<Leader>b")
 
 " Key mappings for pane selection
 noremap <C-h> <C-w>h

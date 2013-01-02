@@ -4,5 +4,6 @@ splitw -h -p 30
 splitw -v -p 50
 selectp -L
 link-window -s system:2
+link-window -s system:4
 select-window -t 1
 

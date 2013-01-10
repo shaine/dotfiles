@@ -4,9 +4,7 @@ new-window -n Shells
 splitw -h -p 30
 splitw -v -p 50
 selectp -L
-new-window -n Yii "tail -f protected/runtime/application.log"
-splitw -h -p 50
-link-window -s system:3
-link-window -s system:4
+new-window -n Logs "tail -f /var/log/apache2/error_log"
+new-window -n Monitor glances
 select-window -t 1
 

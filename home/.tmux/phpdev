@@ -1,5 +1,6 @@
 set-window-option -g allow-rename off
 set visual-activity off
+rename-window Editor
 new-window -n Shells
 splitw -h -p 30
 splitw -v -p 50

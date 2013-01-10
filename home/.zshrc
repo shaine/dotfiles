@@ -105,7 +105,6 @@ export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='exgxfxfxcxdxdxhbadbxbx'
-export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 
 unset RUBYOPT
 

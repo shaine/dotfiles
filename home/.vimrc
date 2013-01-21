@@ -6,7 +6,8 @@ call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
-au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes
+au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
+au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 let mapleader = ","
 nnoremap <leader>S :so ~/.vimrc<cr>
 

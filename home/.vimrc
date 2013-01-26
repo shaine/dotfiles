@@ -12,13 +12,12 @@ let mapleader = ","
 nnoremap <leader>S :so ~/.vimrc<cr>
 
 " Colorscheme
+set background=light
 if exists("$PANIC_PROMPT")
   " Execute this if Prompt started our session
   let g:solarized_termcolors=256
-endif
-set background=light
 " Only use dark locally, light otherwise
-if hostname()=="shaine.lan"
+elseif hostname()=="shaine.lan"
   set background=dark
 endif
 "let g:solarized_termtrans = 1

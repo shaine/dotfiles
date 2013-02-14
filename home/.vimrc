@@ -62,6 +62,7 @@ nnoremap ` '
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|\.DS_Store$\|\.png$\|\.jpg$\|\.gif$\|\.bak$\|\.pdf'
 let g:ctrlp_map = '<Leader>f'
+let g:ctrlp_show_hidden = 1
 "let g:ctrlp_max_files = 200000
 
 " Fugitive
@@ -84,7 +85,7 @@ if exists("$PANIC_PROMPT")
 else
   let g:Powerline_symbols='fancy'
 endif
-let g:Powerline_colorscheme='skwp'
+let g:Powerline_colorscheme='solarized256'
 let g:Powerline_stl_path_style='short'
 
 " Space.vim related

@@ -31,6 +31,9 @@
 [submodule "home/.vim/bundle/tabular"]
   path = home/.vim/bundle/tabular
   url = git://github.com/godlygeek/tabular.git
+[submodule "home/.vim/bundle/tagbar"]
+  path = home/.vim/bundle/tagbar
+  url = https://github.com/majutsushi/tagbar.git
 [submodule "home/.vim/bundle/vim-afterimage"]
   path = home/.vim/bundle/vim-afterimage
   url = git://github.com/tpope/vim-afterimage.git

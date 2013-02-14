@@ -1,6 +1,6 @@
 [submodule "home/.vim/bundle/ack.vim"]
 	path = home/.vim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
-[submodule ".vim/bundles"]
-	path = .vim/bundles
+[submodule "home/.vim/bundle/YankRing.vim"]
+	path = home/.vim/bundle/YankRing.vim
 	url = git://github.com/vim-scripts/YankRing.vim.git

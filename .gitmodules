@@ -1,3 +1,6 @@
 [submodule "home/.vim/bundle/ack.vim"]
 	path = home/.vim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
+[submodule ".vim/bundles"]
+	path = .vim/bundles
+	url = git://github.com/vim-scripts/YankRing.vim.git

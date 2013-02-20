@@ -193,7 +193,7 @@ endif
 
 if !exists("autocommands_loaded")
   let autocommands_loaded = 1
-  au! BufWritePost .vimrc source %
+  " au! BufWritePost .vimrc source %
 endif
 
 " Enable autosave

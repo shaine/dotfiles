@@ -88,6 +88,3 @@
 [submodule "home/.oh-my-zsh"]
 	path = home/.oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
-[submodule "home/.vim/bundle/vim-css-color"]
-	path = home/.vim/bundle/vim-css-color
-	url = git://github.com/ap/vim-css-color.git

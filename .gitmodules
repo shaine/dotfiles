@@ -88,3 +88,6 @@
 [submodule "home/.oh-my-zsh"]
 	path = home/.oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule "home/.vim/bundle/mustache"]
+	path = home/.vim/bundle/mustache
+	url = git://github.com/juvenn/mustache.vim.git

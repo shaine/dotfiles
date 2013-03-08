@@ -24,6 +24,7 @@ endif
 "let g:solarized_contrast="high"
 colorscheme solarized
 call togglebg#map("<Leader>b")
+highlight clear SignColumn
 
 " Key mappings for pane selection
 noremap <C-h> <C-w>h

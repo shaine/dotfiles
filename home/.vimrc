@@ -2,7 +2,6 @@
 set nocompatible " Don't need vi compatibility
 call pathogen#infect() " Start Pathogen to load bundles
 call pathogen#helptags() " Pathogen to load help tags
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent

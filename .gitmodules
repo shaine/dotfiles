@@ -97,3 +97,6 @@
 [submodule "home/.vim/bundle/vim-nerdtree-tabs"]
 	path = home/.vim/bundle/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
+[submodule "home/.vim/bundle/syntastic"]
+	path = home/.vim/bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git

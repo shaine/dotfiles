@@ -72,7 +72,7 @@ map <Leader>g :Gstatus<CR>
 map <Leader>u :GundoToggle<CR>
 
 " NERDTree
-nnoremap <leader>F :NERDTreeToggle<cr>
+nnoremap <leader>F :NERDTreeTabsToggle<CR>
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>

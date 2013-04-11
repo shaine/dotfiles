@@ -96,8 +96,7 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " Syntastic
-let g:syntastic_auto_loc_list=0
-let g:syntastic_phpcs_conf="--tab-width=2"
+let g:syntastic_check_on_open=1
 
 " Tabularize configuration
 nmap <Leader>aa :Tabularize<CR>

@@ -27,5 +27,8 @@
     publish = !legit publish \"$@\"
     graft = !legit graft \"$@\"
     update = submodule foreach git pull
+    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
+    cleanup = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
+    uncommit = reset --soft HEAD^
 [github]
     user = shaine

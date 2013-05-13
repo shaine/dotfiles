@@ -1,2 +1,3 @@
 home/.vim/tmp/*
 home/.vim/.netrwhist
+home/tmux-*.log

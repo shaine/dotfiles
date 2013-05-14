@@ -166,9 +166,9 @@ map <Leader><Leader> :ZoomWin<CR>
 
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap
-set tabstop=2 shiftwidth=2 " Set tabs to softab 2
+set tabstop=4 shiftwidth=4 " Set tabs to softab 4
 set expandtab " Turn tabs to spaces
-set softtabstop=2 " Something else about tabs
+set softtabstop=4 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
 set number " Show line numbers

@@ -16,7 +16,7 @@ segments_path="${cwd}/${segments_dir}"
 # Comment/uncomment the register function call to enable or disable a segment.
 
 declare -A pwd
-pwd+=(["script"]="${segments_path}/pwd.sh")
+#pwd+=(["script"]="${segments_path}/pwd.sh")
 pwd+=(["foreground"]="colour211")
 pwd+=(["background"]="colour89")
 pwd+=(["separator"]="${separator_left_bold}")
@@ -39,13 +39,13 @@ if [ "$PLATFORM" == "linux" ]; then
   #now_playing+=(["script"]="${segments_path}/np_banshee.sh")
   #now_playing+=(["script"]="${segments_path}/np_audacious.sh")
 elif [ "$PLATFORM" == "mac" ]; then
-  now_playing+=(["script"]="${segments_path}/np_itunes_mac.sh")
+  #now_playing+=(["script"]="${segments_path}/np_itunes_mac.sh")
 fi
 if [[ ${now_playing["script"]} ]]; then
   now_playing+=(["foreground"]="colour37")
   now_playing+=(["background"]="colour234")
   now_playing+=(["separator"]="${separator_left_bold}")
-  register_segment "now_playing"
+  #register_segment "now_playing"
 fi
 
 declare -A load
@@ -64,9 +64,9 @@ register_segment "adium"
 
 declare -A battery
 if [ "$PLATFORM" == "mac" ]; then
-  battery+=(["script"]="${segments_path}/battery_mac.sh")
+  #battery+=(["script"]="${segments_path}/battery_mac.sh")
 else
-  battery+=(["script"]="${segments_path}/battery.sh")
+  #battery+=(["script"]="${segments_path}/battery.sh")
 fi
 battery+=(["foreground"]="colour127")
 battery+=(["background"]="colour137")
@@ -74,7 +74,7 @@ battery+=(["separator"]="${separator_left_bold}")
 #register_segment "battery"
 
 declare -A weather
-weather+=(["script"]="${segments_path}/weather.sh")
+#weather+=(["script"]="${segments_path}/weather.sh")
 weather+=(["foreground"]="colour255")
 weather+=(["background"]="colour37")
 weather+=(["separator"]="${separator_left_bold}")

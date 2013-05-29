@@ -101,7 +101,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
-alias git-com="nocorrect git-com"
 alias gitignored="git ls-files -v | grep \"^[a-z]\""
 alias ls="ls -GF"
 alias ll="ls -alhGF"
@@ -110,6 +109,9 @@ alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmux="tmux -2 -u"
 alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
+
+# Nocorrects for ZSH
+alias composer="nocorrect composer"
 
 tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
 

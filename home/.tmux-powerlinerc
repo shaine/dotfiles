@@ -67,7 +67,7 @@
     # Domain name that will complete your email. For normal GMail users it probably is "gmail.com but can be "foo.tld" for Google Apps users.
     export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_SERVER="digitaltrike.com"
     # How often in minutes to check for new mails.
-    export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_INTERVAL="5"
+    export TMUX_POWERLINE_SEG_MAILCOUNT_GMAIL_INTERVAL="1"
 
     ## Maildir
     # Path to the maildir to check.

@@ -7,7 +7,7 @@ run_segment() {
     fi
 
     if [[ -n "$chats" ]]; then
-        echo "❝ ${chats}"
+        echo "💬  ${chats}"
     fi
 
     return 0

@@ -1,4 +1,3 @@
-set-window-option allow-rename off
 set visual-activity off
 rename-window Editor
 new-window -n Shells

@@ -44,50 +44,51 @@ export ZSH=$HOME/.oh-my-zsh
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
 then
-  alias colourify="$GRC -es --colour=auto"
-  alias configure='colourify ./configure'
-  alias diff='colourify diff'
-  alias make='colourify make'
-  alias gcc='colourify gcc'
-  alias g++='colourify g++'
-  alias as='colourify as'
-  alias gas='colourify gas'
-  alias ld='colourify ld'
-  alias netstat='colourify netstat'
-  alias ping='colourify ping'
-  alias traceroute='colourify /usr/sbin/traceroute'
-  alias tail='colourify tail'
-  alias head='colourify head'
+    alias colourify="$GRC -es --colour=auto"
+    alias configure='colourify ./configure'
+    alias diff='colourify diff'
+    alias make='colourify make'
+    alias gcc='colourify gcc'
+    alias g++='colourify g++'
+    alias as='colourify as'
+    alias gas='colourify gas'
+    alias ld='colourify ld'
+    alias netstat='colourify netstat'
+    alias ping='colourify ping'
+    alias traceroute='colourify /usr/sbin/traceroute'
+    alias tail='colourify tail'
+    alias head='colourify head'
 fi
 
 function collapse_pwd {
-  echo $(pwd | sed -e "s,^$HOME,~,")
+    echo $(pwd | sed -e "s,^$HOME,~,")
 }
 
 function prompt_char {
-  git branch >/dev/null 2>/dev/null && echo '±' && return
-  echo '○'
+    git branch >/dev/null 2>/dev/null && echo '±' && return
+    echo '○'
 }
 
 function virtualenv_info {
-  [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
 
 function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 function prompt_on() {
-  RPROMPT="%T"
+    RPROMPT="%T"
 
-  PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)
+    PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info)
 $(virtualenv_info)$(prompt_char) '
+    PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 }
 function prompt_off() {
-  RPROMPT=""
+    RPROMPT=""
 
-  PROMPT='\$ '
+    PROMPT='\$ '
 }
 prompt_on
 
@@ -123,8 +124,8 @@ export LSCOLORS='exgxfxfxcxdxdxhbadbxbx'
 unset RUBYOPT
 
 function zle-keymap-select {
-  VIMODE="${${KEYMAP/vicmd/ command}/(main|viins)/}"
-  zle reset-prompt
+    VIMODE="${${KEYMAP/vicmd/ command}/(main|viins)/}"
+    zle reset-prompt
 }
 
 zle -N zle-keymap-select

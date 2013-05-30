@@ -14,6 +14,6 @@ run_segment() {
 }
 
 __chats_adium() {
-    chats=$(~/.tmux/segments/adium.script)
+    chats=$(${TMUX_POWERLINE_DIR_USER_SEGMENTS}adium.script)
     echo "$chats"
 }

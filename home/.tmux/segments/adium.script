@@ -10,7 +10,7 @@ if process_list contains "Adium" then
     tell application "Adium"
         repeat with aChat in chats
             if unread message count of aChat is not equal to 0 then
-                set contactName to display name of first contacts where id is id of aChat
+                set contactName to name of first contacts where id is id of aChat
                 set contactName to word 1 of contactName
                 set messageCount to unread message count of aChat
                 set output to output & { contactName & ": " &  messageCount }

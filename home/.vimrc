@@ -22,7 +22,7 @@ endif
 "let g:solarized_termtrans = 1
 "let g:solarized_contrast="high"
 colorscheme solarized
-call togglebg#map("<Leader>b")
+"call togglebg#map("<Leader>b")
 highlight clear SignColumn
 
 " Key mappings for pane selection

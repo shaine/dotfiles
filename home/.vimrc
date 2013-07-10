@@ -26,10 +26,15 @@ colorscheme solarized
 highlight clear SignColumn
 
 " Key mappings for pane selection
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+"noremap <C-h> <C-w>h
+"noremap <C-j> <C-w>j
+"noremap <C-k> <C-w>k
+"noremap <C-l> <C-w>l
+let g:tmux_navigator_no_mappings = 1
+nmap <silent> <C-h> :TmuxNavigateLeft<cr>
+nmap <silent> <C-j> :TmuxNavigateDown<cr>
+nmap <silent> <C-k> :TmuxNavigateUp<cr>
+nmap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap _ :sp<CR><C-w>j
 nnoremap \| :vsp<CR><C-w>l
 nnoremap <leader>t :tabe<CR>

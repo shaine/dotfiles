@@ -110,6 +110,9 @@ alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmux="tmux -2 -u"
 alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
+function restartcoreaudio() {
+    sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
+}
 
 # Nocorrects for ZSH
 alias composer="nocorrect composer"

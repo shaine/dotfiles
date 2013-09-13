@@ -97,7 +97,7 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " Syntastic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 
 " Tabularize configuration
 nmap <Leader>aa :Tabularize<CR>

@@ -98,6 +98,8 @@ nnoremap <Space> a_<Esc>r
 
 " Syntastic
 let g:syntastic_check_on_open=0
+let g:syntastic_quiet_warnings=1
+
 
 " Tabularize configuration
 nmap <Leader>aa :Tabularize<CR>

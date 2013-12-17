@@ -16,7 +16,9 @@ if exists("$PANIC_PROMPT")
   " Execute this if Prompt started our session
   let g:solarized_termcolors=256
 " Only use dark locally, light otherwise
-elseif hostname()=="shaine.lan"
+elseif hostname()=="squidward.lan"
+  set background=dark
+elseif hostname()=="shainehatch"
   set background=dark
 endif
 "let g:solarized_termtrans = 1

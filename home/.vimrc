@@ -11,15 +11,10 @@ let mapleader = ","
 nnoremap <leader>S :so ~/.vimrc<cr>
 
 " Colorscheme
-set background=light
+set background=dark
 if exists("$PANIC_PROMPT")
-  " Execute this if Prompt started our session
-  let g:solarized_termcolors=256
-" Only use dark locally, light otherwise
-elseif hostname()=="squidward.lan"
-  set background=dark
-elseif hostname()=="C1FED-LM21917"
-  set background=dark
+    " Execute this if Prompt started our session
+    let g:solarized_termcolors=256
 endif
 "let g:solarized_termtrans = 1
 "let g:solarized_contrast="high"
@@ -83,10 +78,10 @@ set showmode
 
 " Powerline
 if exists("$PANIC_PROMPT")
-  " For iPad
-  let g:Powerline_symbols='unicode'
+    " For iPad
+    let g:Powerline_symbols='unicode'
 else
-  let g:Powerline_symbols='fancy'
+    let g:Powerline_symbols='fancy'
 endif
 let g:Powerline_colorscheme='solarized256'
 let g:Powerline_stl_path_style='short'
@@ -116,19 +111,19 @@ vmap <Leader>a: :Tabularize /:<CR>
 " Tagbar
 nnoremap <leader>T :TagbarToggle<cr>
 if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
+    let g:tagbar_type_coffee = {
+                \ 'ctagsbin' : 'coffeetags',
+                \ 'ctagsargs' : '',
+                \ 'kinds' : [
+                \ 'f:functions',
+                \ 'o:object',
+                \ ],
+                \ 'sro' : ".",
+                \ 'kind2scope' : {
+                \ 'f' : 'object',
+                \ 'o' : 'object',
+                \ }
+                \ }
 endif
 
 " Undo files
@@ -143,7 +138,7 @@ set nowb
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
 " Paste at the end of the line
 nnoremap <Leader>P ma$p`a
 
@@ -152,18 +147,18 @@ let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
 
 " Zen Code
 let g:user_zen_settings = {
-\  'indentation' : '  ',
-\  'php' : {
-\    'aliases' : {
-\      'req' : 'require '
-\    },
-\    'snippets' : {
-\      'php' : "<?php | ?>",
-\      'yii' : "Yii::app()->",
-\      'yiijs' : "Yii::app()->clientScript->registerScriptFile(\"|\");",
-\      'yiicss' : "Yii::app()->clientScript->registerCssFile(\"|\");",
+\    'indentation' : '    ',
+\    'php' : {
+\        'aliases' : {
+\            'req' : 'require '
+\        },
+\        'snippets' : {
+\            'php' : "<?php | ?>",
+\            'yii' : "Yii::app()->",
+\            'yiijs' : "Yii::app()->clientScript->registerScriptFile(\"|\");",
+\            'yiicss' : "Yii::app()->clientScript->registerCssFile(\"|\");",
+\        }
 \    }
-\  }
 \}
 
 " ZoomWin configuration
@@ -200,12 +195,12 @@ set ttimeoutlen=10
 set backupskip=/tmp/*,/private/tmp/*"
 
 if has("gui_running")
-  set guioptions=egmrt
+    set guioptions=egmrt
 endif
 
 if !exists("autocommands_loaded")
-  let autocommands_loaded = 1
-  " au! BufWritePost .vimrc source %
+    let autocommands_loaded = 1
+    " au! BufWritePost .vimrc source %
 endif
 
 " Enable autosave
@@ -217,85 +212,85 @@ autocmd BufWritePre * :%s/\s\+$//e " Remove trailing space on save
 " Awesome arrow bindings
 " ------------------
 function! DelEmptyLineAbove()
-    if line(".") == 1
-        return
-    endif
-    let l:line = getline(line(".") - 1)
-    if l:line =~ '^\s*$'
-        let l:colsave = col(".")
-        .-1d
-        silent normal! <C-y>
-        call cursor(line("."), l:colsave)
-    endif
+        if line(".") == 1
+                return
+        endif
+        let l:line = getline(line(".") - 1)
+        if l:line =~ '^\s*$'
+                let l:colsave = col(".")
+                .-1d
+                silent normal! <C-y>
+                call cursor(line("."), l:colsave)
+        endif
 endfunction
 
 function! AddEmptyLineAbove()
-    let l:scrolloffsave = &scrolloff
-    " Avoid jerky scrolling with ^E at top of window
-    set scrolloff=0
-    call append(line(".") - 1, "")
-    if winline() != winheight(0)
-        silent normal! <C-e>
-    endif
-    let &scrolloff = l:scrolloffsave
+        let l:scrolloffsave = &scrolloff
+        " Avoid jerky scrolling with ^E at top of window
+        set scrolloff=0
+        call append(line(".") - 1, "")
+        if winline() != winheight(0)
+                silent normal! <C-e>
+        endif
+        let &scrolloff = l:scrolloffsave
 endfunction
 
 function! DelEmptyLineBelow()
-    if line(".") == line("$")
-        return
-    endif
-    let l:line = getline(line(".") + 1)
-    if l:line =~ '^\s*$'
-        let l:colsave = col(".")
-        .+1d
-        ''
-        call cursor(line("."), l:colsave)
-    endif
+        if line(".") == line("$")
+                return
+        endif
+        let l:line = getline(line(".") + 1)
+        if l:line =~ '^\s*$'
+                let l:colsave = col(".")
+                .+1d
+                ''
+                call cursor(line("."), l:colsave)
+        endif
 endfunction
 
 function! AddEmptyLineBelow()
-    call append(line("."), "")
+        call append(line("."), "")
 endfunction
 
 " Arrow key remapping: Up/Dn = move line up/dn; Left/Right = indent/unindent
 function! SetArrowKeysAsTextShifters()
-    " normal mode
-    nmap <silent> <Left> <<
-    nmap <silent> <Right> >>
-    nnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>
-    nnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>
-    nnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>
-    nnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>
+        " normal mode
+        nmap <silent> <Left> <<
+        nmap <silent> <Right> >>
+        nnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>
+        nnoremap <silent> <Down>    <Esc>:call AddEmptyLineAbove()<CR>
+        nnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>
+        nnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>
 
-    " visual mode
-    vmap <silent> <Left> <
-    vmap <silent> <Right> >
-    vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
-    vnoremap <silent> <Down>  <Esc>:call AddEmptyLineAbove()<CR>gv
-    vnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
-    vnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>gv
+        " visual mode
+        vmap <silent> <Left> <
+        vmap <silent> <Right> >
+        vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
+        vnoremap <silent> <Down>    <Esc>:call AddEmptyLineAbove()<CR>gv
+        vnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
+        vnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>gv
 
-    " insert mode
-    imap <silent> <Left> <C-D>
-    imap <silent> <Right> <C-T>
-    inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
-    inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
-    inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
-    inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+        " insert mode
+        imap <silent> <Left> <C-D>
+        imap <silent> <Right> <C-T>
+        inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
+        inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+        inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
+        inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
 
-    " disable modified versions we are not using
-    " nnoremap  <S-Up>     <NOP>
-    " nnoremap  <S-Down>   <NOP>
-    " nnoremap  <S-Left>   <NOP>
-    " nnoremap  <S-Right>  <NOP>
-    " vnoremap  <S-Up>     <NOP>
-    " vnoremap  <S-Down>   <NOP>
-    " vnoremap  <S-Left>   <NOP>
-    " vnoremap  <S-Right>  <NOP>
-    " inoremap  <S-Up>     <NOP>
-    " inoremap  <S-Down>   <NOP>
-    " inoremap  <S-Left>   <NOP>
-    " inoremap  <S-Right>  <NOP>
+        " disable modified versions we are not using
+        " nnoremap    <S-Up>         <NOP>
+        " nnoremap    <S-Down>     <NOP>
+        " nnoremap    <S-Left>     <NOP>
+        " nnoremap    <S-Right>    <NOP>
+        " vnoremap    <S-Up>         <NOP>
+        " vnoremap    <S-Down>     <NOP>
+        " vnoremap    <S-Left>     <NOP>
+        " vnoremap    <S-Right>    <NOP>
+        " inoremap    <S-Up>         <NOP>
+        " inoremap    <S-Down>     <NOP>
+        " inoremap    <S-Left>     <NOP>
+        " inoremap    <S-Right>    <NOP>
 endfunction
 call SetArrowKeysAsTextShifters()
 
@@ -313,66 +308,66 @@ hi TabLineSelEnd cterm=none ctermfg=33 ctermbg=236
 hi TabLineEndSelEnd cterm=none ctermfg=33 ctermbg=234
 set tabline=%!MyTabLine()
 function! MyTabLine()
-  let s = ''
-  let t = tabpagenr()
-  let i = 1
-  let len = tabpagenr('$')
-  while i <= len
-    let buflist = tabpagebuflist(i)
-    let winnr = tabpagewinnr(i)
-    let s .= '%#TabLine#'
-    if i != 1
-      if i == t
-        let s .= ' %#TabLineSelStart#⮀'
-      elseif i-1 != t
-        let s .= ' ⮁'
-      endif
+    let s = ''
+    let t = tabpagenr()
+    let i = 1
+    let len = tabpagenr('$')
+    while i <= len
+        let buflist = tabpagebuflist(i)
+        let winnr = tabpagewinnr(i)
+        let s .= '%#TabLine#'
+        if i != 1
+            if i == t
+                let s .= ' %#TabLineSelStart#⮀'
+            elseif i-1 != t
+                let s .= ' ⮁'
+            endif
+        endif
+        let s .= (i == t ? '%#TabLineSel# ' : '%#TabLine# ')
+        " set the tab page number (for mouse clicks)
+        let s .= '%' . i . 'T'
+        " set page number string
+        let s .=    i . ' '
+        if i == t
+            let s .= '⮁ '
+        endif
+        let m = 0 " &modified counter
+        let bufnr = buflist[winnr - 1]
+        let file = bufname(bufnr)
+        let buftype = getbufvar(bufnr, 'buftype')
+        if buftype == 'nofile'
+            if file =~ '\/.'
+                let file = substitute(file, '.*\/\ze.', '', '')
+            endif
+        else
+            let file = fnamemodify(file, ':p:t')
+        endif
+        if file == ''
+            let file = '[No Name]'
+        endif
+        for b in buflist
+            " check and ++ tab's &modified count
+            if getbufvar( b, "&modified" )
+                let m += 1
+            endif
+        endfor
+        if m > 0
+            let s.= '[+]'
+        endif
+        let s .= file
+        if i == t
+            if i == len
+                let s .= ' %#TabLineEndSelEnd#⮀'
+            else
+                let s .= ' %#TabLineSelEnd#⮀'
+            endif
+        endif
+        let i = i + 1
+    endwhile
+    if i-1 != t
+        let s .= ' %#TabLineEnd#⮀'
     endif
-    let s .= (i == t ? '%#TabLineSel# ' : '%#TabLine# ')
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . i . 'T'
-    " set page number string
-    let s .=  i . ' '
-    if i == t
-      let s .= '⮁ '
-    endif
-    let m = 0 " &modified counter
-    let bufnr = buflist[winnr - 1]
-    let file = bufname(bufnr)
-    let buftype = getbufvar(bufnr, 'buftype')
-    if buftype == 'nofile'
-      if file =~ '\/.'
-        let file = substitute(file, '.*\/\ze.', '', '')
-      endif
-    else
-      let file = fnamemodify(file, ':p:t')
-    endif
-    if file == ''
-      let file = '[No Name]'
-    endif
-    for b in buflist
-      " check and ++ tab's &modified count
-      if getbufvar( b, "&modified" )
-        let m += 1
-      endif
-    endfor
-    if m > 0
-      let s.= '[+]'
-    endif
-    let s .= file
-    if i == t
-      if i == len
-        let s .= ' %#TabLineEndSelEnd#⮀'
-      else
-        let s .= ' %#TabLineSelEnd#⮀'
-      endif
-    endif
-    let i = i + 1
-  endwhile
-  if i-1 != t
-    let s .= ' %#TabLineEnd#⮀'
-  endif
-  let s .= '%T%#TabLineFill#%='
-  let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-  return s
+    let s .= '%T%#TabLineFill#%='
+    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+    return s
 endfunction

@@ -32,14 +32,14 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode osx brew nyan)
+plugins=(git vi-mode osx brew)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-#export PATH=/opt/local/bin:/opt/local/sbin:/Users/shaine/.rvm/gems/ruby-1.9.2-p290/bin:/Users/shaine/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/shaine/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/shaine/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/shaine/.rvm/bin:/Users/shaine/.rvm/bin
 export PATH=/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
+export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages # For Glances
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]

@@ -18,7 +18,7 @@ if exists("$PANIC_PROMPT")
 " Only use dark locally, light otherwise
 elseif hostname()=="squidward.lan"
   set background=dark
-elseif hostname()=="shainehatch"
+elseif hostname()=="C1FED-LM21917"
   set background=dark
 endif
 "let g:solarized_termtrans = 1

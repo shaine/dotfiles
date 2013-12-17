@@ -8,7 +8,11 @@ filetype plugin indent on " Auto indent
 au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 let mapleader = ","
+
+" Shortcuts
 nnoremap <leader>S :so ~/.vimrc<cr>
+" Sudo write me a sandiwch
+command Write w !sudo tee % > /dev/null
 
 " Colorscheme
 set background=dark

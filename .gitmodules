@@ -1,87 +1,87 @@
 [submodule "home/.vim/bundle/ack.vim"]
-  path = home/.vim/bundle/ack.vim
-  url = https://github.com/mileszs/ack.vim.git
+    path = home/.vim/bundle/ack.vim
+    url = https://github.com/mileszs/ack.vim.git
 [submodule "home/.vim/bundle/YankRing.vim"]
-  path = home/.vim/bundle/YankRing.vim
-  url = https://github.com/vim-scripts/YankRing.vim.git
+    path = home/.vim/bundle/YankRing.vim
+    url = https://github.com/vim-scripts/YankRing.vim.git
 [submodule "home/.vim/bundle/ZoomWin"]
-  path = home/.vim/bundle/ZoomWin
-  url = https://github.com/vim-scripts/ZoomWin.git
+    path = home/.vim/bundle/ZoomWin
+    url = https://github.com/vim-scripts/ZoomWin.git
 [submodule "home/.vim/bundle/ctrlp.vim"]
-  path = home/.vim/bundle/ctrlp.vim
-  url = https://github.com/kien/ctrlp.vim.git
+    path = home/.vim/bundle/ctrlp.vim
+    url = https://github.com/kien/ctrlp.vim.git
 [submodule "home/.vim/bundle/delimitMate"]
-  path = home/.vim/bundle/delimitMate
-  url = https://github.com/Raimondi/delimitMate.git
+    path = home/.vim/bundle/delimitMate
+    url = https://github.com/Raimondi/delimitMate.git
 [submodule "home/.vim/bundle/gist-vim"]
-  path = home/.vim/bundle/gist-vim
-  url = https://github.com/mattn/gist-vim.git
+    path = home/.vim/bundle/gist-vim
+    url = https://github.com/mattn/gist-vim.git
 [submodule "home/.vim/bundle/gundo.vim"]
-  path = home/.vim/bundle/gundo.vim
-  url = https://github.com/sjl/gundo.vim.git
+    path = home/.vim/bundle/gundo.vim
+    url = https://github.com/sjl/gundo.vim.git
 [submodule "home/.vim/bundle/nerdtree"]
-  path = home/.vim/bundle/nerdtree
-  url = https://github.com/scrooloose/nerdtree.git
+    path = home/.vim/bundle/nerdtree
+    url = https://github.com/scrooloose/nerdtree.git
 [submodule "home/.vim/bundle/supertab"]
-  path = home/.vim/bundle/supertab
-  url = https://github.com/ervandew/supertab.git
+    path = home/.vim/bundle/supertab
+    url = https://github.com/ervandew/supertab.git
 [submodule "home/.vim/bundle/tabular"]
-  path = home/.vim/bundle/tabular
-  url = https://github.com/godlygeek/tabular.git
+    path = home/.vim/bundle/tabular
+    url = https://github.com/godlygeek/tabular.git
 [submodule "home/.vim/bundle/vim-coffee-script"]
-  path = home/.vim/bundle/vim-coffee-script
-  url = https://github.com/kchmck/vim-coffee-script.git
+    path = home/.vim/bundle/vim-coffee-script
+    url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "home/.vim/bundle/vim-colors-solarized"]
-  path = home/.vim/bundle/vim-colors-solarized
-  url = https://github.com/altercation/vim-colors-solarized.git
+    path = home/.vim/bundle/vim-colors-solarized
+    url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "home/.vim/bundle/vim-fugitive"]
-  path = home/.vim/bundle/vim-fugitive
-  url = https://github.com/tpope/vim-fugitive.git
+    path = home/.vim/bundle/vim-fugitive
+    url = https://github.com/tpope/vim-fugitive.git
 [submodule "home/.vim/bundle/vim-markdown"]
-  path = home/.vim/bundle/vim-markdown
-  url = https://github.com/tpope/vim-markdown.git
+    path = home/.vim/bundle/vim-markdown
+    url = https://github.com/tpope/vim-markdown.git
 [submodule "home/.vim/bundle/vim-rails"]
-  path = home/.vim/bundle/vim-rails
-  url = https://github.com/tpope/vim-rails.git
+    path = home/.vim/bundle/vim-rails
+    url = https://github.com/tpope/vim-rails.git
 [submodule "home/.vim/bundle/vim-space"]
-  path = home/.vim/bundle/vim-space
-  url = https://github.com/sitaktif/vim-space.git
+    path = home/.vim/bundle/vim-space
+    url = https://github.com/sitaktif/vim-space.git
 [submodule "home/.vim/bundle/vim-surround"]
-  path = home/.vim/bundle/vim-surround
-  url = https://github.com/tpope/vim-surround.git
+    path = home/.vim/bundle/vim-surround
+    url = https://github.com/tpope/vim-surround.git
 [submodule "home/.vim/bundle/vim-tmux"]
-  path = home/.vim/bundle/vim-tmux
-  url = https://github.com/peterhoeg/vim-tmux.git
+    path = home/.vim/bundle/vim-tmux
+    url = https://github.com/peterhoeg/vim-tmux.git
 [submodule "home/.vim/bundle/vitality.vim"]
-  path = home/.vim/bundle/vitality.vim
-  url = https://github.com/sjl/vitality.vim.git
+    path = home/.vim/bundle/vitality.vim
+    url = https://github.com/sjl/vitality.vim.git
 [submodule "home/.vim/bundle/webapi-vim"]
-  path = home/.vim/bundle/webapi-vim
-  url = https://github.com/mattn/webapi-vim.git
-[submodule "home/.vim/bundle/zencoding-vim"]
-  path = home/.vim/bundle/zencoding-vim
-  url = https://github.com/mattn/zencoding-vim.git
+    path = home/.vim/bundle/webapi-vim
+    url = https://github.com/mattn/webapi-vim.git
 [submodule "home/.vim/bundle/vim-bufonly"]
-  path = home/.vim/bundle/vim-bufonly
-  url = https://github.com/duff/vim-bufonly.git
+    path = home/.vim/bundle/vim-bufonly
+    url = https://github.com/duff/vim-bufonly.git
 [submodule "home/.vim/bundle/vim-powerline"]
-	path = home/.vim/bundle/vim-powerline
-	url = https://github.com/shaine/vim-powerline.git
+    path = home/.vim/bundle/vim-powerline
+    url = https://github.com/shaine/vim-powerline.git
 [submodule "home/.oh-my-zsh"]
-	path = home/.oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
+    path = home/.oh-my-zsh
+    url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "home/.vim/bundle/mustache"]
-	path = home/.vim/bundle/mustache
-	url = https://github.com/juvenn/mustache.vim.git
+    path = home/.vim/bundle/mustache
+    url = https://github.com/juvenn/mustache.vim.git
 [submodule "home/.vim/bundle/vim-gitgutter"]
-	path = home/.vim/bundle/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
+    path = home/.vim/bundle/vim-gitgutter
+    url = https://github.com/airblade/vim-gitgutter.git
 [submodule "home/.vim/bundle/vim-nerdtree-tabs"]
-	path = home/.vim/bundle/vim-nerdtree-tabs
-	url = https://github.com/jistr/vim-nerdtree-tabs.git
+    path = home/.vim/bundle/vim-nerdtree-tabs
+    url = https://github.com/jistr/vim-nerdtree-tabs.git
 [submodule "home/.vim/bundle/syntastic"]
-	path = home/.vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
+    path = home/.vim/bundle/syntastic
+    url = https://github.com/scrooloose/syntastic.git
 [submodule "home/.tmux/tmux-powerline"]
-	path = home/.tmux/tmux-powerline
-	url = https://github.com/erikw/tmux-powerline.git
+    path = home/.tmux/tmux-powerline
+    url = https://github.com/erikw/tmux-powerline.git
+[submodule "home/.vim/bundle/emmet"]
+    path = home/.vim/bundle/emmet
+    url = https://github.com/emmetio/emmet.git

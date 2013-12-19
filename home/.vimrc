@@ -28,10 +28,10 @@ highlight clear SignColumn
 
 " Key mappings for pane selection
 let g:tmux_navigator_no_mappings = 1
-nmap <silent> <C-h> :TmuxNavigateLeft<cr>
-nmap <silent> <C-j> :TmuxNavigateDown<cr>
-nmap <silent> <C-k> :TmuxNavigateUp<cr>
-nmap <silent> <C-l> :TmuxNavigateRight<cr>
+nmap <silent> <C-h> <c-w>h
+nmap <silent> <C-j> <c-w>j
+nmap <silent> <C-k> <c-w>k
+nmap <silent> <C-l> <c-w>l
 nnoremap _ :sp<CR><C-w>j
 nnoremap \| :vsp<CR><C-w>l
 nnoremap <leader>t :tabe<CR>

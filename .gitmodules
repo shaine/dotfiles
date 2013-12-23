@@ -82,6 +82,6 @@
 [submodule "home/.tmux/tmux-powerline"]
     path = home/.tmux/tmux-powerline
     url = https://github.com/erikw/tmux-powerline.git
-[submodule "home/.vim/bundle/emmet"]
-    path = home/.vim/bundle/emmet
-    url = https://github.com/emmetio/emmet.git
+[submodule "home/.vim/bundle/emmet-vim"]
+	path = home/.vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git

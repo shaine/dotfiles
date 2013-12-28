@@ -9,6 +9,10 @@ au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 let mapleader = ","
 
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 " Shortcuts
 nnoremap <leader>S :so ~/.vimrc<cr>
 " Sudo write me a sandiwch
@@ -80,15 +84,6 @@ nnoremap <leader>F :NERDTreeTabsToggle<CR>
 nnoremap <Leader>v :set invpaste paste?<CR>
 set showmode
 
-" Powerline
-if exists("$PANIC_PROMPT")
-    " For iPad
-    let g:Powerline_symbols='unicode'
-else
-    let g:Powerline_symbols='fancy'
-endif
-let g:Powerline_colorscheme='solarized256'
-let g:Powerline_stl_path_style='short'
 
 " Space.vim related
 let g:space_no_second_prev_mapping = 1

@@ -37,8 +37,12 @@ plugins=(git svn vi-mode osx brew)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export HOMEPY=$HOME/Library/Python/2.7
+export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
+
+# Powerline prompt
+source $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
@@ -58,55 +62,6 @@ then
     alias tail='colourify tail'
     alias head='colourify head'
 fi
-
-function collapse_pwd {
-    echo $(pwd | sed -e "s,^$HOME,~,")
-}
-
-function prompt_char {
-    git branch >/dev/null 2>/dev/null && echo '±' && return
-    $(in_svn) && echo '§' && return
-    echo '○'
-}
-
-function is_dirty() {
-    if $(in_svn)
-    then
-        echo $(svn_dirty_choose $ZSH_THEME_GIT_PROMPT_DIRTY $ZSH_THEME_GIT_PROMPT_CLEAN)
-    else
-        echo $(parse_git_dirty)
-    fi
-}
-
-function prompt_info() {
-    if $(in_svn)
-    then
-        ref=$(svn_get_branch_name) || return
-    else
-        ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    fi
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(is_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
-
-function prompt_on() {
-    RPROMPT="%T"
-
-    PROMPT='%{$fg[blue]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(prompt_info)
-$(prompt_char) '
-    PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-}
-function prompt_off() {
-    RPROMPT=""
-
-    PROMPT='\$ '
-}
-prompt_on
-
-ZSH_THEME_GIT_PROMPT_PREFIX=" ("
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists

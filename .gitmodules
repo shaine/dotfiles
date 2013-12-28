@@ -73,9 +73,6 @@
 [submodule "home/.vim/bundle/vim-nerdtree-tabs"]
     path = home/.vim/bundle/vim-nerdtree-tabs
     url = https://github.com/jistr/vim-nerdtree-tabs.git
-[submodule "home/.tmux/tmux-powerline"]
-    path = home/.tmux/tmux-powerline
-    url = https://github.com/erikw/tmux-powerline.git
 [submodule "home/.vim/bundle/emmet-vim"]
 	path = home/.vim/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git

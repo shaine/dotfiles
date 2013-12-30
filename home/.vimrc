@@ -16,7 +16,9 @@ python del powerline_setup
 " Shortcuts
 nnoremap <leader>S :so ~/.vimrc<cr>
 " Sudo write me a sandiwch
-command Write w !sudo tee % > /dev/null
+if !exists(":Write")
+    command Write w !sudo tee % > /dev/null
+endif
 
 " Colorscheme
 set background=dark

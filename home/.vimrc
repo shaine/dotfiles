@@ -317,9 +317,9 @@ function! MyTabLine()
         let s .= '%#TabLine#'
         if i != 1
             if i == t
-                let s .= ' %#TabLineSelStart#⮀'
+                let s .= ' %#TabLineSelStart#'
             elseif i-1 != t
-                let s .= ' ⮁'
+                let s .= ' '
             endif
         endif
         let s .= (i == t ? '%#TabLineSel# ' : '%#TabLine# ')
@@ -328,7 +328,7 @@ function! MyTabLine()
         " set page number string
         let s .=    i . ' '
         if i == t
-            let s .= '⮁ '
+            let s .= ' '
         endif
         let m = 0 " &modified counter
         let bufnr = buflist[winnr - 1]
@@ -356,15 +356,15 @@ function! MyTabLine()
         let s .= file
         if i == t
             if i == len
-                let s .= ' %#TabLineEndSelEnd#⮀'
+                let s .= ' %#TabLineEndSelEnd#'
             else
-                let s .= ' %#TabLineSelEnd#⮀'
+                let s .= ' %#TabLineSelEnd#'
             endif
         endif
         let i = i + 1
     endwhile
     if i-1 != t
-        let s .= ' %#TabLineEnd#⮀'
+        let s .= ' %#TabLineEnd#'
     endif
     let s .= '%T%#TabLineFill#%='
     let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')

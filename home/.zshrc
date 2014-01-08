@@ -88,6 +88,7 @@ export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='exgxfxfxcxdxdxhbadbxbx'
+export SVN_EDITOR='vim'
 
 unset RUBYOPT
 

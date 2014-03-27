@@ -69,7 +69,7 @@ nnoremap ` '
 " CtrlP
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v(node_modules|bower_components|\.git|\.svn|\.hg).*$',
+    \ 'dir':  '\v(node_modules|bower_components|scripts-cov|src-cov|\.git|\.svn|\.hg).*$',
     \ 'file': '\v\.(DS_Store|png|jpg|gif|bak|pdf)$',
     \ }
 let g:ctrlp_map = '<Leader>f'
@@ -99,8 +99,8 @@ nnoremap <Space> a_<Esc>r
 
 " Syntastic
 let g:syntastic_check_on_open=0
-let g:syntastic_quiet_warnings=1
-
+let g:syntastic_quiet_messages={'level': 'warnings'}
+let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 
 " Tabularize configuration
 nmap <Leader>aa :Tabularize<CR>
@@ -202,16 +202,17 @@ if has("gui_running")
     set guioptions=egmrt
 endif
 
-if !exists("autocommands_loaded")
-    let autocommands_loaded = 1
-    " au! BufWritePost .vimrc source %
-endif
-
 " Enable autosave
 au FocusLost * :%s/\s\+$//e " Remove trailing spaces on focus lost
 au FocusLost * silent! wa " Write file on focus lost
 au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>") " Leave focus mode on focus lost
-autocmd BufWritePre * :%s/\s\+$//e " Remove trailing space on save
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
 
 " Awesome arrow bindings
 " ------------------

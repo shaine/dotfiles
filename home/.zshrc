@@ -48,19 +48,19 @@ GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
 then
     alias colourify="$GRC -es --colour=auto"
-    alias configure='colourify ./configure'
-    alias diff='colourify diff'
-    alias make='colourify make'
-    alias gcc='colourify gcc'
-    alias g++='colourify g++'
-    alias as='colourify as'
-    alias gas='colourify gas'
-    alias ld='colourify ld'
-    alias netstat='colourify netstat'
-    alias ping='colourify ping'
-    alias traceroute='colourify /usr/sbin/traceroute'
-    alias tail='colourify tail'
-    alias head='colourify head'
+    alias configure="colourify ./configure"
+    alias diff="colourify diff"
+    alias make="colourify make"
+    alias gcc="colourify gcc"
+    alias g++="colourify g++"
+    alias as="colourify as"
+    alias gas="colourify gas"
+    alias ld="colourify ld"
+    alias netstat="colourify netstat"
+    alias ping="colourify ping"
+    alias traceroute="colourify /usr/sbin/traceroute"
+    alias tail="colourify tail"
+    alias head="colourify head"
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
@@ -78,17 +78,36 @@ alias "tmux ns"="tmux new-session -s "
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }
+function svnbranch() {
+    svn copy "^/trunk/m_www" "^/branches/m_www/"$*
+}
+function svnswitch() {
+    if [[ -z $* ]]
+    then
+        svn switch "^/trunk/m_www/assets"
+    else
+        svn switch "^/branches/m_www/"$*"/assets"
+    fi
+}
+function svnmerge() {
+    if [[ -z $* ]]
+    then
+        svn merge "^/trunk/m_www/assets"
+    else
+        svn merge --reintegrate "^/branches/m_www/"$*"/assets"
+    fi
+}
 
 # Nocorrects for ZSH
 alias composer="nocorrect composer"
 
 tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
 
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-export LS_OPTIONS='--color=auto'
-export CLICOLOR='Yes'
-export LSCOLORS='exgxfxfxcxdxdxhbadbxbx'
-export SVN_EDITOR='vim'
+export GREP_OPTIONS="--color=auto" GREP_COLOR="1;32"
+export LS_OPTIONS="--color=auto"
+export CLICOLOR="Yes"
+export LSCOLORS="exgxfxfxcxdxdxhbadbxbx"
+export SVN_EDITOR="vim"
 
 unset RUBYOPT
 

@@ -1,3 +1,8 @@
 --type-set
 coffee=.coffee
 --ignore-dir=dist
+--ignore-dir=bower_components
+--ignore-dir=scripts-cov
+--ignore-dir=src-cov
+--ignore-dir=tmp
+--ignore-file=is:coverage.html

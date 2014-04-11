@@ -75,11 +75,19 @@ alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmux="tmux -2 -u"
 alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
+alias "svnls"="svn ls '^/branches/m_www/feature/';
+    svn ls '^/branches/m_www/update/';
+    svn ls '^/branches/m_www/fix/';
+    svn ls '^/branches/m_www/test/'"
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }
 function svnbranch() {
     svn copy "^/trunk/m_www" "^/branches/m_www/"$*
+    svn switch "^/branches/m_www/"$*"/assets"
+}
+function svndelete() {
+    svn delete "^/branches/m_www/"$* -m "Completed branch "$*
 }
 function svnswitch() {
     if [[ -z $* ]]

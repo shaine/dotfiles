@@ -89,7 +89,6 @@ nnoremap <leader>F :NERDTreeTabsToggle<CR>
 nnoremap <Leader>v :set invpaste paste?<CR>
 set showmode
 
-
 " Space.vim related
 let g:space_no_second_prev_mapping = 1
 let g:space_no_jump = 1
@@ -197,6 +196,9 @@ set ttimeout
 set ttimeoutlen=10
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
+
+" Highlight lines beyond 80
+execute "set colorcolumn=" . join(range(81,335), ',')
 
 if has("gui_running")
     set guioptions=egmrt

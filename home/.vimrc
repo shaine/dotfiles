@@ -5,8 +5,10 @@ call pathogen#helptags() " Pathogen to load help tags
 syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
 au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
+au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 let mapleader = ","
 
 python from powerline.vim import setup as powerline_setup
@@ -69,7 +71,7 @@ nnoremap ` '
 " CtrlP
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v(node_modules|bower_components|scripts-cov|src-cov|\.git|\.svn|\.hg).*$',
+    \ 'dir':  '\v(reports|node_modules|bower_components|scripts-cov|src-cov|\.git|\.svn|\.hg).*$',
     \ 'file': '\v\.(DS_Store|png|jpg|gif|bak|pdf)$',
     \ }
 let g:ctrlp_map = '<Leader>f'
@@ -78,6 +80,10 @@ let g:ctrlp_show_hidden = 1
 
 " Fugitive
 map <Leader>g :Gstatus<CR>
+
+" Gist
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
 
 " Gundo configuration
 map <Leader>u :GundoToggle<CR>

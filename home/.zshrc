@@ -105,6 +105,23 @@ function svnmerge() {
         svn merge --reintegrate "^/branches/m_www/"$*"/assets"
     fi
 }
+# Google search
+function google() {
+    query=""
+    for this_query_term in $@
+    do
+        query="${query}${this_query_term}+"
+    done
+    url="https://encrypted.google.com/search?q=${query}"
+
+    remote_addr=`who am i | awk -F\( '{print $2}' | sed 's/)//'`
+
+    if [ -z "$remote_addr" ]; then
+        open "$url"
+    else
+        links "$url"
+    fi
+}
 
 # Nocorrects for ZSH
 alias composer="nocorrect composer"

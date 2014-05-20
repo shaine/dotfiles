@@ -3,6 +3,7 @@ coffee=.coffee
 --ignore-dir=dist
 --ignore-dir=bower_components
 --ignore-dir=scripts-cov
+--ignore-dir=reports
 --ignore-dir=src-cov
 --ignore-dir=tmp
 --ignore-file=is:coverage.html

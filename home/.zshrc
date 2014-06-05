@@ -32,7 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn vi-mode osx brew)
+plugins=(git svn vi-mode osx brew zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,6 +120,15 @@ function google() {
         open "$url"
     else
         links "$url"
+    fi
+}
+
+function switchhosts {
+    if [ $1 = "prod" ]
+    then
+        sudo sed "s/#*\([0-9]*\.[0-9]*\.[0-9]*\.\)\([0-9]*\)\(.* #switchable\)/#\1\2\3/g" /etc/hosts > /tmp/hosts.tmp && sudo mv /tmp/hosts.tmp /etc/hosts
+    else
+        sudo sed "s/#*\([0-9]*\.[0-9]*\.[0-9]*\.\)\([0-9]*\)\(.* #switchable\)/\1$1\3/g" /etc/hosts > /tmp/hosts.tmp && sudo mv /tmp/hosts.tmp /etc/hosts
     fi
 }
 

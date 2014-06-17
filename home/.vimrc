@@ -144,6 +144,12 @@ set noswapfile
 set nobackup
 set nowb
 
+" Ultisnips
+let g:UltiSnipsSnippetsDir="~/.vim/snippets"
+let g:UltiSnipsExpandTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<s-t>"
+
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y

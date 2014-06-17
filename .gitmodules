@@ -91,3 +91,6 @@
 [submodule "home/.vim/bundle/javascript-libraries-syntax"]
 	path = home/.vim/bundle/javascript-libraries-syntax
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git
+[submodule "home/.vim/bundle/ultisnips"]
+	path = home/.vim/bundle/ultisnips
+	url = git://github.com/SirVer/ultisnips.git

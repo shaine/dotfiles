@@ -13,7 +13,7 @@
 ###   kwallet              (Unix-like systems)
 ###   keychain             (Mac OS X)
 ###   windows-cryptoapi    (Windows)
-# password-stores = keychain
+password-stores = keychain
 ### To disable all password stores, use an empty list:
 # password-stores =
 ###
@@ -22,7 +22,7 @@
 ### specified in the 'servers' file in your config directory
 ### and are documented there. Anything specified in this section
 ### is overridden by settings specified in the 'servers' file.
-# store-passwords = no
+store-passwords = yes
 # store-auth-creds = no
 
 ### Section for configuring external helper applications.

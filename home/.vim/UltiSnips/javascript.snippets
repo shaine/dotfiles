@@ -1,0 +1,21 @@
+snippet it
+	it('${1:should do something}', function() {
+	    // Setup
+	    ${2}
+
+	    // Run Unit
+	    ${3}
+
+	    // Verify Expectations
+	    ${4}
+
+	    // Teardown
+	    ${0}
+	});
+endsnippet
+
+snippet des
+	describe('${1:Something amazing}', function() {
+	    ${0}
+	});
+endsnippet

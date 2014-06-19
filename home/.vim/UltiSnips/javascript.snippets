@@ -1,21 +1,24 @@
 snippet it
-	it('${1:should do something}', function() {
-	    // Setup
-	    ${2}
+it('${1:should do something}', function() {
+	// Set up
+	${2}
 
-	    // Run Unit
-	    ${3}
+	// Definition
+	${3}
 
-	    // Verify Expectations
-	    ${4}
+	// Run unit
+	${4}
 
-	    // Teardown
-	    ${0}
-	});
+	// Verify expectations
+	${5}
+
+	// Tear down
+	${0}
+});
 endsnippet
 
 snippet des
-	describe('${1:Something amazing}', function() {
-	    ${0}
-	});
+describe('${1:New Unit Name type}', function() {
+	${0}
+});
 endsnippet

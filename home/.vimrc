@@ -46,6 +46,7 @@ nnoremap <leader>t :tabe<CR>
 " Keep the splits always equal in size
 autocmd VimResized * wincmd =
 " Enable mouse scrolling
+" Requires MouseTerm, SIMBL, Terminal.app
 set mouse=a
 
 " Swap word left/right
@@ -229,6 +230,9 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
+
+" Enable autoread, requires :checktime to be run
+set autoread
 
 " Awesome arrow bindings
 " ------------------

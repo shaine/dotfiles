@@ -105,6 +105,7 @@ function svnmerge() {
         svn merge --reintegrate "^/branches/m_www/"$*"/assets"
     fi
 }
+alias svndiff='svn diff | sed "s/.\[[0-9]*;[0-9]*m//g" | vim -'
 # Google search
 function google() {
     query=""

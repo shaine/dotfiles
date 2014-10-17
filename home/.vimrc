@@ -74,7 +74,7 @@ nnoremap ` '
 " CtrlP
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v(reports|node_modules|bower_components|scripts-cov|src-cov|\.git|\.svn|\.hg).*$',
+    \ 'dir':  '\v(coverage|docs|reports|node_modules|bower_components|scripts-cov|src-cov|dist|tmp|\.git|\.svn|\.hg).*$',
     \ 'file': '\v\.(DS_Store|png|jpg|gif|bak|pdf)$',
     \ }
 let g:ctrlp_map = '<Leader>f'

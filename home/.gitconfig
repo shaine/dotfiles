@@ -1,6 +1,6 @@
 [user]
-    name = Shaine Hatch
-    email = shaine@digitaltrike.com
+	name = Shaine Hatch
+	email = shainehatch@overstock.com
 [core]
     whitespace = trailing-space,space-before-tab
     editor = vim
@@ -27,3 +27,7 @@
     user = shaine
 [url "https://"]
 	insteadOf = git://
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain

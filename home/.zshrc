@@ -133,6 +133,8 @@ function switchhosts {
     fi
 }
 
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
 # Nocorrects for ZSH
 alias composer="nocorrect composer"
 

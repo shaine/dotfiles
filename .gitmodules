@@ -94,3 +94,9 @@
 [submodule "home/.vim/bundle/ultisnips"]
 	path = home/.vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
+[submodule "home/.vim/bundle/vim-istanbul"]
+	path = home/.vim/bundle/vim-istanbul
+	url = git://github.com/juanpabloaj/vim-istanbul.git
+[submodule "home/.vim/bundle/vim-jsdoc"]
+	path = home/.vim/bundle/vim-jsdoc
+	url = https://github.com/heavenshell/vim-jsdoc.git

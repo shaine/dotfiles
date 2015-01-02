@@ -91,6 +91,9 @@ let g:gist_post_private = 1
 " Gundo configuration
 map <Leader>u :GundoToggle<CR>
 
+" JSDoc
+let g:jsdoc_default_mapping = 0
+
 " NERDTree
 nnoremap <leader>F :NERDTreeTabsToggle<CR>
 

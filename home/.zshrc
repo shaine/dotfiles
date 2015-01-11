@@ -159,4 +159,24 @@ bindkey -v
 bindkey -s "^[[O" ''
 bindkey -s "^[[I" ''
 
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P003353f" #black
+    echo -en "\e]P8032930" #darkgrey
+    echo -en "\e]P1dc322f" #darkred
+    echo -en "\e]P9cb4b16" #red
+    echo -en "\e]P2859900" #darkgreen
+    echo -en "\e]PA586e75" #green
+    echo -en "\e]P3b58900" #brown
+    echo -en "\e]PB657b83" #yellow
+    echo -en "\e]P4268bd2" #darkblue
+    echo -en "\e]PC839496" #blue
+    echo -en "\e]P5d33682" #darkmagenta
+    echo -en "\e]PD6c71c4" #magenta
+    echo -en "\e]P62aa198" #darkcyan
+    echo -en "\e]PE93a1a1" #cyan
+    echo -en "\e]P7eee8d5" #lightgrey
+    echo -en "\e]PFfdf6e3" #white
+    clear #for background artifacting
+fi
+
 cd .

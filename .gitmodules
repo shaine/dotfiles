@@ -84,7 +84,7 @@
 	url = https://github.com/heavenshell/vim-jsdoc.git
 [submodule "dotfiles/home/.vim/bundle/vim-railscasts-theme"]
 	path = dotfiles/home/.vim/bundle/vim-railscasts-theme
-	url = https://github.com/jpo/vim-railscasts-theme.git
+	url = https://github.com/shaine/vim-railscasts-theme.git
 [submodule "home/.vim/bundle/vim-railscasts-theme"]
 	path = home/.vim/bundle/vim-railscasts-theme
 	url = https://github.com/jpo/vim-railscasts-theme.git

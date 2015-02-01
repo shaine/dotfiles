@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="pygmalion"
+ZSH_THEME="bureau"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -40,9 +40,6 @@ source $ZSH/oh-my-zsh.sh
 export HOMEPY=$HOME/Library/Python/2.7
 export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
-
-# Powerline prompt
-source $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]

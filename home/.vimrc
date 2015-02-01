@@ -24,13 +24,13 @@ endif
 
 " Colorscheme
 set background=dark
-if exists("$PANIC_PROMPT")
+"if exists("$PANIC_PROMPT")
     " Execute this if Prompt started our session
-    let g:solarized_termcolors=256
-endif
+    "let g:solarized_termcolors=256
+"endif
 "let g:solarized_termtrans = 1
 "let g:solarized_contrast="high"
-colorscheme solarized
+colorscheme railscasts
 "call togglebg#map("<Leader>b")
 highlight clear SignColumn
 

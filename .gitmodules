@@ -4,9 +4,6 @@
 [submodule "home/.vim/bundle/YankRing.vim"]
     path = home/.vim/bundle/YankRing.vim
     url = https://github.com/vim-scripts/YankRing.vim.git
-[submodule "home/.vim/bundle/ZoomWin"]
-    path = home/.vim/bundle/ZoomWin
-    url = https://github.com/vim-scripts/ZoomWin.git
 [submodule "home/.vim/bundle/ctrlp.vim"]
     path = home/.vim/bundle/ctrlp.vim
     url = https://github.com/kien/ctrlp.vim.git
@@ -28,39 +25,24 @@
 [submodule "home/.vim/bundle/tabular"]
     path = home/.vim/bundle/tabular
     url = https://github.com/godlygeek/tabular.git
-[submodule "home/.vim/bundle/vim-coffee-script"]
-    path = home/.vim/bundle/vim-coffee-script
-    url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "home/.vim/bundle/vim-colors-solarized"]
-    path = home/.vim/bundle/vim-colors-solarized
-    url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "home/.vim/bundle/vim-fugitive"]
     path = home/.vim/bundle/vim-fugitive
     url = https://github.com/tpope/vim-fugitive.git
 [submodule "home/.vim/bundle/vim-markdown"]
     path = home/.vim/bundle/vim-markdown
     url = https://github.com/tpope/vim-markdown.git
-[submodule "home/.vim/bundle/vim-rails"]
-    path = home/.vim/bundle/vim-rails
-    url = https://github.com/tpope/vim-rails.git
 [submodule "home/.vim/bundle/vim-space"]
     path = home/.vim/bundle/vim-space
     url = https://github.com/sitaktif/vim-space.git
 [submodule "home/.vim/bundle/vim-surround"]
     path = home/.vim/bundle/vim-surround
     url = https://github.com/tpope/vim-surround.git
-[submodule "home/.vim/bundle/vim-tmux"]
-    path = home/.vim/bundle/vim-tmux
-    url = https://github.com/peterhoeg/vim-tmux.git
 [submodule "home/.vim/bundle/vitality.vim"]
     path = home/.vim/bundle/vitality.vim
     url = https://github.com/sjl/vitality.vim.git
 [submodule "home/.vim/bundle/webapi-vim"]
     path = home/.vim/bundle/webapi-vim
     url = https://github.com/mattn/webapi-vim.git
-[submodule "home/.vim/bundle/vim-bufonly"]
-    path = home/.vim/bundle/vim-bufonly
-    url = https://github.com/duff/vim-bufonly.git
 [submodule "home/.oh-my-zsh"]
     path = home/.oh-my-zsh
     url = https://github.com/robbyrussell/oh-my-zsh.git
@@ -100,3 +82,9 @@
 [submodule "home/.vim/bundle/vim-jsdoc"]
 	path = home/.vim/bundle/vim-jsdoc
 	url = https://github.com/heavenshell/vim-jsdoc.git
+[submodule "dotfiles/home/.vim/bundle/vim-railscasts-theme"]
+	path = dotfiles/home/.vim/bundle/vim-railscasts-theme
+	url = https://github.com/jpo/vim-railscasts-theme.git
+[submodule "home/.vim/bundle/vim-railscasts-theme"]
+	path = home/.vim/bundle/vim-railscasts-theme
+	url = https://github.com/jpo/vim-railscasts-theme.git

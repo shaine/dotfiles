@@ -11,6 +11,7 @@ au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 let mapleader = ","
 
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup

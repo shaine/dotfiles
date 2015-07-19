@@ -34,12 +34,23 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git svn vi-mode osx brew zsh-syntax-highlighting)
 
+[[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export HOMEPY=$HOME/Library/Python/2.7
-export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
+
+# Powerline prompt
+export HOMEPY=$HOME/Library/Python/2.7
+export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:$PATH
+if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+fi
+if [[ -r $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
@@ -61,7 +72,6 @@ then
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-[[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gitignored="git ls-files -v | grep \"^[a-z]\""

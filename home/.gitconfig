@@ -31,4 +31,4 @@
 [push]
 	default = simple
 [credential]
-	helper = cache
+	helper = cache --timeout=360000

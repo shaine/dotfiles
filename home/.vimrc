@@ -5,8 +5,8 @@ call pathogen#helptags() " Pathogen to load help tags
 syntax enable " Enable syntax highlighting
 set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
 au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 let mapleader = ","
@@ -66,6 +66,7 @@ inoremap jk <Esc>
 " Other bindings
 nmap <silent> // :nohlsearch<CR>" Clear search
 nmap <leader>r :redraw!<CR>" Force redraw
+nnoremap Q <nop>
 
 " Swap ` and ' for better tmux integration
 nnoremap ' `

@@ -38,7 +38,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export HOMEPY=$HOME/Library/Python/2.7
-export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
 GRC=`which grc`
@@ -63,6 +63,7 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 
+alias fuck='$(thefuck $(fc -ln -1))'
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gitignored="git ls-files -v | grep \"^[a-z]\""
 alias ls="ls -GF"
@@ -76,6 +77,9 @@ alias "svnls"="svn ls '^/branches/m_www/feature/';
     svn ls '^/branches/m_www/update/';
     svn ls '^/branches/m_www/fix/';
     svn ls '^/branches/m_www/test/'"
+function gitwatch() {
+    watch -c -n 15 "figlet $1; echo ''; git branch; echo ''; git st"
+}
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }

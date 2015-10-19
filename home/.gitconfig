@@ -32,3 +32,7 @@
 	default = simple
 [credential]
 	helper = osxkeychain
+[init]
+	templatedir = /Users/shainehatch/.git-templates
+[url "https://github.com/"]
+	insteadOf = git://github.com/

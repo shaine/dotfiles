@@ -75,8 +75,8 @@ fi
 
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gitignored="git ls-files -v | grep \"^[a-z]\""
-alias ls="ls -GF"
-alias ll="ls -alhGF"
+alias ls="ls -F"
+alias ll="ls -alhF"
 alias lol="fortune | cowthink | lolcat"
 alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmux="tmux -2 -u"
@@ -152,6 +152,7 @@ export LS_OPTIONS="--color=auto"
 export CLICOLOR="Yes"
 export LSCOLORS="exgxfxfxcxdxdxhbadbxbx"
 export SVN_EDITOR="vim"
+export EDITOR="vim"
 
 unset RUBYOPT
 

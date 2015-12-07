@@ -217,16 +217,16 @@ set ttimeoutlen=10
 set backupskip=/tmp/*,/private/tmp/*"
 
 " Highlight lines beyond 80
-execute "set colorcolumn=" . join(range(81,335), ',')
+" execute "set colorcolumn=" . join(range(81,335), ',')
 
 if has("gui_running")
     set guioptions=egmrt
 endif
 
 " Enable autosave
-au FocusLost * :%s/\s\+$//e " Remove trailing spaces on focus lost
-au FocusLost * silent! wa " Write file on focus lost
-au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>") " Leave focus mode on focus lost
+" au FocusLost * :%s/\s\+$//e " Remove trailing spaces on focus lost
+" au FocusLost * silent! wa " Write file on focus lost
+" au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>") " Leave focus mode on focus lost
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")

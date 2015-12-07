@@ -30,7 +30,7 @@ set background=dark
 "endif
 "let g:solarized_termtrans = 1
 "let g:solarized_contrast="high"
-colorscheme railscasts
+colorscheme ryuuko
 "call togglebg#map("<Leader>b")
 highlight clear SignColumn
 
@@ -193,7 +193,7 @@ set expandtab " Turn tabs to spaces
 set softtabstop=4 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
-set number " Show line numbers
+set nonumber " Don't show line numbers
 set hlsearch " Highlight search matches
 set incsearch " Show next match while typing search
 set ignorecase " Case insensitive searches
@@ -201,6 +201,7 @@ set smartcase " Searches respect case if it's obvious that it's important
 set hidden " Allow unsaved buffers to be 'closed'
 set fdc=0 " Column for folding indicators
 set laststatus=2 " Always show status line
+set noshowmode " Don't show the mode text
 set t_Co=256 " 256 colors
 set isk+=$ " Add word characters
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
@@ -217,7 +218,7 @@ set ttimeoutlen=10
 set backupskip=/tmp/*,/private/tmp/*"
 
 " Highlight lines beyond 80
-" execute "set colorcolumn=" . join(range(81,335), ',')
+execute "set colorcolumn=" . join(range(81,335), ',')
 
 if has("gui_running")
     set guioptions=egmrt
@@ -326,15 +327,13 @@ call SetArrowKeysAsTextShifters()
 
 " custom tab pages line with tab numbers - modified version of script by JonSkanes
 " http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
-hi Search cterm=reverse ctermfg=DarkBlue
-hi Visual cterm=reverse ctermfg=DarkRed
-hi TabLineFill cterm=none ctermfg=234 ctermbg=234
-hi TabLine cterm=none ctermfg=245 ctermbg=236
-hi TabLineSel cterm=none ctermfg=234 ctermbg=33
-hi TabLineEnd cterm=none ctermfg=236 ctermbg=234
-hi TabLineSelStart cterm=none ctermfg=236 ctermbg=33
-hi TabLineSelEnd cterm=none ctermfg=33 ctermbg=236
-hi TabLineEndSelEnd cterm=none ctermfg=33 ctermbg=234
+hi TabLineFill cterm=none ctermfg=0 ctermbg=NONE
+hi TabLine cterm=none ctermfg=245 ctermbg=237
+hi TabLineSel cterm=none ctermfg=237 ctermbg=12
+hi TabLineEnd cterm=none ctermfg=237 ctermbg=NONE
+hi TabLineSelStart cterm=none ctermfg=237 ctermbg=12
+hi TabLineSelEnd cterm=none ctermfg=12 ctermbg=237
+hi TabLineEndSelEnd cterm=none ctermfg=12 ctermbg=NONE
 set tabline=%!MyTabLine()
 function! MyTabLine()
     let s = ''

@@ -1,5 +1,8 @@
 {
 	"colors": {
+        "normalblack": 0,
+        "subblack": 237,
+
 		"black": 16,
 		"white": 231,
 

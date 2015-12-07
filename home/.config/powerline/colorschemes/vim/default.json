@@ -71,29 +71,29 @@
 				"dark_green_gray": "light_green_gray"
 			},
 			"groups": {
-				"mode":               { "fg": "darkestcyan", "bg": "white", "attr": ["bold"] },
-				"background:divider": { "fg": "darkcyan", "bg": "darkestblue", "attr": [] },
-				"branch:divider":     { "fg": "darkcyan", "bg": "darkblue", "attr": [] }
+				"mode":               { "fg": "darkestcyan", "bg": "white", "attrs": ["bold"] },
+				"background:divider": { "fg": "darkcyan", "bg": "darkestblue", "attrs": [] },
+				"branch:divider":     { "fg": "darkcyan", "bg": "darkblue", "attrs": [] }
 			}
 		},
 		"v": {
 			"groups": {
-				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+				"mode": { "fg": "darkorange", "bg": "brightestorange", "attrs": ["bold"] }
 			}
 		},
 		"V": {
 			"groups": {
-				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+				"mode": { "fg": "darkorange", "bg": "brightestorange", "attrs": ["bold"] }
 			}
 		},
 		"^V": {
 			"groups": {
-				"mode": { "fg": "darkorange", "bg": "brightestorange", "attr": ["bold"] }
+				"mode": { "fg": "darkorange", "bg": "brightestorange", "attrs": ["bold"] }
 			}
 		},
 		"R": {
 			"groups": {
-				"mode": { "fg": "white", "bg": "brightred", "attr": ["bold"] }
+				"mode": { "fg": "white", "bg": "brightred", "attrs": ["bold"] }
 			}
 		}
 	}

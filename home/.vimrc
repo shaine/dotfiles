@@ -85,6 +85,11 @@ let g:ctrlp_show_hidden = 1
 " Fugitive
 map <Leader>g :Gstatus<CR>
 
+" Geekonote
+nnoremap <leader>G :Geeknote<CR>
+let g:GeeknoteFormat="markdown"
+autocmd FileType geeknote setlocal nonumber
+
 " Gist
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1

@@ -85,3 +85,6 @@
 [submodule "home/.vim/bundle/vim-railscasts-theme"]
 	path = home/.vim/bundle/vim-railscasts-theme
 	url = https://github.com/jpo/vim-railscasts-theme.git
+[submodule "home/.vim/bundle/vim-geeknote"]
+	path = home/.vim/bundle/vim-geeknote
+	url = https://github.com/neilagabriel/vim-geeknote

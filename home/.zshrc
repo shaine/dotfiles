@@ -146,6 +146,7 @@ export LS_OPTIONS="--color=auto"
 export CLICOLOR="Yes"
 export LSCOLORS="exgxfxfxcxdxdxhbadbxbx"
 export SVN_EDITOR="vim"
+export EDITOR="vim"
 
 unset RUBYOPT
 

@@ -88,3 +88,6 @@
 [submodule "home/.vim/bundle/vim-geeknote"]
 	path = home/.vim/bundle/vim-geeknote
 	url = https://github.com/neilagabriel/vim-geeknote
+[submodule "home/.vim/bundle/tmux.vim"]
+	path = home/.vim/bundle/tmux.vim
+	url = https://github.com/keith/tmux.vim.git

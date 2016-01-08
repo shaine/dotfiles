@@ -11,6 +11,7 @@
     stat = true
     tool = opendiff
 [alias]
+    ocd = !git gc --aggressive && git prune && git remote prune origin && git cleanup
     st = status -sb
     d = diff --word-diff
     co = checkout

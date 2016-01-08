@@ -9,6 +9,7 @@ au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
 let mapleader = ","
 
 python from powerline.vim import setup as powerline_setup

@@ -91,3 +91,6 @@
 [submodule "home/.vim/bundle/tmux.vim"]
 	path = home/.vim/bundle/tmux.vim
 	url = https://github.com/keith/tmux.vim.git
+[submodule "home/.vim/bundle/vim-instant-markdown"]
+	path = home/.vim/bundle/vim-instant-markdown
+	url = https://github.com/suan/vim-instant-markdown.git

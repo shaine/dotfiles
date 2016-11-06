@@ -17,7 +17,7 @@ switch -t work:1
 source-file ~/.tmux/dev.tmux
 new -s watchers -c ~/www
 switch -t watchers:1
-source-file ~/.tmux/dev.tmux
+split-window -h
 new -s deux -c ~/www/mobile-deux
 switch -t deux:1
 source-file ~/.tmux/dev.tmux

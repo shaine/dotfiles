@@ -7,6 +7,7 @@ set encoding=utf-8 " Files should always be UTF8
 filetype plugin indent on " Auto indent
 au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
+"setlocal formatoptions+=o " reenable autocomment with this
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
@@ -59,6 +60,9 @@ vnoremap K :m-2<CR>gv=gv
 nnoremap J :m+<CR>==
 vnoremap J :m'>+<CR>gv=gv
 
+" Re-add join feature
+nnoremap <leader>J :join<cr>
+
 " Extra escape bindings
 inoremap jj <Esc>
 inoremap kk <Esc>
@@ -66,7 +70,10 @@ inoremap jk <Esc>
 
 " Other bindings
 nmap <silent> // :nohlsearch<CR>" Clear search
-nmap <leader>r :redraw!<CR>" Force redraw
+" Don't jump when setting current word to search
+nnoremap * *N
+" Force redraw
+nmap <leader>r :redraw!<CR>
 nnoremap Q <nop>
 
 " Swap ` and ' for better tmux integration
@@ -199,7 +206,8 @@ set expandtab " Turn tabs to spaces
 set softtabstop=4 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
-set nonumber " Don't show line numbers
+set number " show line numbers
+set rnu " Relative line numbers
 set hlsearch " Highlight search matches
 set incsearch " Show next match while typing search
 set ignorecase " Case insensitive searches
@@ -244,6 +252,12 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing sp
 
 " Enable autoread, requires :checktime to be run
 set autoread
+
+" Close quickfix if it's the only open window
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
 
 " Awesome arrow bindings
 " ------------------

@@ -5,6 +5,12 @@
     whitespace = trailing-space,space-before-tab
     editor = vim
     excludesfile = ~/.gitignore_global
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
 [color]
     ui = auto
 [merge]
@@ -30,10 +36,12 @@
 [url "https://"]
 	insteadOf = git://
 [push]
-	default = simple
+	default = current
 [credential]
 	helper = osxkeychain
 [init]
 	templatedir = /Users/shainehatch/.git-templates
 [url "https://github.com/"]
 	insteadOf = git://github.com/
+[diff]
+    compactionHeuristic = true

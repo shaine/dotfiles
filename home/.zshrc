@@ -32,19 +32,18 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn vi-mode osx brew zsh-syntax-highlighting)
+plugins=(git vi-mode osx brew zsh-syntax-highlighting grunt)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export HOMEPY=$HOME/Library/Python/2.7
-export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
-GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
 then
-    alias colourify="$GRC -es --colour=auto"
+    alias colourify="grc -es --colour=auto"
     alias configure="colourify ./configure"
     alias diff="colourify diff"
     alias make="colourify make"
@@ -60,10 +59,9 @@ then
     alias head="colourify head"
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 
-alias fuck='$(thefuck $(fc -ln -1))'
+eval "$(thefuck --alias)"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gitignored="git ls-files -v | grep \"^[a-z]\""
 alias ls="ls -GF"
@@ -83,61 +81,6 @@ function gitwatch() {
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }
-function svnbranch() {
-    svn copy "^/trunk/m_www" "^/branches/m_www/"$*
-    svn switch "^/branches/m_www/"$*"/assets"
-}
-function svndelete() {
-    svn delete "^/branches/m_www/"$* -m "Completed branch "$*
-}
-function svnswitch() {
-    if [[ -z $* ]]
-    then
-        svn switch "^/trunk/m_www/assets"
-    else
-        svn switch "^/branches/m_www/"$*"/assets"
-    fi
-}
-function svnmerge() {
-    if [[ -z $* ]]
-    then
-        svn merge "^/trunk/m_www/assets"
-    else
-        svn merge --reintegrate "^/branches/m_www/"$*"/assets"
-    fi
-}
-alias svndiff='svn diff | sed "s/.\[[0-9]*;[0-9]*m//g" | vim -'
-# Google search
-function google() {
-    query=""
-    for this_query_term in $@
-    do
-        query="${query}${this_query_term}+"
-    done
-    url="https://encrypted.google.com/search?q=${query}"
-
-    remote_addr=`who am i | awk -F\( '{print $2}' | sed 's/)//'`
-
-    if [ -z "$remote_addr" ]; then
-        open "$url"
-    else
-        links "$url"
-    fi
-}
-
-function switchhosts {
-    if [ $1 = "prod" ]
-    then
-        sudo sed "s/#*\([0-9]*\.[0-9]*\.[0-9]*\.\)\([0-9]*\)\(.* #switchable\)/#\1\2\3/g" /etc/hosts > /tmp/hosts.tmp && sudo mv /tmp/hosts.tmp /etc/hosts
-    else
-        sudo sed "s/#*\([0-9]*\.[0-9]*\.[0-9]*\.\)\([0-9]*\)\(.* #switchable\)/\1$1\3/g" /etc/hosts > /tmp/hosts.tmp && sudo mv /tmp/hosts.tmp /etc/hosts
-    fi
-}
-
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-# Nocorrects for ZSH
-alias composer="nocorrect composer"
 
 tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
 
@@ -182,3 +125,15 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 cd .
+
+export NVM_DIR="/Users/shainehatch/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+tictoc () {
+    infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/$TERM.ti
+    tic ~/$TERM.ti
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+defaults write NSGlobalDomain KeyRepeat -float 0.001

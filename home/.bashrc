@@ -21,7 +21,6 @@ export COLOR_LIGHT_GRAY='\033[0;37m'
 
 alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 #export TERM=xterm-256color
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
 export PS1="\[${COLOR_BLUE}\]\u@\h \[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"
 
@@ -75,3 +74,5 @@ alias pecl="php /usr/lib/php/pear/peclcmd.php"
 #alias tmux="TERM=screen-256color-bce tmux"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

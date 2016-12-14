@@ -97,3 +97,6 @@
 [submodule "home/.vim/bundle/tagbar"]
 	path = home/.vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule "home/.vim/bundle/vim-motivate"]
+	path = home/.vim/bundle/vim-motivate
+	url = https://github.com/onur/vim-motivate.git

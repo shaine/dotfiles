@@ -135,5 +135,3 @@ tictoc () {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-defaults write NSGlobalDomain KeyRepeat -float 0.001

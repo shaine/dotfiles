@@ -1,21 +1,61 @@
+" TODO
+" Replace yankring
+" Fix colorscheme
+" Replace ctrlp
+
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'rakr/vim-one'
+Plug 'dylanaraps/ryuuko'
+
+" Languages
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars'] }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+
+" Tools
+Plug 'ervandew/supertab' " Auto-complete with tab
+Plug 'liuchengxu/space-vim' " Some sort of tab/delete motion repeat?
+Plug 'gregsexton/MatchTag' " Match the end of a tag
+Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
+Plug 'benekastah/neomake' " Linting
+Plug 'Raimondi/delimitMate' " Auto-close quotes
+Plug 'tpope/vim-fugitive' " Git integration
+Plug 'mattn/webapi-vim' " For gist-vim
+Plug 'mattn/gist-vim' " Publish to github gists
+Plug 'scrooloose/nerdtree', " File explorer
+Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
+" sudo pip2 install --upgrade neovim
+" https://github.com/simnalamburt/vim-mundo/issues/18
+Plug 'sjl/gundo.vim', " Undo UI
+Plug 'airblade/vim-gitgutter' " Git status in gutter
+Plug 'tpope/vim-repeat' " Better . repeating
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
 " Setup
-set nocompatible " Don't need vi compatibility
-call pathogen#infect() " Start Pathogen to load bundles
-call pathogen#helptags() " Pathogen to load help tags
-syntax enable " Enable syntax highlighting
-set encoding=utf-8 " Files should always be UTF8
-filetype plugin indent on " Auto indent
-au BufNewFile,BufRead *.inc set filetype=php " Explicit filetypes - PHP
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
-"setlocal formatoptions+=o " reenable autocomment with this
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
 let mapleader = ","
-
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 " Shortcuts
 nnoremap <leader>S :so ~/.vimrc<cr>
@@ -25,16 +65,13 @@ if !exists(":Write")
 endif
 
 " Colorscheme
-set background=dark
-"if exists("$PANIC_PROMPT")
-    " Execute this if Prompt started our session
-    "let g:solarized_termcolors=256
-"endif
-"let g:solarized_termtrans = 1
-"let g:solarized_contrast="high"
+" set background = "dark"
 colorscheme ryuuko
-"call togglebg#map("<Leader>b")
+let g:airline_theme = 'one'
 highlight clear SignColumn
+" Highlight lines beyond 80
+execute "set colorcolumn=" . join(range(81,335), ',')
+" set termguicolors
 
 " Key mappings for pane selection
 let g:tmux_navigator_no_mappings = 1
@@ -47,9 +84,6 @@ nnoremap \| :vsp<CR><C-w>l
 nnoremap <leader>t :tabe<CR>
 " Keep the splits always equal in size
 autocmd VimResized * wincmd =
-" Enable mouse scrolling
-" Requires MouseTerm, SIMBL, Terminal.app
-set mouse=a
 
 " Swap word left/right
 nnoremap H :let @h=@/<CR>"_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o><C-l>:let @/=@h<CR>
@@ -75,85 +109,11 @@ nnoremap * *N
 " Force redraw
 nmap <leader>r :redraw!<CR>
 nnoremap Q <nop>
+nnoremap <Space> a_<Esc>r
 
 " Swap ` and ' for better tmux integration
 nnoremap ' `
 nnoremap ` '
-
-" CtrlP
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v(coverage|docs|reports|node_modules|bower_components|scripts-cov|src-cov|dist|tmp|\.git|\.svn|\.hg).*$',
-    \ 'file': '\v\.(DS_Store|png|jpg|gif|bak|pdf)$',
-    \ }
-let g:ctrlp_map = '<Leader>f'
-let g:ctrlp_show_hidden = 1
-"let g:ctrlp_max_files = 200000
-
-" Fugitive
-map <Leader>g :Gstatus<CR>
-
-" Geekonote
-nnoremap <leader>G :Geeknote<CR>
-let g:GeeknoteFormat="markdown"
-autocmd FileType geeknote setlocal nonumber
-
-" Gist
-let g:gist_open_browser_after_post = 1
-let g:gist_post_private = 1
-
-" Gundo configuration
-map <Leader>u :GundoToggle<CR>
-
-" JSDoc
-let g:jsdoc_default_mapping = 0
-
-" NERDTree
-nnoremap <leader>F :NERDTreeTabsToggle<CR>
-
-" Paste toggle
-nnoremap <Leader>v :set invpaste paste?<CR>
-set showmode
-
-" Space.vim related
-let g:space_no_second_prev_mapping = 1
-let g:space_no_jump = 1
-nmap <Tab> <Plug>SmartspaceNext
-nmap <BS> <Plug>SmartspacePrev
-nnoremap <Space> a_<Esc>r
-
-" Syntastic
-let g:syntastic_check_on_open=0
-let g:syntastic_quiet_messages={'level': 'warnings'}
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
-
-" Tabularize configuration
-nmap <Leader>aa :Tabularize<CR>
-vmap <Leader>aa :Tabularize<CR>
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a=> :Tabularize /=><CR>
-vmap <Leader>a=> :Tabularize /=><CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
-
-" Tagbar
-nnoremap <leader>T :TagbarToggle<cr>
-if executable('coffeetags')
-    let g:tagbar_type_coffee = {
-                \ 'ctagsbin' : 'coffeetags',
-                \ 'ctagsargs' : '',
-                \ 'kinds' : [
-                \ 'f:functions',
-                \ 'o:object',
-                \ ],
-                \ 'sro' : ".",
-                \ 'kind2scope' : {
-                \ 'f' : 'object',
-                \ 'o' : 'object',
-                \ }
-                \ }
-endif
 
 " Undo files
 set history=1000
@@ -164,35 +124,7 @@ set noswapfile
 set nobackup
 set nowb
 
-" Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
-noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
-" Paste at the end of the line
-nnoremap <Leader>P ma$p`a
-
-" Yankring
-let g:yankring_history_dir=$HOME.'/.vim/tmp/yankring/'
-
-" Zen Code
-let g:user_zen_settings = {
-\    'indentation' : '    ',
-\    'php' : {
-\        'aliases' : {
-\            'req' : 'require '
-\        },
-\        'snippets' : {
-\            'php' : "<?php | ?>",
-\            'yii' : "Yii::app()->",
-\            'yiijs' : "Yii::app()->clientScript->registerScriptFile(\"|\");",
-\            'yiicss' : "Yii::app()->clientScript->registerCssFile(\"|\");",
-\        }
-\    }
-\}
-
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
-
+" General
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap
 set tabstop=4 shiftwidth=4 " Set tabs to softab 4
@@ -224,28 +156,6 @@ set ttimeout
 set ttimeoutlen=10
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
-
-" Highlight lines beyond 80
-execute "set colorcolumn=" . join(range(81,335), ',')
-
-if has("gui_running")
-    set guioptions=egmrt
-endif
-
-" Enable autosave
-" au FocusLost * :%s/\s\+$//e " Remove trailing spaces on focus lost
-" au FocusLost * silent! wa " Write file on focus lost
-" au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>") " Leave focus mode on focus lost
-function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
-
-" Enable autoread, requires :checktime to be run
-set autoread
 
 " Close quickfix if it's the only open window
 aug QFClose
@@ -349,68 +259,59 @@ hi TabLineSelStart cterm=none ctermfg=237 ctermbg=12
 hi TabLineSelEnd cterm=none ctermfg=12 ctermbg=237
 hi TabLineEndSelEnd cterm=none ctermfg=12 ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-set tabline=%!MyTabLine()
-function! MyTabLine()
-    let s = ''
-    let t = tabpagenr()
-    let i = 1
-    let len = tabpagenr('$')
-    while i <= len
-        let buflist = tabpagebuflist(i)
-        let winnr = tabpagewinnr(i)
-        let s .= '%#TabLine#'
-        if i != 1
-            if i == t
-                let s .= ' %#TabLineSelStart#'
-            elseif i-1 != t
-                let s .= ' '
-            endif
-        endif
-        let s .= (i == t ? '%#TabLineSel# ' : '%#TabLine# ')
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . i . 'T'
-        " set page number string
-        let s .=    i . ' '
-        if i == t
-            let s .= ' '
-        endif
-        let m = 0 " &modified counter
-        let bufnr = buflist[winnr - 1]
-        let file = bufname(bufnr)
-        let buftype = getbufvar(bufnr, 'buftype')
-        if buftype == 'nofile'
-            if file =~ '\/.'
-                let file = substitute(file, '.*\/\ze.', '', '')
-            endif
-        else
-            let file = fnamemodify(file, ':p:t')
-        endif
-        if file == ''
-            let file = '[No Name]'
-        endif
-        for b in buflist
-            " check and ++ tab's &modified count
-            if getbufvar( b, "&modified" )
-                let m += 1
-            endif
-        endfor
-        if m > 0
-            let s.= '[+]'
-        endif
-        let s .= file
-        if i == t
-            if i == len
-                let s .= ' %#TabLineEndSelEnd#'
-            else
-                let s .= ' %#TabLineSelEnd#'
-            endif
-        endif
-        let i = i + 1
-    endwhile
-    if i-1 != t
-        let s .= ' %#TabLineEnd#'
-    endif
-    let s .= '%T%#TabLineFill#%='
-    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-    return s
-endfunction
+hi ColorColumn ctermbg=Black
+
+" Airline
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" Fugitive
+map <Leader>g :Gstatus<CR>
+
+" Gist
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
+
+" Gundo configuration
+map <Leader>u :GundoToggle<CR>
+
+" NERDTree
+nnoremap <leader>F :NERDTreeTabsToggle<CR>
+
+" Paste toggle
+nnoremap <Leader>v :set invpaste paste?<CR>
+set showmode
+
+" Space.vim related
+let g:space_no_second_prev_mapping = 1
+let g:space_no_jump = 1
+nmap <Tab> <Plug>SmartspaceNext
+nmap <BS> <Plug>SmartspacePrev
+nnoremap <Space> a_<Esc>r

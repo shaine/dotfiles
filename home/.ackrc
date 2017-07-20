@@ -10,3 +10,4 @@ coffee=.coffee
 --ignore-dir=tmp
 --ignore-file=is:coverage.html
 --ignore-file=is:index-compiled.js
+--ignore-file=is:npm-shrinkwrap.json

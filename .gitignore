@@ -3,3 +3,5 @@ home/.vim/.netrwhist
 home/tmux-*.log
 home/.subversion/*
 home/.bin/pulse
+home/.vim/plugged/*
+home/.vim/bundle/*

@@ -135,3 +135,11 @@ tictoc () {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export GOPATH="$HOME/go"
+export PATH="$HOME/.yarn/bin:$GOPATH/bin:$PATH"
+
+setupdesktopdb() {
+    export DESKTOP_DB_HOSTNAME=elindblom.desktopdb.dev.ostk.com
+    export DESKTOP_DB_DATABASE_NAME_SHP=ut_shp
+}

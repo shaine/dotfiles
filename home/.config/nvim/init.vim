@@ -1,12 +1,8 @@
-" TODO
-" Replace yankring
-" Fix colorscheme
-" Replace ctrlp
-
 " vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
 
@@ -23,6 +19,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 
 " Tools
+Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'liuchengxu/space-vim' " Some sort of tab/delete motion repeat?
 Plug 'gregsexton/MatchTag' " Match the end of a tag
@@ -65,13 +62,13 @@ if !exists(":Write")
 endif
 
 " Colorscheme
-" set background = "dark"
-colorscheme ryuuko
+set background=dark
+colorscheme one
 let g:airline_theme = 'one'
 highlight clear SignColumn
 " Highlight lines beyond 80
 execute "set colorcolumn=" . join(range(81,335), ',')
-" set termguicolors
+set termguicolors
 
 " Key mappings for pane selection
 let g:tmux_navigator_no_mappings = 1
@@ -251,13 +248,13 @@ call SetArrowKeysAsTextShifters()
 
 " custom tab pages line with tab numbers - modified version of script by JonSkanes
 " http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
-hi TabLineFill cterm=none ctermfg=0 ctermbg=NONE
-hi TabLine cterm=none ctermfg=245 ctermbg=237
-hi TabLineSel cterm=none ctermfg=237 ctermbg=12
-hi TabLineEnd cterm=none ctermfg=237 ctermbg=NONE
-hi TabLineSelStart cterm=none ctermfg=237 ctermbg=12
-hi TabLineSelEnd cterm=none ctermfg=12 ctermbg=237
-hi TabLineEndSelEnd cterm=none ctermfg=12 ctermbg=NONE
+"hi TabLineFill cterm=none ctermfg=0 ctermbg=NONE
+"hi TabLine cterm=none ctermfg=245 ctermbg=237
+"hi TabLineSel cterm=none ctermfg=237 ctermbg=12
+"hi TabLineEnd cterm=none ctermfg=237 ctermbg=NONE
+"hi TabLineSelStart cterm=none ctermfg=237 ctermbg=12
+"hi TabLineSelEnd cterm=none ctermfg=12 ctermbg=237
+"hi TabLineEndSelEnd cterm=none ctermfg=12 ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 hi ColorColumn ctermbg=Black
 
@@ -292,6 +289,9 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+" FZF
+map <Leader>f :FZF<CR>
+
 " Fugitive
 map <Leader>g :Gstatus<CR>
 
@@ -315,3 +315,12 @@ let g:space_no_jump = 1
 nmap <Tab> <Plug>SmartspaceNext
 nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
+
+" Yankring
+let g:yankring_history_dir = '~/.vim/tmp/yank'
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
+" Paste at the end of the line
+nnoremap <Leader>P ma$p`a

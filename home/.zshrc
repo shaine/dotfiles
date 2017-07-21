@@ -156,4 +156,5 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-export PATH="$HOME/.yarn/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$HOME/.yarn/bin:$GOPATH/bin:$PATH"

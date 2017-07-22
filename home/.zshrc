@@ -7,25 +7,6 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="bureau"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
@@ -34,13 +15,26 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git vi-mode osx brew zsh-syntax-highlighting grunt)
 
+[[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export HOMEPY=$HOME/Library/Python/2.7
-export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
+# Powerline prompt
+export HOMEPY=$HOME/Library/Python/2.7
+export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:$PATH
+if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+fi
+if [[ -r $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
 then
     alias colourify="grc -es --colour=auto"
@@ -59,13 +53,11 @@ then
     alias head="colourify head"
 fi
 
-[[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
-
 eval "$(thefuck --alias)"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gitignored="git ls-files -v | grep \"^[a-z]\""
-alias ls="ls -GF"
-alias ll="ls -alhGF"
+alias ls="ls -F"
+alias ll="ls -alhF"
 alias lol="fortune | cowthink | lolcat"
 alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmux="tmux -2 -u"

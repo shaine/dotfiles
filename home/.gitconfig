@@ -1,6 +1,6 @@
 [user]
 	name = Shaine Hatch
-	email = shainehatch@overstock.com
+	email = shaine@squidtree.com
 [core]
     whitespace = trailing-space,space-before-tab
     editor = vim
@@ -37,11 +37,11 @@
 	insteadOf = git://
 [push]
 	default = current
-[credential]
-	helper = osxkeychain
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [diff]
     compactionHeuristic = true
 [commit]
     template = ~/.gitmessage
+[include]
+	path = ~/.gitconfig.local

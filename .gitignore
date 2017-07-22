@@ -5,3 +5,4 @@ home/.subversion/*
 home/.bin/pulse
 home/.vim/plugged/*
 home/.vim/bundle/*
+.netrwhist

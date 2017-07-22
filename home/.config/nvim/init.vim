@@ -130,7 +130,6 @@ set softtabstop=4 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
 set number " show line numbers
-set rnu " Relative line numbers
 set hlsearch " Highlight search matches
 set incsearch " Show next match while typing search
 set ignorecase " Case insensitive searches

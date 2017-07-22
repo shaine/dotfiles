@@ -1,5 +1,11 @@
 # Shaine's Dotfiles
 
+## Installation
+
+- Install neovim
+- Install the_silver_searcher
+- Install thefuck
+
 ## Environment-Specific Configs
 
 ```

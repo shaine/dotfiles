@@ -8,4 +8,4 @@ link-window -s system:3
 kill-window -t 1
 new-window -d -t 1 -n Editor
 select-window -t 1
-send-keys "vim" Enter
+send-keys "nvim" Enter

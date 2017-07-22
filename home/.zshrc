@@ -34,6 +34,9 @@ if [[ -r $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]
     source $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+alias vim="nvim"
+alias vi="nvim"
+
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
 then

@@ -1,7 +1,7 @@
 set-window-option -g allow-rename off
 set-window-option -g visual-activity off
 rename-window Editor
-send-keys "cd ~/.homesick/repos/dotfiles/home; vim" Enter
+send-keys "cd ~/.homesick/repos/dotfiles/home; nvim" Enter
 new-window
 rename-window Shells
 split-window -h

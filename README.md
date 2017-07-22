@@ -5,6 +5,7 @@
 - Install neovim
 - Install the_silver_searcher
 - Install thefuck
+- Set correct emaill address in .gitconfig for env
 
 ## Environment-Specific Configs
 

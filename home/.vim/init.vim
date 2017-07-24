@@ -55,7 +55,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing sp
 let mapleader = ","
 
 " Shortcuts
-nnoremap <leader>S :so ~/.vimrc<cr>
+nnoremap <leader>S :so ~/.vim/init.vim<cr>
 " Sudo write me a sandiwch
 if !exists(":Write")
     command Write w !sudo tee % > /dev/null
@@ -244,18 +244,8 @@ function! SetArrowKeysAsTextShifters()
 endfunction
 call SetArrowKeysAsTextShifters()
 
-
-" custom tab pages line with tab numbers - modified version of script by JonSkanes
-" http://vim.wikia.com/index.php?title=Show_tab_number_in_your_tab_line&oldid=29439
-"hi TabLineFill cterm=none ctermfg=0 ctermbg=NONE
-"hi TabLine cterm=none ctermfg=245 ctermbg=237
-"hi TabLineSel cterm=none ctermfg=237 ctermbg=12
-"hi TabLineEnd cterm=none ctermfg=237 ctermbg=NONE
-"hi TabLineSelStart cterm=none ctermfg=237 ctermbg=12
-"hi TabLineSelEnd cterm=none ctermfg=12 ctermbg=237
-"hi TabLineEndSelEnd cterm=none ctermfg=12 ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
-hi ColorColumn ctermbg=Black
+hi! Search term=standout gui=standout guifg=#96c475 guibg=NONE
 
 " Airline
 set laststatus=2

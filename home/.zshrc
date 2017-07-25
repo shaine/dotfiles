@@ -36,7 +36,7 @@ fi
 
 alias vim="nvim"
 alias vi="nvim"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore .vim/tmp -g ""'
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]

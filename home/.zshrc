@@ -23,7 +23,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
-fi
 
 alias vim="nvim"
 alias vi="nvim"

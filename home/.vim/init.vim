@@ -280,6 +280,7 @@ let g:airline_symbols.linenr = ''
 
 " FZF
 map <Leader>f :FZF<CR>
+nnoremap <silent> <leader>G :Ag <C-R><C-W><CR>
 
 " Fugitive
 map <Leader>g :Gstatus<CR>

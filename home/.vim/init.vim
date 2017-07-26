@@ -14,8 +14,6 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 
 " Tools
@@ -252,6 +250,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_buffers = 0
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}

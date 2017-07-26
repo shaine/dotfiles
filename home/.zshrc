@@ -24,19 +24,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
-# Powerline prompt
-export HOMEPY=$HOME/Library/Python/2.7
-export PATH=$HOMEPY/bin/:/usr/local/lib/python2.7/site-packages:$PATH
-if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
-fi
-if [[ -r $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source $HOMEPY/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
-fi
-
 alias vim="nvim"
 alias vi="nvim"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore .vim/tmp -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp -g ""'
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]

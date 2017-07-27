@@ -79,6 +79,8 @@ nnoremap \| :vsp<CR><C-w>l
 nnoremap <leader>t :tabe<CR>
 " Keep the splits always equal in size
 autocmd VimResized * wincmd =
+" Switch from terminal to normal mode
+tnoremap <Esc> <C-\><C-n>
 
 " Swap word left/right
 nnoremap H :let @h=@/<CR>"_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o><C-l>:let @/=@h<CR>

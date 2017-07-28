@@ -12,7 +12,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars'] }
+Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 
@@ -152,6 +152,7 @@ set ttimeout
 set ttimeoutlen=10
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
+set mouse=a
 
 " Close quickfix if it's the only open window
 aug QFClose

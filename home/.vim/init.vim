@@ -12,7 +12,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript'] }
+Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript', 'xml' ] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 

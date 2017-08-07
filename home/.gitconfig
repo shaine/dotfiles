@@ -3,7 +3,7 @@
 	email = shaine@squidtree.com
 [core]
     whitespace = trailing-space,space-before-tab
-    editor = vim
+    editor = nvim
     excludesfile = ~/.gitignore_global
 	repositoryformatversion = 0
 	filemode = true

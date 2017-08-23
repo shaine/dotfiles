@@ -143,3 +143,5 @@ load-nvmrc
 
 export GOPATH="$HOME/go"
 export PATH="$HOME/.yarn/bin:$GOPATH/bin:$PATH"
+
+eval "$(rbenv init -)"

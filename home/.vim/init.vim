@@ -15,6 +15,7 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript', 'xml' ] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring

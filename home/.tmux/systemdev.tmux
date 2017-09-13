@@ -12,23 +12,7 @@ new-window -n Monitor
 set-window-option allow-rename off
 select-window -t 1
 
-new -s work -c ~/www/overstock
-switch -t work:1
-source-file ~/.tmux/dev.tmux
-send-keys -t 2.2 "gitwatch ostk" Enter
-
-new -s watchers -c ~/www
-switch -t watchers:1
-split-window -v
-send-keys -t 1.1 "cd mobile-deux" Enter
-send-keys -t 1.2 "cd mobile-deux" Enter
-new-window
-split-window -v
-send-keys -t 2.1 "cd overstock" Enter
-send-keys -t 2.2 "cd overstock" Enter
-select-window -t 1
-
-new -s deux -c ~/www/mobile-deux
-switch -t deux:1
-source-file ~/.tmux/dev.tmux
-send-keys -t 2.2 "gitwatch deux" Enter
+# new -s somename -c ~/www/some-project
+# switch -t somename:1
+# source-file ~/.tmux/dev.tmux
+# send-keys -t 2.2 "gitwatch somename" Enter

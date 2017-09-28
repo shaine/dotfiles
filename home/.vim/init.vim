@@ -16,6 +16,7 @@ Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript', 'xml' ] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
@@ -100,6 +101,12 @@ inoremap jj <Esc>
 inoremap kk <Esc>
 inoremap jk <Esc>
 
+" Copy editing undo chunking
+inoremap . .<c-g>u
+inoremap ? ?<c-g>u
+inoremap ! !<c-g>u
+inoremap , ,<c-g>u
+
 " Other bindings
 nmap <silent> // :nohlsearch<CR>" Clear search
 " Don't jump when setting current word to search
@@ -125,9 +132,9 @@ set nowb
 " General
 set showcmd " Show location info in lower right
 set nowrap " Don't line wrap
-set tabstop=4 shiftwidth=4 " Set tabs to softab 4
+set tabstop=2 shiftwidth=2 " Set tabs to softab 2
 set expandtab " Turn tabs to spaces
-set softtabstop=4 " Something else about tabs
+set softtabstop=2 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
 set number " show line numbers

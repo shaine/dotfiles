@@ -21,7 +21,7 @@ Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
-Plug 'liuchengxu/space-vim' " Some sort of tab/delete motion repeat?
+Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
 Plug 'gregsexton/MatchTag' " Match the end of a tag
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'benekastah/neomake' " Linting
@@ -301,7 +301,6 @@ let g:fzf_action = {
     \ 'ctrl-q': function('s:build_quickfix_list'),
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-x': 'split',
-
     \ 'ctrl-v': 'vsplit' }
 
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'

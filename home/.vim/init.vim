@@ -16,7 +16,6 @@ Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript', 'xml' ] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
@@ -38,6 +37,9 @@ Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
+
+" WTF
+Plug 'johngrib/vim-game-snake' " Vim snake game
 call plug#end()
 
 " Setup

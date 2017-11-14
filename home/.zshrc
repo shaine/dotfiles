@@ -27,7 +27,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 alias vim="nvim"
 alias vi="nvim"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs -g ""'
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]

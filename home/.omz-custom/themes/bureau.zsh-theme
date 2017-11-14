@@ -109,11 +109,13 @@ get_space () {
   echo $SPACES
 }
 
+local erisian_date='$(ddate +"%a %d %b %Y")'
+
 _1LEFT="$_USERNAME $_PATH"
-_1RIGHT="[$(ddate +"%a%d %b %Y") %*] "
+_1RIGHT="[${erisian_date} %*] "
 
 bureau_precmd () {
-  _1SPACES=`get_space $_1LEFT $_1RIGHT`
+  _1SPACES=`get_space $_1LEFT "[SM 5 Afm 3183 %*]  "`
   print
   print -rP "$_1LEFT$_1SPACES$_1RIGHT"
 }

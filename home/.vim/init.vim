@@ -23,7 +23,6 @@ Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
 Plug 'gregsexton/MatchTag' " Match the end of a tag
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
-Plug 'benekastah/neomake' " Linting
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
 Plug 'mattn/webapi-vim' " For gist-vim
@@ -37,6 +36,7 @@ Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale' " Linter
 
 " WTF
 Plug 'johngrib/vim-game-snake' " Vim snake game
@@ -69,7 +69,7 @@ colorscheme one
 let g:airline_theme = 'one'
 highlight clear SignColumn
 " Highlight lines beyond 80
-execute "set colorcolumn=" . join(range(81,335), ',')
+execute "set colorcolumn=" . join(range(121,335), ',')
 set termguicolors
 
 " Key mappings for pane selection
@@ -112,6 +112,8 @@ inoremap , ,<c-g>u
 " Other bindings
 nmap <silent> // :nohlsearch<CR>" Clear search
 " Don't jump when setting current word to search
+nnoremap n nzz
+nnoremap N Nzz
 nnoremap * *N
 " Force redraw
 nmap <leader>r :redraw!<CR>

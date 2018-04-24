@@ -143,7 +143,7 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 export GOPATH="$HOME/go"
-export PATH="$HOME/.yarn/bin:$GOPATH/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/.yarn/bin:$GOPATH/bin:$PATH"
 
 eval "$(rbenv init -)"
 

@@ -16,8 +16,10 @@
 [merge]
     stat = true
     tool = opendiff
+	conflictstyle = diff3
 [alias]
     ocd = !git gc --aggressive && git prune && git remote prune origin && git cleanup
+    cleanup = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
     st = status -sb
     d = diff --word-diff
     co = checkout
@@ -29,8 +31,8 @@
     ll = log --stat --abbrev-commit
     update = submodule foreach git pull
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
-    cleanup = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
     uncommit = reset --soft HEAD^
+    yolo = !git reset HEAD --hard && git clean -f
 [github]
     user = shaine
 [url "https://"]

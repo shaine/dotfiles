@@ -14,7 +14,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode osx brew zsh-syntax-highlighting grunt)
+plugins=(git vi-mode osx brew zsh-syntax-highlighting grunt zsh-autosuggestions)
 
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
@@ -63,7 +63,7 @@ alias "svnls"="svn ls '^/branches/m_www/feature/';
     svn ls '^/branches/m_www/fix/';
     svn ls '^/branches/m_www/test/'"
 function gitwatch() {
-    watch -c -n 15 "figlet $1; echo ''; git branch; echo ''; git st"
+    watch -c -n 1 "figlet $1; echo ''; git branch; echo ''; git st"
 }
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
@@ -149,3 +149,7 @@ eval "$(rbenv init -)"
 
 # Enable IEx history
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+# GOPATH
+export GOPATH="${HOME}/go"
+export PATH="${PATH}:${GOPATH}/bin"

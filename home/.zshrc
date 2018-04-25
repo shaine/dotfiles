@@ -146,3 +146,6 @@ export GOPATH="$HOME/go"
 export PATH="$HOME/.rbenv/bin:$HOME/.yarn/bin:$GOPATH/bin:$PATH"
 
 eval "$(rbenv init -)"
+
+# Enable IEx history
+export ERL_AFLAGS="-kernel shell_history enabled"

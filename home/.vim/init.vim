@@ -15,7 +15,6 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript', 'xml', 'eelixir' ] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'sheerun/vim-polyglot'
 
 " Tools
@@ -56,6 +55,12 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
 let mapleader = ","
+
+augroup nvim_term
+  au!
+  au TermOpen * startinsert
+  au TermClose * stopinsert
+augroup END
 
 " Shortcuts
 nnoremap <leader>S :so ~/.vim/init.vim<cr>
@@ -259,7 +264,7 @@ endfunction
 call SetArrowKeysAsTextShifters()
 
 hi Normal guibg=NONE ctermbg=NONE
-hi! Search term=standout gui=standout guifg=#96c475 guibg=NONE
+hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
 
 " Airline
 set laststatus=2

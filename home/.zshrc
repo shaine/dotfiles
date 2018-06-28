@@ -146,6 +146,7 @@ export GOPATH="$HOME/go"
 export PATH="$HOME/.rbenv/bin:$HOME/.yarn/bin:$GOPATH/bin:$PATH"
 
 eval "$(rbenv init -)"
+mkdir -p ~/.git/safe && export PATH="~/.git/safe/../../bin:$PATH"
 
 # GOPATH
 export GOPATH="${HOME}/go"

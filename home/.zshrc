@@ -148,6 +148,9 @@ export PATH="$HOME/.rbenv/bin:$HOME/.yarn/bin:$GOPATH/bin:$PATH"
 eval "$(rbenv init -)"
 mkdir -p ~/.git/safe && export PATH="~/.git/safe/../../bin:$PATH"
 
+# Enable IEx history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 # GOPATH
 export GOPATH="${HOME}/go"
 export PATH="${PATH}:${GOPATH}/bin"

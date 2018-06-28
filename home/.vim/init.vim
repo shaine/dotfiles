@@ -37,6 +37,7 @@ Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale' " Linter
+Plug 'neilagabriel/vim-geeknote'
 
 " WTF
 Plug 'johngrib/vim-game-snake' " Vim snake game

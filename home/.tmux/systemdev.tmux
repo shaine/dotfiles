@@ -1,3 +1,4 @@
+source ~/.tmux/tmuxcolors.conf
 set-window-option -g allow-rename off
 set-window-option -g visual-activity off
 rename-window Editor

@@ -62,6 +62,7 @@ alias "svnls"="svn ls '^/branches/m_www/feature/';
     svn ls '^/branches/m_www/update/';
     svn ls '^/branches/m_www/fix/';
     svn ls '^/branches/m_www/test/'"
+alias k=kubectl
 function gitwatch() {
     watch -c -n 1 "figlet $1; echo ''; git branch; echo ''; git st"
 }

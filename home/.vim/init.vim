@@ -5,6 +5,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
+Plug 'dylanaraps/wal.vim'
 
 " Languages
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -72,12 +73,15 @@ endif
 
 " Colorscheme
 set background=dark
-colorscheme one
-let g:airline_theme = 'one'
+" colorscheme one
+colorscheme wal
+" let g:airline_theme = 'one'
 highlight clear SignColumn
 " Highlight lines beyond 80
 execute "set colorcolumn=" . join(range(121,335), ',')
-set termguicolors
+" set termguicolors
+highlight CursorLine cterm=NONE ctermbg=0 ctermfg=NONE
+highlight ColorColumn ctermbg=0
 
 " Key mappings for pane selection
 let g:tmux_navigator_no_mappings = 1
@@ -328,6 +332,12 @@ map <Leader>u :GundoToggle<CR>
 
 " NERDTree
 nnoremap <leader>F :NERDTreeTabsToggle<CR>
+" augroup NerdCursor
+  " autocmd!
+  " autocmd BufEnter NERD_tree_* hi CursorLine gui=underline
+  " autocmd BufLeave NERD_tree_* highlight clear CursorLine
+  " autocmd BufAdd * highlight clear CursorLine
+" augroup END
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>

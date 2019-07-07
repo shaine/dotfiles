@@ -94,35 +94,36 @@ _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
 
 
-get_space () {
-  local STR=$1$2
-  local zero='%([BSUbfksu]|([FB]|){*})'
-  local LENGTH=${#${(S%%)STR//$~zero/}}
-  local SPACES=""
-  (( LENGTH = ${COLUMNS} - $LENGTH - 1))
+# get_space () {
+  # local STR=$1$2
+  # local zero='%([BSUbfksu]|([FB]|){*})'
+  # local LENGTH=${#${(S%%)STR//$~zero/}}
+  # local SPACES=""
+  # (( LENGTH = ${COLUMNS} - $LENGTH - 1))
+#
+  # for i in {0..$LENGTH}
+    # do
+      # SPACES="$SPACES "
+    # done
+  # echo $SPACES
+# }
 
-  for i in {0..$LENGTH}
-    do
-      SPACES="$SPACES "
-    done
-
-  echo $SPACES
-}
-
-local erisian_date='$(ddate +"%a %d %b %Y")'
+# local erisian_date='$(ddate +"%a %d %b %Y")'
 
 _1LEFT="$_USERNAME $_PATH"
-_1RIGHT="[${erisian_date} %*] "
+# _1RIGHT="[${erisian_date} %*] "
 
 bureau_precmd () {
-  _1SPACES=`get_space $_1LEFT "[SM 5 Afm 3183 %*]  "`
+  # _1SPACES=`get_space $_1LEFT "[SM 5 Afm 3183 %*]  "`
   print
-  print -rP "$_1LEFT$_1SPACES$_1RIGHT"
+  # print -rP "$_1LEFT$_1SPACES$_1RIGHT"
+  print -rP "$_1LEFT"
 }
 
 setopt prompt_subst
 PROMPT='> $_LIBERTY '
-RPROMPT='$(nvm_prompt_info) $ZSH_THEME_RUBY_PROMPT_PREFIX$(rbenv version | sed -e "s/ (set.*$//")%{$reset_color%} $(bureau_git_prompt)'
+# RPROMPT='$(nvm_prompt_info) $ZSH_THEME_RUBY_PROMPT_PREFIX$(rbenv version | sed -e "s/ (set.*$//")%{$reset_color%} $(bureau_git_prompt)'
+RPROMPT='$(bureau_git_prompt)'
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd bureau_precmd

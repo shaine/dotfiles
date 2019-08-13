@@ -22,12 +22,12 @@ plugins=(git vi-mode osx brew zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$PATH
+export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$HOME/.local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
 alias vim="nvim"
 alias vi="nvim"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
 
 GRC=`which grc`
 if [[ $? -eq 0 ]] && [ "$TERM" != dumb ]
@@ -58,11 +58,10 @@ alias phperrors="tail -f /var/log/apache2/error_log"
 alias tmux="tmux -2 -u"
 alias tmuxcopy="tmux show-buffer | tr -d '\n' | pbcopy"
 alias "tmux ns"="tmux new-session -s "
-alias "svnls"="svn ls '^/branches/m_www/feature/';
-    svn ls '^/branches/m_www/update/';
-    svn ls '^/branches/m_www/fix/';
-    svn ls '^/branches/m_www/test/'"
 alias k=kubectl
+alias vpn="/opt/cisco/anyconnect/bin/vpn"
+alias vpnui="/opt/cisco/anyconnect/bin/vpnui"
+
 function gitwatch() {
     watch -c -n 1 "figlet `basename $PWD`; echo ''; git branch; echo ''; git st"
 }
@@ -174,6 +173,9 @@ mkdir -p ~/.git/safe && export PATH="~/.git/safe/../../bin:$PATH"
 # Enable IEx history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-# GOPATH
-export GOPATH="${HOME}/go"
-export PATH="${PATH}:${GOPATH}/bin"
+(cat ~/.cache/wal/sequences &)
+
+if [ "$DESKTOP_SESSION" = "i3" ]; then
+  export $(gnome-keyring-daemon -s)
+  alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+fi

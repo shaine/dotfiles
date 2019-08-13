@@ -12,9 +12,6 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'mattn/emmet-vim', { 'for': [ 'html', 'handlebars', 'javascript', 'xml', 'eelixir' ] }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'sheerun/vim-polyglot'
 
 " Tools
@@ -36,8 +33,8 @@ Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale' " Linter
-Plug 'neilagabriel/vim-geeknote'
 
 " WTF
 Plug 'johngrib/vim-game-snake' " Vim snake game
@@ -67,7 +64,7 @@ augroup END
 nnoremap <leader>S :so ~/.vim/init.vim<cr>
 " Sudo write me a sandiwch
 if !exists(":Write")
-    command Write w !sudo tee % > /dev/null
+  command Write w !sudo tee % > /dev/null
 endif
 
 " Colorscheme
@@ -267,6 +264,15 @@ call SetArrowKeysAsTextShifters()
 hi Normal guibg=NONE ctermbg=NONE
 hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
 
+" Ack.vim
+if executable('ag')
+  " Configure ack.vim to use ag
+  let g:ackprg = 'ag --vimgrep --smart-case'
+  " Don't open first file by default
+  cnoreabbrev Ag Ack!
+  cnoreabbrev Ack Ack!
+endif
+
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
@@ -348,3 +354,16 @@ noremap <leader>yy "*Y
 noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
 " Paste at the end of the line
 nnoremap <Leader>P ma$p`a
+
+" When using `dd` in the quickfix list, remove the item from the quickfix list.
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>

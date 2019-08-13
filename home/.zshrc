@@ -14,7 +14,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode osx brew zsh-syntax-highlighting grunt zsh-autosuggestions)
+plugins=(git vi-mode osx brew zsh-syntax-highlighting zsh-autosuggestions)
 
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
@@ -64,13 +64,35 @@ alias "svnls"="svn ls '^/branches/m_www/feature/';
     svn ls '^/branches/m_www/test/'"
 alias k=kubectl
 function gitwatch() {
-    watch -c -n 1 "figlet $1; echo ''; git branch; echo ''; git st"
+    watch -c -n 1 "figlet `basename $PWD`; echo ''; git branch; echo ''; git st"
 }
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }
+function tmuxcolors() {
+  for i in {0..255}; do
+    printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+  done
+}
 
 tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
+kssh() {
+  bold=`tput bold`
+  normal=`tput sgr0`
+
+  if [ -z "$1" ]; then
+    echo "You must supply a ${bold}NAME${normal} argument!"
+    echo "\n  $ kssh <NAME>"
+    return
+  fi
+
+  context=`kubectl config current-context`
+  pod=`kubectl get pods | grep "^$1" | awk '{print $1}' | head -n 1`
+
+  echo "Connecting to ${bold}$pod${normal} in ${bold}$context${normal}"
+
+  kubectl exec -it --request-timeout=5s $pod bash
+}
 
 export LS_OPTIONS="--color=auto"
 export CLICOLOR="Yes"

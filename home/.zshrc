@@ -173,9 +173,8 @@ mkdir -p ~/.git/safe && export PATH="~/.git/safe/../../bin:$PATH"
 # Enable IEx history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-(cat ~/.cache/wal/sequences &)
-
 if [ "$DESKTOP_SESSION" = "i3" ]; then
+  (cat ~/.cache/wal/sequences &)
   export $(gnome-keyring-daemon -s)
   alias settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 fi

@@ -22,7 +22,7 @@ plugins=(git vi-mode osx brew zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$HOME/.local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
 alias vim="nvim"
@@ -61,6 +61,7 @@ alias "tmux ns"="tmux new-session -s "
 alias k=kubectl
 alias vpn="/opt/cisco/anyconnect/bin/vpn"
 alias vpnui="/opt/cisco/anyconnect/bin/vpnui"
+alias python="/usr/local/bin/python3"
 
 function gitwatch() {
     watch -c -n 1 "figlet `basename $PWD`; echo ''; git branch; echo ''; git st"
@@ -98,6 +99,7 @@ export CLICOLOR="Yes"
 export LSCOLORS="exgxfxfxcxdxdxhbadbxbx"
 export SVN_EDITOR="vim"
 export EDITOR="vim"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 unset RUBYOPT
 

@@ -123,6 +123,7 @@ nnoremap * *N
 nmap <leader>r :redraw!<CR>
 nnoremap Q <nop>
 nnoremap <Space> a_<Esc>r
+command Q q
 
 " Swap ` and ' for better tmux integration
 nnoremap ' `

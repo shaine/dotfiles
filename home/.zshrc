@@ -61,7 +61,6 @@ alias "tmux ns"="tmux new-session -s "
 alias k=kubectl
 alias vpn="/opt/cisco/anyconnect/bin/vpn"
 alias vpnui="/opt/cisco/anyconnect/bin/vpnui"
-alias python="/usr/local/bin/python3"
 
 function gitwatch() {
     watch -c -n 1 "figlet `basename $PWD`; echo ''; git branch; echo ''; git st"

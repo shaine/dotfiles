@@ -5,7 +5,7 @@ export SSH_AUTH_SOCK
 
 i3-msg workspace 1
 
-terminal_command="(cat ~/.cache/wal/sequences &); ssh athena; zsh"
+terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena; zsh"
 
 i3-sensible-terminal -e "$terminal_command"
 i3-sensible-terminal -e "$terminal_command"
@@ -17,8 +17,6 @@ i3-sensible-terminal -e "$terminal_command"
 
 i3-msg split h
 i3-msg resize shrink width 25 px or 25 ppt
-
-exit 0
 
 i3-msg workspace 2
 
@@ -32,3 +30,5 @@ i3-msg workspace 3
 spotify &
 
 sleep 3
+
+i3-msg workspace 1

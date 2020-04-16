@@ -30,7 +30,9 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal -e "(cat ~/.cache/wal/sequences &) && zsh"
+bindsym $mod+Return exec gnome-terminal -- "$HOME/.config/i3/shell-start.sh"
+bindsym $mod+Shift+Return exec gnome-terminal --class=floatingTerm -- "$HOME/.config/i3/shell-start.sh"
+for_window [class="^floatingTerm$"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -124,7 +126,8 @@ bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-msg exit"
 
-bindsym $mod+Shift+p exec --no-startup-id ~/.bin/i3-setup.sh
+bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
+bindsym $mod+backslash exec --no-startup-id $HOME/.config/i3/special_characters
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -209,11 +212,13 @@ mode "$mode_gaps_outer" {
 }
 
 # Execs
-exec --no-startup-id feh --bg-scale $HOME/.local/wallpaper.jpg
-exec --no-startup-id python3.6 -m pywal -i $HOME/.local/wallpaper.jpg # -a90
+set $wallpaper_path $HOME/.local/wallpaper.jpg
+exec_always --no-startup-id python3.6 -m pywal -i $(readlink -f $wallpaper_path) # -a90
+exec_always --no-startup-id feh --bg-scale $wallpaper_path
+exec_always --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec_always --no-startup-id compton
 exec --no-startup-id dropbox start
 exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
-bindsym Control+Mod1+l exec --no-startup-id ~/.bin/i3exit lock
+bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur

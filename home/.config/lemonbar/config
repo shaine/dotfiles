@@ -48,8 +48,6 @@ HEIGHT=18 # bar height
 XOFF=0 # x offset
 YOFF=0 # y offset
 
-YOFF2=$(expr 1080 - ${HEIGHT}) # y offset
-
 # color definitions
 
 color_back=${main_bg} # 				#4D282A36 Default background

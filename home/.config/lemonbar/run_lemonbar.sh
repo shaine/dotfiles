@@ -13,29 +13,29 @@ conky -c $(dirname $0)/lemonbar_conky > "${PANEL_FIFO}" &
 
 music() {
     while true; do
-        NCMP=$(mpc | grep "^\[playing\]" | awk '{print $1}')
+        NCMP=$(spotifycli --status)
         NUM_NCMP=$(mpc | head -1 | wc -c )
         S_NCMP=$(mpc | head -1 | head -c 30)
+        PLAYBACK_STATUS=$(spotifycli --playbackstatus)
 
-        pause='Pause'
         str=""
 
-        if [ "$NCMP" = "[playing]" ]; then
+        if [ "▶" = $PLAYBACK_STATUS ]; then
             if [ "$NUM_NCMP" -lt 30 ]; then
-                str=$(mpc current)
+                str="${NCMP}"
             else
                 str="${S_NCMP}..."
             fi
+            echo "MUSIC %{F${color_sec_b1} T3}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F- T1} ${str}"
         else
-            str="${pause}"
+            echo "MUSIC %{F${color_sec_b1} T3}"
         fi
 
-        echo "MUSIC %{F${color_sec_b1} T3}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F- T1} ${str}"
         sleep ${MUSIC_SLEEP}
     done
 }
 
-# music > "${PANEL_FIFO}" &
+music > "${PANEL_FIFO}" &
 
 get_updates(){
     while true; do
@@ -56,6 +56,7 @@ get_updates > "${PANEL_FIFO}" &
 
 work(){
     while true; do
+      # i3-msg -t get_workspaces
         local ws=$(xprop -root _NET_CURRENT_DESKTOP | sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //' )
         local seq="%{F${color_back} B${color_sec_b1} T1} "
         local total=${DESKTOP_COUNT}
@@ -67,6 +68,7 @@ work(){
                 seq="${seq}%{F- T1} • "
             fi
         done
+        local seq="$(eval echo \"$($HOME/.config/lemonbar/workspace.rb)\")"
         echo "WORKSPACES ${seq}%{F${color_sec_b1} B${color_back} T3}${sep_right}%{F- B- T1}"
         sleep ${WORKSPACE_SLEEP}
     done
@@ -171,5 +173,5 @@ while read -r line; do
             title="%{F${color_sec_b2} B${color_sec_b2} T3}${sep_right}%{F- B${color_sec_b2} T1} ${name} %{F${color_sec_b2} B- T3}${sep_right}%{F- B- T1} "
             ;;
     esac
-    printf "%s\n" "%{l}${fn_work}${title}%{S1}${fn_work}${title} %{S0}%{r}${fn_music}${stab}${fn_space}${fn_mem}${fn_cpu}${fn_update}${fn_weather}${fn_sync}${fn_vol}${fn_date}${stab}${fn_time}${fn_theme}%{S1}${fn_music}${fn_date}${stab}${fn_time}${fn_theme}"
+    printf "%s\n" "%{l}${fn_work}${title}%{S1}${fn_work}${title} %{S0}%{r}${fn_music}${stab}${fn_space}${fn_mem}${fn_cpu}${fn_update}${fn_weather}${fn_sync}${fn_vol}${fn_date}${stab}${fn_time}${fn_theme}%{S1}${fn_date}${stab}${fn_time}${fn_theme}"
 done < "${PANEL_FIFO}" | lemonbar -d -f "${FONTS}" -f "${ICONFONTS}" -g "${GEOMETRY}" -B "${BBG}" -F "${BFG}" -u 2 | sh > /dev/null

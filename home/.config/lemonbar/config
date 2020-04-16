@@ -38,7 +38,7 @@ export bg_select="#FF${color6/'#'}"
 export con_bg="#FF${color4/'#'}"
 
 export bg_alert="#FF${color5/'#'}"
-export bg_warn="#FFB5BD68" #"#FF93a1a1"
+export bg_warn="#FF${color11/'#'}"
 export bg_good="#FF${color6/'#'}" #"#FF268bd2"
 
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
@@ -118,7 +118,7 @@ icon_vol=""                        # Volume icon
 icon_vol_mute=""                    # Volume Mute icon
 icon_hd=""                         # HD / icon
 icon_home=""                       # HD /home icon
-icon_music=""                      # Music icon
+icon_music=""                      # Music icon
 icon_prog=""                      # Window icon
 icon_wsp=""                        # Workspace icon
 icon_update=""                    # Update Icon

@@ -14,14 +14,14 @@ conky -c $(dirname $0)/lemonbar_conky > "${PANEL_FIFO}" &
 music() {
     while true; do
         NCMP=$(spotifycli --status)
-        NUM_NCMP=$(mpc | head -1 | wc -c )
-        S_NCMP=$(mpc | head -1 | head -c 30)
+        NUM_NCMP=$(echo $NCMP | head -1 | wc -c )
+        S_NCMP=$(echo $NCMP | head -1 | head -c 30)
         PLAYBACK_STATUS=$(spotifycli --playbackstatus)
 
         str=""
 
-        if [ "▶" = $PLAYBACK_STATUS ]; then
-            if [ "$NUM_NCMP" -lt 30 ]; then
+        if [[ "▶" = $PLAYBACK_STATUS ]]; then
+            if [[ "$NUM_NCMP" -le 31 ]]; then
                 str="${NCMP}"
             else
                 str="${S_NCMP}..."
@@ -104,11 +104,14 @@ volume()
     cnt_vol=${upd_vol}
 
     while true; do
-        local vol="$(amixer get Master | grep -E -o '[0-9]{1,3}?%' | head -1 | cut -d '%' -f1)"
-        local mut="$(amixer get Master | grep -E -o 'off' | head -1)"
+        local sink=$( pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1 )
+        local vol=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $sink + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
+        # local mut="$(amixer get Master | grep -E -o 'off' | head -1)"
 
-        if [[ ${mut} == "off" ]]; then
-            echo "VOLUME %{F${color_yay} B${color_sec_b2} T3}${sep_left}%{F${color_back} B${color_yay}} %{T2}${icon_vol_mute} %{T1}MUTE %{F${color_sec_b1} B${color_yay} T3}${sep_left}%{F- B- T1} "
+        # if [[ ${mut} == "off" ]]; then
+            # echo "VOLUME %{F${color_yay} B${color_sec_b2} T3}${sep_left}%{F${color_back} B${color_yay}} %{T2}${icon_vol_mute} %{T1}MUTE %{F${color_sec_b1} B${color_yay} T3}${sep_left}%{F- B- T1} "
+        if (( vol > 100 )); then
+            echo "VOLUME %{F${color_yay} B${color_sec_b2} T3}${sep_left}%{F${color_back} B${color_yay}} %{T2}${icon_vol} %{T1}${vol}% %{F${color_sec_b1} B${color_yay} T3}${sep_left}%{F- B- T1} "
         elif (( vol == 0 )); then
             echo "VOLUME %{F${color_yay} B${color_sec_b2} T3}${sep_left}%{F${color_back} B${color_yay}} %{T2}${icon_vol_mute} %{T1}${vol}% %{F${color_sec_b1} B${color_yay} T3}${sep_left}%{F- B- T1} "
         elif (( vol > 70 )); then

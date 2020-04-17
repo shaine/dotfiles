@@ -20,7 +20,7 @@ i3-msg resize shrink width 25 px or 25 ppt
 
 i3-msg workspace 2
 
-chromium &
+chromium-browser &
 slack &
 
 sleep 3

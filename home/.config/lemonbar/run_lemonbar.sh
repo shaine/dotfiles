@@ -79,10 +79,10 @@ work > "${PANEL_FIFO}" &
 clock()
 {
     while true; do
-        local time="$(date +'%_I:%M%P')"
+        local time="$(date +'%T')"
         # time
-        echo "CLOCK %{F${color_sel} B${color_sec_b1} T3}${sep_left}%{F${color_back} B${color_sel}} %{T2}${icon_clock} %{T1}${time} ${sep_left}%{F- B- T1}"
-        sleep ${TIME_SLEEP}
+        echo "CLOCK "
+        sleep ${DATE_SLEEP}
     done
 }
 
@@ -91,7 +91,7 @@ clock > "${PANEL_FIFO}" &
 datez()
 {
     while true; do
-        local dates="$(date +'%a %d %b')"
+        local dates="$(date +'%Y.%m.%d %T')"
         echo "DATE %{F${color_sec_b1} B${color_sec_b1} T3}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_date} %{F- T1}${dates}"
         sleep ${DATE_SLEEP}
     done
@@ -176,5 +176,5 @@ while read -r line; do
             title="%{F${color_sec_b2} B${color_sec_b2} T3}${sep_right}%{F- B${color_sec_b2} T1} ${name} %{F${color_sec_b2} B- T3}${sep_right}%{F- B- T1} "
             ;;
     esac
-    printf "%s\n" "%{l}${fn_work}${title}%{S1}${fn_work}${title} %{S0}%{r}${fn_music}${stab}${fn_space}${fn_mem}${fn_cpu}${fn_update}${fn_weather}${fn_sync}${fn_vol}${fn_date}${stab}${fn_time}${fn_theme}%{S1}${fn_date}${stab}${fn_time}${fn_theme}"
+    printf "%s\n" "%{l}${fn_work}${title}%{S1}${fn_work}${title} %{S0}%{r}${fn_music}${stab}${fn_space}${fn_mem}${fn_cpu}${fn_update}${fn_weather}${fn_sync}${fn_vol}${fn_date}${stab}${fn_theme}%{S1}${fn_date}${stab}%{F- B- T1}${fn_theme}"
 done < "${PANEL_FIFO}" | lemonbar -d -f "${FONTS}" -f "${ICONFONTS}" -g "${GEOMETRY}" -B "${BBG}" -F "${BFG}" -u 2 | sh > /dev/null

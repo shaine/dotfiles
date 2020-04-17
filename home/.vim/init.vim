@@ -71,8 +71,8 @@ endif
 
 " Colorscheme
 set background=dark
-" colorscheme one
-colorscheme wal
+colorscheme one
+" colorscheme wal
 let g:airline_theme = 'one'
 " highlight clear SignColumn
 " Highlight lines beyond 80

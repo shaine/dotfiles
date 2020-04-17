@@ -42,7 +42,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -221,7 +221,8 @@ exec --no-startup-id python3.6 -m pywal -i $(readlink -f $wallpaper_path) # -a90
 exec --no-startup-id feh --bg-scale $wallpaper_path
 exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec --no-startup-id xbindkeys
-exec_always --no-startup-id compton
-exec --no-startup-id dropbox start
+exec_always --no-startup-id compton --shadow-exclude 'class_g = "Ulauncher"'
+exec --no-startup-id ~/.dropbox-dist/dropboxd
 exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh
 exec_always --no-startup-id "eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) && export SSH_AUTH_SOCK"
+exec --no-startup-id ulauncher --hide-window

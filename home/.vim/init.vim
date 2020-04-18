@@ -7,11 +7,11 @@ Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
 
 " Languages
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+" Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot'
 
 " Tools
@@ -146,7 +146,7 @@ set expandtab " Turn tabs to spaces
 set softtabstop=2 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
-set number " show line numbers
+set nonumber " show no line numbers
 set hlsearch " Highlight search matches
 set incsearch " Show next match while typing search
 set ignorecase " Case insensitive searches

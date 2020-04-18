@@ -81,10 +81,6 @@ else
   stab=' '
 fi
 
-# Status constants
-# Change these to modify bar behavior
-DESKTOP_COUNT=5
-
 # Sleep constnats
 WORKSPACE_SLEEP=0.3
 VOLUME_SLEEP=1

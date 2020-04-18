@@ -1,3 +1,6 @@
+(cat ~/.cache/wal/sequences &)
+clear
+
 # Path to your oh-my-zsh configuration.
 ZSH_CUSTOM=$HOME/.omz-custom
 ZSH=$HOME/.oh-my-zsh
@@ -26,7 +29,7 @@ export PATH=$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/lib/python2.7/site-packag
 export ZSH=$HOME/.oh-my-zsh
 
 alias vim="nvim"
-export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
+export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .zoom --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 eval "$(thefuck --alias)"

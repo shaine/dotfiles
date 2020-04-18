@@ -24,7 +24,6 @@ def workspace_has_windows?(i3_tree_hash, workspace_num)
   apps.count > 0
 end
 
-desktop_count = ENV.fetch("DESKTOP_COUNT", 5)
 i3_tree = `i3-msg -t get_tree`
 i3_tree_hash = JSON.parse(i3_tree)
 
@@ -36,27 +35,42 @@ inactive_color = "${color_sec_b1}"
 urgent_active_color = "${bg_warn}"
 urgent_inactive_color = "${bg_warn}"
 right_arrow = "${sep_right}"
+empty_symbol = "•"
+full_inactive_symbol = ""
+full_active_symbol = ""
+warning_symbol = ""
 
-output = "%{F#{inactive_color} B#{inactive_color} T1} "
+output_prefix = "%{F#{inactive_color} B#{inactive_color} T1} "
+workspaces_output = []
 
-desktop_count.times do |desktop_number|
-  workspace = i3_workspaces_hash.find { |temp_ws| temp_ws["num"] == desktop_number + 1 }
+i3_workspaces_hash.each do |workspace|
+  # Num is 1-indexed
+  workspace_index = workspace["num"] - 1
 
-  is_focused = workspace && workspace["focused"]
-  is_urgent = workspace&.fetch("urgent")
+  is_focused = workspace["focused"]
+  is_urgent = workspace.fetch("urgent")
 
-  symbol = workspace_has_windows?(i3_tree_hash, desktop_number) ? "" : "•"
-  symbol = is_focused && workspace_has_windows?(i3_tree_hash, desktop_number) ? "" : symbol
-  symbol = is_urgent ? "" : symbol
+  symbol = workspace_has_windows?(i3_tree_hash, workspace_index) ? full_inactive_symbol : empty_symbol
+  symbol = is_focused && workspace_has_windows?(i3_tree_hash, workspace_index) ? full_active_symbol : symbol
+  symbol = is_urgent ? warning_symbol : symbol
 
   current_active_color = is_urgent ? urgent_active_color : active_color
   current_inactive_color = inactive_color
 
-  if workspace && is_focused
-    output += "%{F#{current_inactive_color} B#{current_active_color} T3}#{right_arrow}%{F#{current_inactive_color} B#{current_active_color} T1} #{symbol} %{F#{current_active_color} B#{current_inactive_color} T3}#{right_arrow}"
-  else
-    output += "%{F#{current_active_color} B#{current_inactive_color} T1} #{symbol} "
-  end
+  output =
+    if workspace && is_focused
+      "%{F#{current_inactive_color} B#{current_active_color} T3}#{right_arrow}%{F#{current_inactive_color} B#{current_active_color} T1} #{symbol} %{F#{current_active_color} B#{current_inactive_color} T3}#{right_arrow}"
+    else
+      "%{F#{current_active_color} B#{current_inactive_color} T1} #{symbol} "
+    end
+
+  workspaces_output[workspace_index] = output
 end
 
-puts output
+workspaces_output = workspaces_output.map do |workspace_output|
+  next workspace_output unless workspace_output.nil?
+
+  "%{F#{active_color} B#{inactive_color} T1} #{empty_symbol} "
+end
+
+puts "#{output_prefix}#{workspaces_output.join}"

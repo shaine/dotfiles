@@ -20,7 +20,9 @@ def workspace_has_windows?(i3_tree_hash, workspace_num)
   workspace = workspaces.find { |n| n["num"] == workspace_num + 1 }
   return false if workspace.nil?
 
-  apps = flatten_nodes_tree(workspace["nodes"]).select { |n| !n["name"].nil? }
+  workspace_nodes = flatten_nodes_tree(workspace["nodes"])
+  workspace_nodes += flatten_nodes_tree(workspace["floating_nodes"])
+  apps = workspace_nodes.select { |n| !n["name"].nil? }
   apps.count > 0
 end
 

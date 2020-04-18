@@ -43,7 +43,28 @@ function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }
 
-tm () { if [[ -z $* ]]; then tmux ls; else tmux attach-session -d -t $* || tmux new-session -s $*; fi }
+tm () {
+  if [[ -z $* ]]; then
+    tmux ls;
+  else
+    tmux new-session -d -s $* > /dev/null
+
+    # If the session is a "side" session, then don't bind connection triggers
+    if [[ $1 == side* ]]; then
+      exit 0
+    fi
+
+    change_command="SESSION=$1 ~/.tmux/change_session.sh"
+    hook_command="run '$change_command'"
+
+    tmux set-hook -t $1 client-attached $hook_command
+    tmux set-hook -t $1 client-session-changed $hook_command
+
+    eval $change_command
+
+    tmux attach-session -d -t $*
+  fi
+}
 kssh() {
   bold=`tput bold`
   normal=`tput sgr0`

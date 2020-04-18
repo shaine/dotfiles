@@ -5,6 +5,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
+Plug 'dylanaraps/wal.vim'
 
 " Languages
 " Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -61,6 +62,7 @@ augroup nvim_term
 augroup END
 
 " Shortcuts
+" Reload configuration
 nnoremap <leader>S :so ~/.vim/init.vim<cr>
 " Sudo write me a sandiwch
 if !exists(":Write")
@@ -70,11 +72,12 @@ endif
 " Colorscheme
 set background=dark
 colorscheme one
+" colorscheme wal
 let g:airline_theme = 'one'
-highlight clear SignColumn
+" highlight clear SignColumn
 " Highlight lines beyond 80
-execute "set colorcolumn=" . join(range(121,335), ',')
-set termguicolors
+execute "set colorcolumn=" . join(range(121,121), ',')
+" set termguicolors
 
 " Key mappings for pane selection
 let g:tmux_navigator_no_mappings = 1
@@ -123,7 +126,7 @@ nnoremap * *N
 nmap <leader>r :redraw!<CR>
 nnoremap Q <nop>
 nnoremap <Space> a_<Esc>r
-command Q q
+command! Q q
 
 " Swap ` and ' for better tmux integration
 nnoremap ' `
@@ -160,7 +163,7 @@ set isk+=$ " Add word characters
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-set cursorline
+set nocursorline
 set synmaxcol=800 " Don't try to highlight lines longer than 800 characters.
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.

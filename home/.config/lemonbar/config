@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+#----------------------------------------------------------
+#				T R A N S P A R E N C Y
+#----------------------------------------------------------
+#100% — FF
+#95% — F2
+#90% — E6
+#85% — D9
+#80% — CC
+#75% — BF
+#70% — B3
+#65% — A6
+#60% — 99
+#55% — 8C
+#50% — 80
+#45% — 73
+#40% — 66
+#35% — 59
+#30% — 4D
+#25% — 40
+#20% — 33
+#15% — 26
+#10% — 1A
+#5% — 0D
+#0% — 00
+
+source ~/.cache/wal/colors.sh
+
+export fg_a="#FF${foreground/'#'}"
+
+export bg_a="#FF${background/'#'}"
+export bg_b="#FF${color1/'#'}"
+
+export main_bg="#4D${color0/'#'}"
+export bg_select="#FF${color6/'#'}"
+
+export con_bg="#FF${color4/'#'}"
+
+export bg_alert="#FF${color5/'#'}"
+export bg_warn="#FF${color11/'#'}"
+export bg_good="#FF${color6/'#'}" #"#FF268bd2"
+
+res_w=$(xrandr | grep "current" | awk '{print $8a}')
+
+WIDTH="${res_w}" # bar width
+HEIGHT=18 # bar height
+XOFF=0 # x offset
+YOFF=0 # y offset
+
+# color definitions
+
+color_back=${main_bg} # 				#4D282A36 Default background
+
+color_fore=${fg_a} 						##FFC5C8C6 Default foreground
+
+color_sec_b1=${bg_a} 					##FF3e268a
+color_sec_b2=${bg_b} 					##FF5d36ab
+
+color_icon=${fg_a}   					##FF979997 For icons
+color_pacman="#FFCE935F"              	# Background color for mail alert
+color_yay="#FFCC6666"              		# Background color for chat alert
+
+color_vol_good=${bg_good} 				##FF4ea1e8
+color_vol_warn=${bg_warn} 					##FFefe9a5
+color_vol_alert=${bg_alert} 				##FFef97ee
+
+color_head=${bg_select} 				##FF4ea1e8 ##FF82a4b3 Background for selected workspace 8C9440
+color_head2=${con_bg}
+
+color_sel=${fg_a}
+
+BBG=${color_back} # bar background color
+BFG=${color_fore}
+
+FOFF=-2
+
+if [ ${WIDTH} -gt 1024 ]; then
+  stab='  '
+else
+  stab=' '
+fi
+
+# Sleep constnats
+WORKSPACE_SLEEP=0.3
+VOLUME_SLEEP=1
+DATE_SLEEP=1
+MUSIC_SLEEP=3
+MEM_SLEEP=3
+VPN_SLEEP=3
+IP_SLEEP=3
+UPDATE_SLEEP=60
+SPACE_SLEEP=5
+LOAD_SLEEP=3
+WEATHER_SLEEP=3600
+SYNC_SLEEP=5
+
+# Char glyps for powerline fonts
+sep_left=""                        # Powerline separator left
+sep_right=""                       # Powerline separator right
+#sep_left='  '                        # Powerline separator left
+#sep_right='  '                       # Powerline separator right
+sep_l_left=""                      # Powerline light separator left
+sep_l_right=""                     # Powerline light sepatator right
+
+icon_clock=""                      # Clock icon
+icon_date=""						# Date icon
+icon_cpu=""                        # CPU icon
+icon_mem=""                        # MEM icon
+icon_dl=""                         # Download icon
+icon_ul=""                         # Upload icon
+icon_vol=""                        # Volume icon
+icon_vol_mute=""                    # Volume Mute icon
+icon_hd=""                         # HD / icon
+icon_home=""                       # HD /home icon
+icon_music=""                      # Music icon
+icon_prog=""                      # Window icon
+icon_wsp=""                        # Workspace icon
+icon_update=""                    # Update Icon
+icon_pacman=""                     # Update Icon
+icon_vpn_off=""
+icon_vpn_on=""
+icon_space=""
+icon_load=""
+icon_synced=""
+icon_syncing=""
+icon_sync_error=""
+icon_sync_share=""
+icon_theme=""
+
+PANEL_FIFO=/tmp/panel-fifo
+FONTS="Inconsolata for Powerline:size=12"
+ICONFONTS="FontAwesome:size=11"
+GEOMETRY="${WIDTH}x${HEIGHT}+${XOFF}+${YOFF}"

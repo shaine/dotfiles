@@ -1,5 +1,7 @@
-(cat ~/.cache/wal/sequences &)
-clear
+if [ -f ~/.cache/wal/sequences ] ; then
+  (cat ~/.cache/wal/sequences &)
+  clear
+fi
 
 # Path to your oh-my-zsh configuration.
 ZSH_CUSTOM=$HOME/.omz-custom
@@ -29,7 +31,7 @@ export PATH=$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/lib/python2.7/site-packag
 export ZSH=$HOME/.oh-my-zsh
 
 alias vim="nvim"
-export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .zoom --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
+export FZF_DEFAULT_COMMAND='ag --follow --ignore Photos\ Library.photoslibrary --ignore ruby-advisory-db --ignore .mix --hidden --ignore .node-gyp --ignore Music --ignore Library --ignore .ivy2 --ignore .config/nvim --ignore .hex --ignore .rbenv --ignore .zoom --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 eval "$(thefuck --alias)"
@@ -50,17 +52,15 @@ tm () {
     tmux new-session -d -s $* > /dev/null
 
     # If the session is a "side" session, then don't bind connection triggers
-    if [[ $1 == side* ]]; then
-      exit 0
+    if [[ $1 != side* ]]; then
+      change_command="SESSION=$1 ~/.tmux/change_session.sh"
+      hook_command="run '$change_command'"
+
+      tmux set-hook -t $1 client-attached $hook_command
+      tmux set-hook -t $1 client-session-changed $hook_command
+
+      eval $change_command
     fi
-
-    change_command="SESSION=$1 ~/.tmux/change_session.sh"
-    hook_command="run '$change_command'"
-
-    tmux set-hook -t $1 client-attached $hook_command
-    tmux set-hook -t $1 client-session-changed $hook_command
-
-    eval $change_command
 
     tmux attach-session -d -t $*
   fi

@@ -17,3 +17,8 @@ select-window -t 1
 # switch -t somename:1
 # source-file ~/.tmux/dev.tmux
 # send-keys -t 2.2 "gitwatch somename" Enter
+
+new -s side_top
+new -s side_middle
+new -s side_bottom
+switch -t system:1

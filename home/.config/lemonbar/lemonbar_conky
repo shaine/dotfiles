@@ -40,7 +40,4 @@ conky.text = [[
 CPU ${cpu}%
 MEM ${memperc}%
 FREE ${fs_free /home}
-#CONWIFI ${if_up wlp3s0}${downspeedf wlp3s0} ${upspeedf wlp3s0} ${else}down down${endif}
-#CONETO ${if_up enp9s0}${downspeedf enp9s0} ${upspeedf enp9s0} ${else}down down${endif}
-#MARKET ${texeci 300 sh /home/pheonix/.config/lemonbar/crypto}
 ]]

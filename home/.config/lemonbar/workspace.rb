@@ -61,9 +61,9 @@ i3_workspaces_hash.each do |workspace|
 
   output =
     if workspace && is_focused
-      "%{F#{current_inactive_color} B#{current_active_color} T3}#{right_arrow}%{F#{current_inactive_color} B#{current_active_color} T1} #{symbol} %{F#{current_active_color} B#{current_inactive_color} T3}#{right_arrow}"
+      "%{F#{current_inactive_color} B#{current_active_color} T3}%{F#{current_inactive_color} B#{current_active_color} T1} #{symbol} %{F#{current_active_color} B#{current_inactive_color} T3}#{right_arrow}"
     else
-      "%{F#{current_active_color} B#{current_inactive_color} T1} #{symbol} "
+      "%{F#{current_active_color} B#{current_inactive_color} T1}#{symbol} "
     end
 
   workspaces_output[workspace_index] = output
@@ -72,7 +72,7 @@ end
 workspaces_output = workspaces_output.map do |workspace_output|
   next workspace_output unless workspace_output.nil?
 
-  "%{F#{active_color} B#{inactive_color} T1} #{empty_symbol} "
+  "%{F#{active_color} B#{inactive_color} T1}#{empty_symbol} "
 end
 
 puts "#{output_prefix}#{workspaces_output.join}"

@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
+# Syntax documentation here: https://github.com/LemonBoy/bar
+
 killall lemonbar
 
 . $(dirname $0)/config
 
-if [ -e "$PANEL_FIFO" ]; then
-  rm "$PANEL_FIFO"
+if [ -e $PANEL_FIFO ]; then
+  rm $PANEL_FIFO
 fi
-mkfifo "$PANEL_FIFO"
+mkfifo $PANEL_FIFO
 
-conky -c $(dirname $0)/lemonbar_conky > "$PANEL_FIFO" &
+conky -c $(dirname $0)/lemonbar_conky > $PANEL_FIFO &
 
 music() {
   while true; do
@@ -21,21 +23,21 @@ music() {
     str=""
 
     if [[ "▶" = $PLAYBACK_STATUS ]]; then
-      if [[ "$NUM_NCMP" -le 31 ]]; then
-        str="$NCMP"
+      if [[ $NUM_NCMP -le 31 ]]; then
+        str=$NCMP
       else
         str="$S_NCMP..."
       fi
       echo "MUSIC $icon_music $str"
     else
-      echo "MUSIC "
+      echo "MUSIC %{}"
     fi
 
     sleep $MUSIC_SLEEP
   done
 }
 
-music > "$PANEL_FIFO" &
+music > $PANEL_FIFO &
 
 get_updates(){
   while true; do
@@ -43,7 +45,7 @@ get_updates(){
     P_updates=$P_updates%%
     P_updates=$P_updates##
 
-    if (( "$P_updates" > 4 )); then
+    if (( $P_updates > 4 )); then
       echo "UPDATE $icon_pacman $P_updates"
     else
       echo "UPDATE $icon_update 0"
@@ -52,7 +54,7 @@ get_updates(){
   done
 }
 
-get_updates > "$PANEL_FIFO" &
+get_updates > $PANEL_FIFO &
 
 work(){
   while true; do
@@ -62,7 +64,7 @@ work(){
   done
 }
 
-work > "$PANEL_FIFO" &
+work > $PANEL_FIFO &
 
 datez()
 {
@@ -73,7 +75,7 @@ datez()
   done
 }
 
-datez > "$PANEL_FIFO" &
+datez > $PANEL_FIFO &
 
 volume()
 {
@@ -101,7 +103,7 @@ volume()
   done
 }
 
-volume > "$PANEL_FIFO" &
+volume > $PANEL_FIFO &
 
 title()
 {
@@ -113,13 +115,13 @@ title()
     if (( num_title > 60 )); then
       name="$(echo $name | head -1 | head -c 60)..."
     fi
-    echo "WIN $name "
+    echo "WIN $name %{}"
 
     sleep $WORKSPACE_SLEEP
   done
 }
 
-title > "$PANEL_FIFO" &
+title > $PANEL_FIFO &
 
 while read -r line; do
   case $line in
@@ -138,9 +140,6 @@ while read -r line; do
     UPDATE*)
       fn_update="${line#UPDATE }"
       ;;
-    WEATHER*)
-      fn_weather="${line#WEATHER }"
-      ;;
     MEM*)
       fn_mem="$icon_mem ${line#MEM } "
       ;;
@@ -155,5 +154,10 @@ while read -r line; do
       ;;
   esac
 
-  printf "%s\n" "$fn_work $fn_win%{r}$fn_music  $fn_space $fn_mem $fn_cpu $fn_update  $fn_vol  $fn_date  "
-done < "$PANEL_FIFO" | lemonbar -d -f "$FONTS" -f "$ICONFONTS" -g "$GEOMETRY" -B "$BBG" -F "$BFG" -u 2 | sh > /dev/null
+  left="$fn_work  $fn_win"
+  right="$fn_music  $fn_space $fn_mem $fn_cpu $fn_update  $fn_vol  $fn_date  "
+
+  printf "%s\n" "$left%{r}$right"
+done < $PANEL_FIFO |
+  lemonbar -f $FONT1 -f $ICONFONT -g $GEOMETRY -B $BBG -F $BFG -u 2 |
+  sh > /dev/null

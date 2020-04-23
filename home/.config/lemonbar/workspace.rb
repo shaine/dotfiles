@@ -32,17 +32,14 @@ i3_tree_hash = JSON.parse(i3_tree)
 i3_workspaces = `i3-msg -t get_workspaces`
 i3_workspaces_hash = JSON.parse(i3_workspaces)
 
-active_color = "${color_head}"
-inactive_color = "${color_sec_b1}"
-urgent_active_color = "${bg_warn}"
-urgent_inactive_color = "${bg_warn}"
-right_arrow = "${sep_right}"
+active_color = "$BFG"
+inactive_color = "$BBG"
 empty_symbol = "•"
 full_inactive_symbol = ""
 full_active_symbol = ""
 warning_symbol = ""
 
-output_prefix = "%{F#{inactive_color} B#{inactive_color} T1} "
+output_prefix = "%{F#{inactive_color} B#{inactive_color}} "
 workspaces_output = []
 
 i3_workspaces_hash.each do |workspace|
@@ -56,14 +53,11 @@ i3_workspaces_hash.each do |workspace|
   symbol = is_focused && workspace_has_windows?(i3_tree_hash, workspace_index) ? full_active_symbol : symbol
   symbol = is_urgent ? warning_symbol : symbol
 
-  current_active_color = is_urgent ? urgent_active_color : active_color
-  current_inactive_color = inactive_color
-
   output =
     if workspace && is_focused
-      "%{F#{current_inactive_color} B#{current_active_color} T3}%{F#{current_inactive_color} B#{current_active_color} T1} #{symbol} %{F#{current_active_color} B#{current_inactive_color} T3}#{right_arrow}"
+      "%{F#{inactive_color} B#{active_color}} #{symbol} %{F#{active_color} B#{inactive_color}}"
     else
-      "%{F#{current_active_color} B#{current_inactive_color} T1}#{symbol} "
+      "%{F#{active_color} B#{inactive_color}} #{symbol} "
     end
 
   workspaces_output[workspace_index] = output
@@ -72,7 +66,7 @@ end
 workspaces_output = workspaces_output.map do |workspace_output|
   next workspace_output unless workspace_output.nil?
 
-  "%{F#{active_color} B#{inactive_color} T1}#{empty_symbol} "
+  "%{F#{active_color} B#{inactive_color}} #{empty_symbol} "
 end
 
 puts "#{output_prefix}#{workspaces_output.join}"

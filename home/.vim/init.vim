@@ -2,10 +2,9 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
-Plug 'dylanaraps/wal.vim'
+Plug 'dylanaraps/crayon'
 
 " Languages
 " Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -71,16 +70,13 @@ endif
 
 " Colorscheme
 set background=dark
-colorscheme one
-" colorscheme wal
-let g:airline_theme = 'one'
-" highlight clear SignColumn
+colorscheme ryuuko
+let g:airline_theme = 'serene'
 " Highlight lines beyond 80
 execute "set colorcolumn=" . join(range(121,121), ',')
-" set termguicolors
+set termguicolors
 
 " Key mappings for pane selection
-let g:tmux_navigator_no_mappings = 1
 nmap <silent> <C-h> <c-w>h
 nmap <silent> <C-j> <c-w>j
 nmap <silent> <C-k> <c-w>k
@@ -142,7 +138,7 @@ set nobackup
 set nowb
 
 " General
-set showcmd " Show location info in lower right
+set noshowcmd " Don't show command output
 set nowrap " Don't line wrap
 set tabstop=2 shiftwidth=2 " Set tabs to softab 2
 set expandtab " Turn tabs to spaces
@@ -163,7 +159,7 @@ set isk+=$ " Add word characters
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-set nocursorline
+" set cursorline
 set synmaxcol=800 " Don't try to highlight lines longer than 800 characters.
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
@@ -173,6 +169,7 @@ set ttimeoutlen=10
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
 set mouse=a
+set shortmess+=F " to get rid of the file name displayed in the command line bar
 
 " Close quickfix if it's the only open window
 aug QFClose
@@ -266,7 +263,7 @@ endfunction
 call SetArrowKeysAsTextShifters()
 
 hi Normal guibg=NONE ctermbg=NONE
-hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
+" hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
 
 " Ack.vim
 if executable('ag')
@@ -292,6 +289,30 @@ let g:airline#extensions#tabline#show_tab_count = 0
 let g:airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#fnametruncate = 15
+let g:airline_mode_map = {
+  \ '__' : '------',
+  \ 'c'  : 'C',
+  \ 'i'  : 'I',
+  \ 'ic' : 'IC',
+  \ 'ix' : 'IC',
+  \ 'multi' : 'M',
+  \ 'n'  : 'N',
+  \ 'ni' : 'I',
+  \ 'no' : 'OP PENDING',
+  \ 'R'  : 'R',
+  \ 'Rv' : 'VR',
+  \ 's'  : 'S',
+  \ 'S'  : 'SL',
+  \ '' : 'SB',
+  \ 't'  : 'T',
+  \ 'v'  : 'V',
+  \ 'V'  : 'VL',
+  \ '' : 'VB',
+  \ }
+
+let g:airline_section_y = ''
+let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', ':%3v'])
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -320,7 +341,8 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
 
 " FZF
 map <Leader>f :FZF<CR>
@@ -354,7 +376,6 @@ nnoremap <leader>F :NERDTreeTabsToggle<CR>
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>
-set showmode
 
 " Space.vim related
 let g:space_no_second_prev_mapping = 1

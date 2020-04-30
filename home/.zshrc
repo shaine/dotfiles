@@ -39,7 +39,7 @@ alias tmux="tmux -2 -u"
 alias k=kubectl
 
 function gitwatch() {
-    watch -c -n 1 "figlet `basename $PWD`; echo ''; git branch; echo ''; git st"
+    watch -c -t -n 1 "basename $PWD | head -c 7 | figlet; echo ''; git branch; echo ''; git st"
 }
 function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`

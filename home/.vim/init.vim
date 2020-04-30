@@ -1,6 +1,6 @@
 " vim-plug
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
+Plug 'shaine/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
@@ -75,6 +75,7 @@ let g:airline_theme = 'serene'
 " Highlight lines beyond 80
 execute "set colorcolumn=" . join(range(121,121), ',')
 set termguicolors
+hi! MatchParen cterm=reverse gui=reverse
 
 " Key mappings for pane selection
 nmap <silent> <C-h> <c-w>h
@@ -138,7 +139,7 @@ set nobackup
 set nowb
 
 " General
-set noshowcmd " Don't show command output
+set showcmd " Don't show command output
 set nowrap " Don't line wrap
 set tabstop=2 shiftwidth=2 " Set tabs to softab 2
 set expandtab " Turn tabs to spaces
@@ -169,7 +170,6 @@ set ttimeoutlen=10
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
 set mouse=a
-set shortmess+=F " to get rid of the file name displayed in the command line bar
 
 " Close quickfix if it's the only open window
 aug QFClose
@@ -276,7 +276,7 @@ endif
 
 " Airline
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#nerdtree_status = 0
 let g:airline#extensions#tabline#enabled = 1
@@ -372,7 +372,7 @@ let g:gist_post_private = 1
 map <Leader>u :GundoToggle<CR>
 
 " NERDTree
-nnoremap <leader>F :NERDTreeTabsToggle<CR>
+nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>

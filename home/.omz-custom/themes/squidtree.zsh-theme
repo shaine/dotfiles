@@ -1,15 +1,15 @@
 # oh-my-zsh squidtree Theme
 
 if [ -z "$SSH_CLIENT" ]; then
-  _USERNAME="%{$fg[white]%}%n"
-  _LIBERTY="%{$fg[green]%}$"
+  _USERNAME_COLOR=white
+  _HOST_COLOR=blue
 else
-  _USERNAME="%{$fg[red]%}%n"
-  _LIBERTY="%{$fg[red]%}#"
+  _USERNAME_COLOR=red
+  _HOST_COLOR=magenta
 fi
-_HOST="%{$fg[blue]%}%m%{$reset_color%}"
-_USERNAME="$_USERNAME%{$reset_color%}"
-_LIBERTY="$_LIBERTY%{$reset_color%}"
+_USERNAME="%{$fg[$_USERNAME_COLOR]%}%n%{$reset_color%}"
+_LIBERTY="%{$fg[green]%}$%{$reset_color%}"
+_HOST="%{$fg[$_HOST_COLOR]%}%m%{$reset_color%}"
 _PATH="%{$fg[green]%}%~%{$reset_color%}"
 
 

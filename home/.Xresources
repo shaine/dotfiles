@@ -1,0 +1,6 @@
+URxvt.background: #0c090a
+URxvt.scrollBar: false
+URxvt.font: 6x13
+URXvt.boldFont: 6x13B
+*internalBorder: 40
+URxvt.lineSpace: 1

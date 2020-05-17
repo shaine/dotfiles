@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+# font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -25,24 +25,18 @@ font pango:monospace 8
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
+font 6x13
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
-bindsym $mod+Shift+Return exec gnome-terminal --class=floatingTerm
-for_window [class="^floatingTerm$"] floating enable
+bindsym $mod+Return exec xterm
+bindsym $mod+Shift+Return exec xterm -name floatingTerm
+for_window [instance="^floatingTerm$"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -66,8 +60,8 @@ bindsym $mod+Shift+minus split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -80,7 +74,7 @@ bindsym $mod+tab focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -126,9 +120,9 @@ bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-msg exit"
 
-bindsym $mod+Shift+i exec gnome-terminal --class=floatingTerm -- /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
-bindsym $mod+Shift+v exec gnome-terminal --class=floatingTerm -- /bin/zsh -c '. ~/.zshrc && nvim $HOME/.vim/init.vim'
-bindsym $mod+Shift+z exec gnome-terminal --class=floatingTerm -- /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
+bindsym $mod+Shift+i exec xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
+bindsym $mod+Shift+v exec xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.vim/init.vim'
+bindsym $mod+Shift+z exec xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
 bindsym $mod+backslash exec --no-startup-id $HOME/.config/i3/special_characters
 bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
@@ -146,12 +140,6 @@ mode "resize" {
   bindsym k resize shrink height 10 px or 10 ppt
   bindsym l resize grow width 10 px or 10 ppt
 
-  # same bindings, but for the arrow keys
-  # bindsym Left resize shrink width 10 px or 10 ppt
-  # bindsym Down resize grow height 10 px or 10 ppt
-  # bindsym Up resize shrink height 10 px or 10 ppt
-  # bindsym Right resize grow width 10 px or 10 ppt
-
   # back to normal: Enter or Escape or $mod+r
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -162,9 +150,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-  # status_command i3status
-# }
+bar {
+  i3bar_command ~/.config/lemonbar/run_lemonbar.sh
+}
 
 ### i3-gaps stuff ###
 
@@ -221,8 +209,8 @@ exec --no-startup-id python3.6 -m pywal -i $(readlink -f $wallpaper_path) # -a90
 exec --no-startup-id feh --bg-scale $wallpaper_path
 exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec --no-startup-id xbindkeys
-exec_always --no-startup-id compton --shadow-exclude 'class_g = "Ulauncher"'
+exec_always --no-startup-id compton
 exec --no-startup-id ~/.dropbox-dist/dropboxd
-exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh
+# exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window

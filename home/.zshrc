@@ -3,15 +3,10 @@ if [ -f ~/.cache/wal/sequences ] ; then
   clear
 fi
 
-# Path to your oh-my-zsh configuration.
 ZSH_CUSTOM=$HOME/.omz-custom
 ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="bureau"
+export ZSH=$HOME/.oh-my-zsh
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -22,21 +17,23 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git vi-mode brew zsh-syntax-highlighting zsh-autosuggestions)
 
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/lib/python2.7/site-packages:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rvm/bin:$HOME/.local/bin:$PATH
-export ZSH=$HOME/.oh-my-zsh
+export PATH=$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.local/bin:$HOME/.rbenv/bin:$PATH
 
-alias vim="nvim"
 export FZF_DEFAULT_COMMAND='ag --follow --ignore Photos\ Library.photoslibrary --ignore ruby-advisory-db --ignore .mix --hidden --ignore .node-gyp --ignore Music --ignore Library --ignore .ivy2 --ignore .config/nvim --ignore .hex --ignore .rbenv --ignore .zoom --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(thefuck --alias)"
+if [ -x "$(command -v thefuck)" ]; then
+  eval "$(thefuck --alias)"
+fi
 alias tmux="tmux -2 -u"
 alias k=kubectl
+alias vim="nvim"
+export EDITOR="vim"
 
 function gitwatch() {
     watch -c -t -n 1 "basename $PWD | head -c 7 | figlet; echo ''; git branch; echo ''; git st"
@@ -45,7 +42,7 @@ function restartcoreaudio() {
     sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
 }
 
-tm () {
+tm() {
   if [[ -z $* ]]; then
     tmux ls;
   else
@@ -84,19 +81,13 @@ kssh() {
   kubectl exec -it --request-timeout=5s $pod bash
 }
 
-export EDITOR="vim"
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-function zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/ command}/(main|viins)/}"
-    zle reset-prompt
-}
+# function zle-keymap-select {
+    # VIMODE="${${KEYMAP/vicmd/ command}/(main|viins)/}"
+    # zle reset-prompt
+# }
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -117,11 +108,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-export GOPATH="$HOME/go"
-export PATH="$HOME/.rbenv/bin:$HOME/.yarn/bin:$GOPATH/bin:$PATH"
-
 eval "$(rbenv init -)"
-mkdir -p ~/.git/safe && export PATH="~/.git/safe/../../bin:$PATH"
 
 # Enable IEx history
 export ERL_AFLAGS="-kernel shell_history enabled"

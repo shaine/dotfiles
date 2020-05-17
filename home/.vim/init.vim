@@ -5,6 +5,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
 Plug 'dylanaraps/crayon'
+Plug 'dylanaraps/wal'
 
 " Languages
 " Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -71,10 +72,12 @@ endif
 " Colorscheme
 set background=dark
 colorscheme ryuuko
+" colorscheme wal
+" colorscheme one
 let g:airline_theme = 'serene'
 " Highlight lines beyond 80
 execute "set colorcolumn=" . join(range(121,121), ',')
-set termguicolors
+" set termguicolors
 hi! MatchParen cterm=reverse gui=reverse
 
 " Key mappings for pane selection

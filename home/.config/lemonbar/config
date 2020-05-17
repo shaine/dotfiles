@@ -33,6 +33,6 @@ icon_pacman=""
 icon_space=""
 
 PANEL_FIFO=/tmp/panel-fifo
-FONT1="Inconsolata for Powerline:size=12"
-ICONFONT="FontAwesome:size=11"
+FONT1="6x13"
+ICONFONT="FontAwesome:size=9"
 GEOMETRY="${WIDTH}x${HEIGHT}+${XOFF}+${YOFF}"

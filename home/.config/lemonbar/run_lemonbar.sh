@@ -41,9 +41,10 @@ music > $PANEL_FIFO &
 
 get_updates(){
   while true; do
-    P_updates=`apt-get --just-print upgrade | awk -e '/([:digit:]+) upgraded/ {print $1}'`
-    P_updates=$P_updates%%
-    P_updates=$P_updates##
+    P_updates=`apt list --upgradeable | wc -l`
+    P_updates="$(($P_updates-1))"
+    # P_updates=$P_updates%%
+    # P_updates=$P_updates##
 
     if (( $P_updates > 4 )); then
       echo "UPDATE $icon_pacman $P_updates"

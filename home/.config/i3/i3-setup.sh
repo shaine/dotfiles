@@ -7,28 +7,43 @@ i3-msg workspace 1
 
 terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena; zsh"
 
-i3-sensible-terminal -e "$terminal_command"
-i3-sensible-terminal -e "$terminal_command"
+xterm -name floatingTerm &
+
+sleep 10
+
+killall gnome-terminal
+
+xterm -e "$terminal_command" &
+xterm -e "$terminal_command" &
 
 i3-msg split v
 
-i3-sensible-terminal -e "$terminal_command"
-i3-sensible-terminal -e "$terminal_command"
+xterm -e "$terminal_command" &
+xterm -e "$terminal_command" &
 
 i3-msg split h
 i3-msg resize shrink width 25 px or 25 ppt
+
+sleep 2
 
 i3-msg workspace 2
 
 chromium-browser &
 slack &
 
-sleep 3
+sleep 10
 
 i3-msg workspace 3
 
+minetime &
+mailspring &
+
+sleep 10
+
+i3-msg workspace 4
+
 spotify &
 
-sleep 3
+sleep 10
 
 i3-msg workspace 1

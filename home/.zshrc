@@ -5,7 +5,7 @@ fi
 
 ZSH_CUSTOM=$HOME/.omz-custom
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="bureau"
+ZSH_THEME="squidtree"
 export ZSH=$HOME/.oh-my-zsh
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion

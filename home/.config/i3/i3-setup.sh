@@ -11,15 +11,19 @@ xterm -name floatingTerm &
 
 sleep 10
 
-killall gnome-terminal
+xterm -e "$terminal_command" &
+xterm -e "$terminal_command" &
 
-xterm -e "$terminal_command" &
-xterm -e "$terminal_command" &
+sleep 1
 
 i3-msg split v
 
+sleep 1
+
 xterm -e "$terminal_command" &
 xterm -e "$terminal_command" &
+
+sleep 1
 
 i3-msg split h
 i3-msg resize shrink width 25 px or 25 ppt

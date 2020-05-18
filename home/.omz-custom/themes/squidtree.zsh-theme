@@ -16,4 +16,4 @@ _PATH="%{$fg[green]%}%~%{$reset_color%}"
 _1LEFT=$_USERNAME@$_HOST:$_PATH
 PROMPT='$_1LEFT
 $_LIBERTY '
-RPROMPT="%{$fg[green]%}"%D{"%H:%M:%S"}%b"%{$reset_color%}"
+RPROMPT="%{$(echotc UP 1)%}%{$fg[green]%}"%D{"%H:%M:%S"}%b"%{$reset_color%}%{$(echotc DO 1)%}"

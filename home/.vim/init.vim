@@ -77,7 +77,7 @@ colorscheme ryuuko
 let g:airline_theme = 'serene'
 " Highlight lines beyond 80
 execute "set colorcolumn=" . join(range(121,121), ',')
-" set termguicolors
+set termguicolors
 hi! MatchParen cterm=reverse gui=reverse
 
 " Key mappings for pane selection

@@ -4,3 +4,4 @@ URxvt.font: 6x13
 URXvt.boldFont: 6x13B
 *internalBorder: 40
 URxvt.lineSpace: 1
+XTerm*selectToClipboard: true

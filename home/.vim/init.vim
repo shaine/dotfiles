@@ -19,16 +19,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
-Plug 'gregsexton/MatchTag' " Match the end of a tag
+" Plug 'gregsexton/MatchTag' " Match the end of a tag
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
 Plug 'mattn/webapi-vim' " For gist-vim
 Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
-Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
-" sudo pip2 install --upgrade neovim
-" https://github.com/simnalamburt/vim-mundo/issues/18
+" Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
 Plug 'sjl/gundo.vim', " Undo UI
 " Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
@@ -36,10 +34,19 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale' " Linter
-
-" WTF
-Plug 'johngrib/vim-game-snake' " Vim snake game
 call plug#end()
+
+" Colorscheme
+set background=dark
+colorscheme ryuuko
+" colorscheme wal
+" colorscheme one
+let g:airline_theme = 'serene'
+" Highlight lines beyond 80
+" execute "set colorcolumn=" . join(range(121,121), ',')
+set termguicolors
+hi! MatchParen cterm=none ctermbg=green ctermfg=white
+hi! CursorParen cterm=none ctermbg=white ctermfg=green
 
 " Setup
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
@@ -68,17 +75,6 @@ nnoremap <leader>S :so ~/.vim/init.vim<cr>
 if !exists(":Write")
   command Write w !sudo tee % > /dev/null
 endif
-
-" Colorscheme
-set background=dark
-colorscheme ryuuko
-" colorscheme wal
-" colorscheme one
-let g:airline_theme = 'serene'
-" Highlight lines beyond 80
-execute "set colorcolumn=" . join(range(121,121), ',')
-set termguicolors
-hi! MatchParen cterm=reverse gui=reverse
 
 " Key mappings for pane selection
 nmap <silent> <C-h> <c-w>h
@@ -347,6 +343,9 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
 
+" ALE
+let g:ale_linters_ignore = ['reek']
+
 " FZF
 map <Leader>f :FZF<CR>
 nnoremap <silent> <leader>G :Ag <C-R><C-W><CR>
@@ -375,7 +374,7 @@ let g:gist_post_private = 1
 map <Leader>u :GundoToggle<CR>
 
 " NERDTree
-nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
+nnoremap <silent> <leader>F :NERDTreeToggle<CR>
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>

@@ -40,7 +40,7 @@ full_active_symbol = "×"
 warning_symbol = "!"
 
 output_prefix = "%{F#{inactive_color} B#{inactive_color}} "
-workspaces_output = []
+workspaces_output = Array.new(4, nil)
 
 i3_workspaces_hash.each do |workspace|
   # Num is 1-indexed

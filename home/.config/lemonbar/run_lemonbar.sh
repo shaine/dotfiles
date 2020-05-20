@@ -4,8 +4,33 @@
 
 killall lemonbar
 
-. $(dirname $0)/config
+source ~/.cache/wal/colors.sh
 
+# Sleep constants
+MUSIC_SLEEP=3
+UPDATE_SLEEP=30
+WORKSPACE_SLEEP=0.3
+DATE_SLEEP=1
+VOLUME_SLEEP=1
+
+# Icons
+#                          
+icon_cpu="CPU"
+icon_mem="RAM"
+icon_vol="VOL"
+icon_pacman="APT"
+icon_space="SDD"
+
+# Colors
+BBG="#D0${color0/'#'}"
+BFG="#${color15/'#'}"
+label_color="%{F#${color7/'#'}}" # Silver
+value_color="%{F#${color2/'#'}}" # Green
+warning_value_color="%{F#${color9/'#'}}" # Red
+reset="%{F- B-}"
+
+# Display queue
+PANEL_FIFO=/tmp/panel-fifo
 if [ -e $PANEL_FIFO ]; then
   rm $PANEL_FIFO
 fi
@@ -28,7 +53,7 @@ music() {
       else
         str="$S_NCMP..."
       fi
-      echo "MUSIC $icon_music $str"
+      echo "MUSIC $value_color$str$reset"
     else
       echo "MUSIC %{}"
     fi
@@ -47,9 +72,9 @@ get_updates(){
     # P_updates=$P_updates##
 
     if (( $P_updates > 4 )); then
-      echo "UPDATE $icon_pacman $P_updates"
+      echo "UPDATE $warning_value_color$icon_pacman $P_updates$reset"
     else
-      echo "UPDATE $icon_update 0"
+      echo "UPDATE ${}"
     fi
     sleep $UPDATE_SLEEP
   done
@@ -71,7 +96,7 @@ datez()
 {
   while true; do
     local dates="$(date +'%Y.%m.%d %T')"
-    echo "DATE ${dates}"
+    echo "DATE $value_color$dates$reset"
     sleep $DATE_SLEEP
   done
 }
@@ -86,19 +111,21 @@ volume()
     local sink=$( pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1 )
     local vol=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $sink + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
 
-    if (( vol > 100 )); then
-      echo "VOLUME $icon_vol $vol% "
-    elif (( vol == 0 )); then
-      echo "VOLUME $icon_vol_mute $vol% "
-    elif (( vol > 70 )); then
-      echo "VOLUME $icon_vol $vol% "
-    elif (( vol > 55 )); then
-      echo "VOLUME $icon_vol $vol% "
-    elif (( vol > 10 )); then
-      echo "VOLUME $icon_vol $vol% "
-    else
-      echo "VOLUME $icon_vol $vol% "
-    fi
+    # if (( vol > 100 )); then
+      # echo "VOLUME $icon_vol $vol% "
+    # elif (( vol == 0 )); then
+      # echo "VOLUME $icon_vol_mute $vol% "
+    # elif (( vol > 70 )); then
+      # echo "VOLUME $icon_vol $vol% "
+    # elif (( vol > 55 )); then
+      # echo "VOLUME $icon_vol $vol% "
+    # elif (( vol > 10 )); then
+      # echo "VOLUME $icon_vol $vol% "
+    # else
+      # echo "VOLUME $icon_vol $vol% "
+    # fi
+
+    echo "VOLUME $label_color$icon_vol $value_color$vol%$reset"
 
     sleep $VOLUME_SLEEP
   done
@@ -116,13 +143,22 @@ title()
     if (( num_title > 60 )); then
       name="$(echo $name | head -1 | head -c 60)..."
     fi
-    echo "WIN $name %{}"
+    echo "WIN $value_color$name$reset"
 
     sleep $WORKSPACE_SLEEP
   done
 }
 
 title > $PANEL_FIFO &
+
+res_w=$(xrandr | grep "current" | awk '{print $8a}')
+WIDTH=$res_w # bar width
+HEIGHT=18 # bar height
+XOFF=0 # x offset
+YOFF=0 # y offset
+FONT1="6x13"
+ICONFONT="FontAwesome:size=9"
+GEOMETRY="${WIDTH}x${HEIGHT}+${XOFF}+${YOFF}"
 
 while read -r line; do
   case $line in
@@ -142,23 +178,24 @@ while read -r line; do
       fn_update="${line#UPDATE }"
       ;;
     MEM*)
-      fn_mem="$icon_mem ${line#MEM } "
+      fn_mem="$label_color$icon_mem $value_color${line#MEM }$reset"
       ;;
     CPU*)
-      fn_cpu="$icon_cpu ${line#CPU } "
+      fn_cpu="$label_color$icon_cpu $value_color${line#CPU }$reset"
       ;;
     FREE*)
-      fn_space="$icon_space ${line#FREE } "
+      fn_space="$label_color$icon_space $value_color${line#FREE }$reset"
       ;;
     WIN*)
       fn_win="${line#WIN }"
       ;;
   esac
 
+  spacer="   "
   left="$fn_work  $fn_win"
-  right="$fn_music  $fn_space $fn_mem $fn_cpu $fn_update  $fn_vol  $fn_date  "
+  right="$fn_update$spacer$fn_music$spacer$fn_space$spacer$fn_mem$spacer$fn_cpu$spacer$fn_vol$spacer$fn_date  "
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |
-  lemonbar -f $FONT1 -f $ICONFONT -g $GEOMETRY -B $BBG -F $BFG -u 2 |
+  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -u 2 |
   sh > /dev/null

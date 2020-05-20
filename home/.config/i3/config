@@ -211,6 +211,5 @@ exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec --no-startup-id xbindkeys
 exec_always --no-startup-id compton
 exec --no-startup-id ~/.dropbox-dist/dropboxd
-# exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window

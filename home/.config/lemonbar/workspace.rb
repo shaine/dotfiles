@@ -34,10 +34,10 @@ i3_workspaces_hash = JSON.parse(i3_workspaces)
 
 active_color = "$BFG"
 inactive_color = "$BBG"
-empty_symbol = "•"
-full_inactive_symbol = ""
-full_active_symbol = ""
-warning_symbol = ""
+empty_symbol = "-"
+full_inactive_symbol = "×"
+full_active_symbol = "×"
+warning_symbol = "!"
 
 output_prefix = "%{F#{inactive_color} B#{inactive_color}} "
 workspaces_output = []

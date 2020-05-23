@@ -29,6 +29,8 @@ value_color="%{F#${color2/'#'}}" # Green
 warning_value_color="%{F#${color9/'#'}}" # Red
 reset="%{F- B-}"
 
+spacer="   "
+
 # Display queue
 PANEL_FIFO=/tmp/panel-fifo
 if [ -e $PANEL_FIFO ]; then
@@ -53,7 +55,7 @@ music() {
       else
         str="$S_NCMP..."
       fi
-      echo "MUSIC $value_color$str$reset"
+      echo "MUSIC $value_color$str$spacer$reset"
     else
       echo "MUSIC %{}"
     fi
@@ -72,7 +74,7 @@ get_updates(){
     # P_updates=$P_updates##
 
     if (( $P_updates > 4 )); then
-      echo "UPDATE $warning_value_color$icon_pacman $P_updates$reset"
+      echo "UPDATE $label_color$icon_pacman $warning_value_color$P_updates$spacer$reset"
     else
       echo "UPDATE ${}"
     fi
@@ -125,7 +127,7 @@ volume()
       # echo "VOLUME $icon_vol $vol% "
     # fi
 
-    echo "VOLUME $label_color$icon_vol $value_color$vol%$reset"
+    echo "VOLUME $label_color$icon_vol $value_color$vol%$spacer$reset"
 
     sleep $VOLUME_SLEEP
   done
@@ -178,22 +180,21 @@ while read -r line; do
       fn_update="${line#UPDATE }"
       ;;
     MEM*)
-      fn_mem="$label_color$icon_mem $value_color${line#MEM }$reset"
+      fn_mem="$label_color$icon_mem $value_color${line#MEM }$spacer$reset"
       ;;
     CPU*)
-      fn_cpu="$label_color$icon_cpu $value_color${line#CPU }$reset"
+      fn_cpu="$label_color$icon_cpu $value_color${line#CPU }$spacer$reset"
       ;;
     FREE*)
-      fn_space="$label_color$icon_space $value_color${line#FREE }$reset"
+      fn_space="$label_color$icon_space $value_color${line#FREE }$spacer$reset"
       ;;
     WIN*)
       fn_win="${line#WIN }"
       ;;
   esac
 
-  spacer="   "
   left="$fn_work  $fn_win"
-  right="$fn_update$spacer$fn_music$spacer$fn_space$spacer$fn_mem$spacer$fn_cpu$spacer$fn_vol$spacer$fn_date  "
+  right="$fn_update$fn_music$fn_space$fn_mem$fn_cpu$fn_vol$fn_date  "
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |

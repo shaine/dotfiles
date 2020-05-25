@@ -3,6 +3,9 @@
 # Syntax documentation here: https://github.com/LemonBoy/bar
 
 killall lemonbar
+killall stalonetray
+
+stalonetray &
 
 source ~/.cache/wal/colors.sh
 
@@ -24,9 +27,12 @@ icon_space="SDD"
 # Colors
 BBG="#D0${color0/'#'}"
 BFG="#${color15/'#'}"
-label_color="%{F#${color7/'#'}}" # Silver
-value_color="%{F#${color2/'#'}}" # Green
-warning_value_color="%{F#${color9/'#'}}" # Red
+silver_color="#${color7/'#'}"
+green_color="#${color2/'#'}"
+red_color="#${color9/'#'}"
+label_color="%{F$silver_color}"
+value_color="%{F$green_color}"
+warning_value_color="%{F$red_color}"
 reset="%{F- B-}"
 
 spacer="   "
@@ -154,7 +160,7 @@ title()
 title > $PANEL_FIFO &
 
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
-WIDTH=$res_w # bar width
+WIDTH="$(($res_w-18))" # bar width
 HEIGHT=18 # bar height
 XOFF=0 # x offset
 YOFF=0 # y offset
@@ -198,5 +204,5 @@ while read -r line; do
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |
-  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -u 2 |
+  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -d |
   sh > /dev/null

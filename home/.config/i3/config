@@ -62,7 +62,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -123,6 +123,7 @@ bindsym $mod+Shift+e exec "i3-msg exit"
 bindsym $mod+Shift+i exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
 bindsym $mod+Shift+v exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.vim/init.vim'
 bindsym $mod+Shift+z exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
+bindsym $mod+Shift+n exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/linux-notes.md'
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
 bindsym $mod+backslash exec --no-startup-id $HOME/.config/i3/special_characters
 bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
@@ -150,9 +151,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-  i3bar_command ~/.config/lemonbar/run_lemonbar.sh
-}
+# bar {
+  # i3bar_command ~/.config/lemonbar/run_lemonbar.sh
+# }
 
 ### i3-gaps stuff ###
 
@@ -164,45 +165,6 @@ client.unfocused        #000000 #000000 #000000 #000000 #000000
 gaps inner 30
 gaps outer 0
 
-# Gaps mode
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-  bindsym o      mode "$mode_gaps_outer"
-  bindsym i      mode "$mode_gaps_inner"
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-mode "$mode_gaps_inner" {
-  bindsym plus  gaps inner current plus 5
-  bindsym minus gaps inner current minus 5
-  bindsym 0     gaps inner current set 0
-
-  bindsym Shift+plus  gaps inner all plus 5
-  bindsym Shift+minus gaps inner all minus 5
-  bindsym Shift+0     gaps inner all set 0
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-mode "$mode_gaps_outer" {
-  bindsym plus  gaps outer current plus 5
-  bindsym minus gaps outer current minus 5
-  bindsym 0     gaps outer current set 0
-
-  bindsym Shift+plus  gaps outer all plus 5
-  bindsym Shift+minus gaps outer all minus 5
-  bindsym Shift+0     gaps outer all set 0
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
 # Execs
 set $wallpaper_path $HOME/.local/wallpaper.jpg
 exec --no-startup-id python3.6 -m pywal -i $(readlink -f $wallpaper_path) # -a90
@@ -213,3 +175,5 @@ exec_always --no-startup-id compton
 exec --no-startup-id ~/.dropbox-dist/dropboxd
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
+exec --no-startup-id redshift
+exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh

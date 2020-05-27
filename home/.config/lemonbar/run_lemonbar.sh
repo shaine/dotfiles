@@ -3,9 +3,6 @@
 # Syntax documentation here: https://github.com/LemonBoy/bar
 
 killall lemonbar
-killall stalonetray
-
-stalonetray &
 
 source ~/.cache/wal/colors.sh
 
@@ -116,8 +113,7 @@ volume()
   cnt_vol=$upd_vol
 
   while true; do
-    local sink=$( pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1 )
-    local vol=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $sink + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
+    local vol=$(pulsemixer --get-volume | head -n1 | cut -d " " -f1)
 
     # if (( vol > 100 )); then
       # echo "VOLUME $icon_vol $vol% "
@@ -160,7 +156,7 @@ title()
 title > $PANEL_FIFO &
 
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
-WIDTH="$(($res_w-18))" # bar width
+WIDTH=$res_w # bar width
 HEIGHT=18 # bar height
 XOFF=0 # x offset
 YOFF=0 # y offset
@@ -204,5 +200,5 @@ while read -r line; do
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |
-  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -d |
+  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -d -u 2 |
   sh > /dev/null

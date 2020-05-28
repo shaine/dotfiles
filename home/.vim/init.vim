@@ -42,9 +42,11 @@ colorscheme ryuuko
 " colorscheme wal
 " colorscheme one
 let g:airline_theme = 'serene'
-" Highlight lines beyond 80
-" execute "set colorcolumn=" . join(range(121,121), ',')
+" Highlight columns beyond 120
+execute "set colorcolumn=" . join(range(121,121), ',')
 " set termguicolors
+hi! ColorColumn ctermbg=16
+hi! VertSplit ctermfg=16
 hi! MatchParen cterm=none ctermbg=green ctermfg=white
 hi! CursorParen cterm=none ctermbg=white ctermfg=green
 

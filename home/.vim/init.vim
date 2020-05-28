@@ -26,7 +26,7 @@ Plug 'tpope/vim-fugitive' " Git integration
 Plug 'mattn/webapi-vim' " For gist-vim
 Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
-" Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
+Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
 Plug 'sjl/gundo.vim', " Undo UI
 " Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
@@ -376,7 +376,7 @@ let g:gist_post_private = 1
 map <Leader>u :GundoToggle<CR>
 
 " NERDTree
-nnoremap <silent> <leader>F :NERDTreeToggle<CR>
+nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>

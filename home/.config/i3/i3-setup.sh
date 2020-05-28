@@ -7,10 +7,6 @@ i3-msg workspace 1
 
 terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena; zsh"
 
-xterm -name floatingTerm &
-
-sleep 10
-
 xterm -e "$terminal_command" &
 xterm -e "$terminal_command" &
 

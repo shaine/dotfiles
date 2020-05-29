@@ -1,24 +1,25 @@
 " vim-plug
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
+Plug 'shaine/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rakr/vim-two-firewatch'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
+Plug 'dylanaraps/crayon'
+Plug 'dylanaraps/wal'
 
 " Languages
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+" Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot'
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
-Plug 'gregsexton/MatchTag' " Match the end of a tag
+" Plug 'gregsexton/MatchTag' " Match the end of a tag
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
@@ -26,19 +27,28 @@ Plug 'mattn/webapi-vim' " For gist-vim
 Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
 Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
-" sudo pip2 install --upgrade neovim
-" https://github.com/simnalamburt/vim-mundo/issues/18
 Plug 'sjl/gundo.vim', " Undo UI
-Plug 'airblade/vim-gitgutter' " Git status in gutter
+" Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale' " Linter
-
-" WTF
-Plug 'johngrib/vim-game-snake' " Vim snake game
 call plug#end()
+
+" Colorscheme
+set background=dark
+colorscheme ryuuko
+" colorscheme wal
+" colorscheme one
+let g:airline_theme = 'serene'
+" Highlight columns beyond 120
+execute "set colorcolumn=" . join(range(121,121), ',')
+" set termguicolors
+hi! ColorColumn ctermbg=16
+hi! VertSplit ctermfg=16
+hi! MatchParen cterm=none ctermbg=green ctermfg=white
+hi! CursorParen cterm=none ctermbg=white ctermfg=green
 
 " Setup
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable auto-comment
@@ -61,23 +71,14 @@ augroup nvim_term
 augroup END
 
 " Shortcuts
+" Reload configuration
 nnoremap <leader>S :so ~/.vim/init.vim<cr>
 " Sudo write me a sandiwch
 if !exists(":Write")
   command Write w !sudo tee % > /dev/null
 endif
 
-" Colorscheme
-set background=dark
-colorscheme one
-let g:airline_theme = 'one'
-highlight clear SignColumn
-" Highlight lines beyond 80
-execute "set colorcolumn=" . join(range(121,335), ',')
-set termguicolors
-
 " Key mappings for pane selection
-let g:tmux_navigator_no_mappings = 1
 nmap <silent> <C-h> <c-w>h
 nmap <silent> <C-j> <c-w>j
 nmap <silent> <C-k> <c-w>k
@@ -123,6 +124,7 @@ nnoremap * *N
 nmap <leader>r :redraw!<CR>
 nnoremap Q <nop>
 nnoremap <Space> a_<Esc>r
+command! Q q
 
 " Swap ` and ' for better tmux integration
 nnoremap ' `
@@ -138,14 +140,14 @@ set nobackup
 set nowb
 
 " General
-set showcmd " Show location info in lower right
+set showcmd " Don't show command output
 set nowrap " Don't line wrap
 set tabstop=2 shiftwidth=2 " Set tabs to softab 2
 set expandtab " Turn tabs to spaces
 set softtabstop=2 " Something else about tabs
 set list listchars=tab:\ \ ,trail:· " Visuall show bad whitespace
 set backspace=indent,eol,start " Set what we can backspace through
-set number " show line numbers
+set nonumber " show no line numbers
 set hlsearch " Highlight search matches
 set incsearch " Show next match while typing search
 set ignorecase " Case insensitive searches
@@ -159,7 +161,7 @@ set isk+=$ " Add word characters
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-set cursorline
+" set cursorline
 set synmaxcol=800 " Don't try to highlight lines longer than 800 characters.
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
@@ -262,7 +264,7 @@ endfunction
 call SetArrowKeysAsTextShifters()
 
 hi Normal guibg=NONE ctermbg=NONE
-hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
+" hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
 
 " Ack.vim
 if executable('ag')
@@ -275,19 +277,56 @@ endif
 
 " Airline
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#nerdtree_status = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#fnametruncate = 15
+let g:airline_mode_map = {
+  \ '__' : '------',
+  \ 'c'  : 'C',
+  \ 'i'  : 'I',
+  \ 'ic' : 'IC',
+  \ 'ix' : 'IC',
+  \ 'multi' : 'M',
+  \ 'n'  : 'N',
+  \ 'ni' : 'I',
+  \ 'no' : 'OP PENDING',
+  \ 'R'  : 'R',
+  \ 'Rv' : 'VR',
+  \ 's'  : 'S',
+  \ 'S'  : 'SL',
+  \ '' : 'SB',
+  \ 't'  : 'T',
+  \ 'v'  : 'V',
+  \ 'V'  : 'VL',
+  \ '' : 'VB',
+  \ }
+
+let g:airline_section_y = ''
+let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', ':%3v'])
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
 let g:airline_right_sep = '«'
 let g:airline_right_sep = '◀'
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
@@ -297,13 +336,17 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+
+" ALE
+let g:ale_linters_ignore = ['reek']
 
 " FZF
 map <Leader>f :FZF<CR>
@@ -333,11 +376,10 @@ let g:gist_post_private = 1
 map <Leader>u :GundoToggle<CR>
 
 " NERDTree
-nnoremap <leader>F :NERDTreeTabsToggle<CR>
+nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>
-set showmode
 
 " Space.vim related
 let g:space_no_second_prev_mapping = 1

@@ -1,0 +1,592 @@
+alpha   g-a     :α
+beta    g-b     :β
+gamma   g-g     :γ
+delta   g-d     :δ
+epsilon g-e     :ε
+zeta    g-z     :ζ
+eta     g-h     :η
+theta   g-j     :θ
+iota    g-i     :ι
+kappa   g-k     :κ
+lambda  g-l     :λ
+mu      g-m     :μ
+nu      g-n     :ν
+xi      g-x     :ξ
+omicron g-o     :ο
+pi      g-p     :π
+rho     g-r     :ρ
+sigma   g-s     :σ
+tau     g-t     :τ
+upsilon g-u     :υ
+phi     g-f     :φ
+chi     g-q     :χ
+psi     g-y     :ψ
+omega   g-w     :ω
+
+
+Alpha   g-A     :Α
+Beta    g-B     :Β
+Gamma   g-g     :Γ
+Delta   g-D     :Δ
+Epsilon g-E     :Ε
+Zeta    g-Z     :Ζ
+Eta     g-H     :Η
+Theta   g-J     :Θ
+Iota    g-I     :Ι
+Kappa   g-K     :Κ
+Lambda  g-L     :Λ
+Mu      g-M     :Μ
+Nu      g-N     :Ν
+Xi      g-X     :Ξ
+Omicron g-O     :Ο
+Pi      g-P     :Π
+Rho     g-R     :Ρ
+Sigma   g-S     :Σ
+Tau     g-T     :Τ
+Upsilon g-U     :Υ
+Phi     g-F     :Φ
+Chi     g-Q     :Χ
+Psi     g-Y     :Ψ
+Omega   g-W     :Ω
+
+accent a a'   :á
+accent e e'   :é
+accent i i'   :í
+accent o o'   :ó
+accent u u'   :ú
+n tilda  n~   :ñ
+enie        :ñ
+ae          :æ
+diameter    :ø
+
+
+o with stroke    /o\ \o/    : ø
+thorn                       : þ
+inverted exclamation mark ! : ¡
+inverted question mark  ?   : ¿
+em-dash    ---              : —
+
+
+math union                        : ∪
+math intersection                 : ∩
+math proportional                 : ∝
+math not                          : ¬
+math not equal  !=  /=            : ≠
+math equivalence                  : ≡
+math equal by definition          : ≜
+math approximately  ~=            : ≈
+math congruent      ~=            : ≅
+math greater equal                : ≥
+math less equal                   : ≤
+math much less                    : ≪
+math much more                    : ≪
+math or                           : ⊕
+math contains                     : ∈
+math plusorminus                  : ±
+math for every / for all          : ∀
+math there exists                 : ∃
+math there does not exists        : ∄
+math therefore                    : ∴
+math because since                : ∵
+math minusorplus                  : ±
+math middle dot                   : ·
+math multiplication     xx        : ×
+math division                     : ÷
+math gun                          : ¬
+math perpendicular                : ⊥
+math x variable                   : x
+math infinite                     : ∞
+88                                : ∞
+math composition                  : ∘
+middle hollow dot                 : ∘
+math vertical line                : |
+math hermitian                    : †
+math proper subset                : ⊂
+math subset                       : ⊆
+math not subset                   : ⊄
+math not superset                 : ⊅
+math symmetric difference         : ⊖
+math element of                   : ∈
+math not element of               : ∉
+math empty set                    : Ø
+math circled plus oplus           : ⊕
+math implies                      : ⇒
+math equivalent                   : ⇔
+math equivalent                   : ↔
+math if and oly if                : ↔
+math defined as                   : ≔
+math integral                     : ∫
+math closed line integral         : ∮
+math closed surface integral      : ∯
+math closed volume integral       : ∰
+//                                : ⁄
+fraction slash                    : ⁄
+
+arrow up                  : ↑
+arrow down                : ↓
+arrow left  <-            : ←
+arrow right ->            : →
+arrow left and right lr   : ⇆
+arrow right and left rl   : ⇄
+arrow return              : ↵
+arrow downright           : ↘
+arrow downleft            : ↙
+arrow upright             : ↗
+arrow upleft              : ↖
+arrow up and down         : ↕
+arrow left and right      : ↔
+check mark                : ✔
+ok                        : ✔
+horizontal ellipsis ...   : …
+mid ellipsis              : ⋯
+vertical ellipsis         : ⁝
+tricolon                  : ⁝
+vertical three dots       : ⁝
+vertical four dots        : ⁞
+left double quote ldq     : “
+right double quote rdq    : ”
+right quote rq            : ’
+
+box drawing 1             : ░
+box drawing 2             : ▒
+box drawing 3             : ▓
+box drawing 4             : █
+
+line drawing               : └
+line drawing               : ─
+line drawing               : ┘
+line drawing               : │
+line drawing               : ┼
+line drawing               : │
+line drawing               : ┌
+line drawing               : ─
+line drawing               : ┐
+line drawing               : ┴
+
+line drawing               : ┴
+line drawing               : ├
+line drawing               : ┤
+line drawing               : ┬
+
+
+double line drawing        : ╚
+double line drawing        : ═
+double line drawing        : ╝
+double line drawing        : ║
+double line drawing        : ┼
+double line drawing        : ║
+double line drawing        : ╔
+double line drawing        : ═
+double line drawing        : ╗
+
+double line drawing        : ╩
+double line drawing        : ╠
+double line drawing        : ╣
+double line drawing        : ╦
+
+left bracket              : ｢
+right bracket             : ｣
+left japanese quote       : ｢
+right japanse quote       : ｣
+right angle bracket       : 〉
+left angle bracket        : 〈
+left corner bracket       : 「
+right corner bracket      : 」
+fat left corner bracket   : 『
+fat right corner bracket  : 』
+
+
+geometric black square               : ■
+geometric white square               : □
+geometric medium black square        : ◼
+geometric medium white square        : ◻
+geometric small black square         : ▪
+geometric small white square         : ▫
+geometric black triangle up          : ▲
+geometric white triangle up          : △
+geometric small black triangle  up   : ▴
+geometric small white triangle  up   : ▵
+geometric black triangle right       : ▶
+geometric white triangle right       : ▷
+geometric small black triangle right : ▸
+geometric small white triangle right : ▹
+geometric black triangle left        : ◀
+geometric white triangle left        : ◁
+geometric small black triangle left  : ◂
+geometric small white triangle left  : ◃
+geometric black triangle down        : ▼
+geometric white triangle down        : ▽
+geometric small black triangle down  : ▾
+geometric small white triangle down  : ▿
+geometric black diamond              : ◆
+geometric white diamond              : ◇
+geometric black-in-white diamond     : ◈
+geometric black-in-white circle      : ◉
+geometric black circle               : ●
+geometric white circle               : ○
+geometric dotted circle              : ◌
+
+geometric circle left black          : ◐
+geometric circle right black         : ◑
+geometric circle bottom black        : ◒
+geometric circle upper black         : ◓
+geometric circle upper right black   : ◔
+geometric circle all but left black  : ◕
+geometric upper left circular arc    : ◜
+geometric upper right circular arc   : ◝
+geometric lower right circular arc   : ◞
+geometric lower left circular arc    : ◟
+geometric upper half circular arc    : ◠
+geometric lower half circular arc    : ◡
+
+geomteric black right pointer        : ►
+geomteric white right pointer        : ◄
+
+
+frog                      : 🐸
+cow                       : 🐮
+cow2                      : 🐄
+pig                       : 🐷
+turtle                    : 🐢
+cat                       : 🐈
+duck                      : 🦆
+dog                       : 🐶
+snowman                   : ⛇
+pizza                     : 🍕
+pizza2                    : 🍕
+poop                      : 💩
+
+
+emoji smiling face        : ☺
+emoji frowning face       : ☹
+emoji smile               : 😃
+emoji tongue out          : 😛
+emoji wink                : 😉
+emoji surprise            : 😲
+emoji scared fear         : 😨
+emoji not amused serious  : 😐
+emoji crying              : 😢
+emoji cry laugh           : 😂
+emoji upside down smile   : 🙃
+emoji solid star          : ★
+emoji hollow star         : ☆
+emoji circled hollow star : ✪
+emoji yin yang            : ☯
+emoji 100 points          : 💯
+emoji okay ok             : 👌
+emoji drops water         : 💦
+emoji eggplant            : 🍆
+
+
+circ               : °
+degrees            : °
+oo                 : °
+angstroms          : Å
+ao0                : Å
+tm                 : ™
+trademark          : ™
+pound              : £
+yen                : ¥
+cents              : ¢
+copyright          : ©
+CO                 : ©
+registered         : ®
+CR                 : ®
+micron    ,u,      : µ
+paragraph          : ¶
+super pi           : ℼ
+euler              : ℯ
+italic n           : 𝒏
+spinal tap         : n̈
+celcius            : ℃
+farhenheit         : ℉
+biohazard          : ☣
+radioactive        : ☢
+
+heart              : ❤
+broken heart       : 💔
+side heart         : ❥
+
+
+sup1        :¹
+sup2        :²
+sup3        :³
+sup4        :⁴
+sup5        :⁵
+sup6        :⁶
+sup7        :⁷
+sup8        :⁸
+sup9        :⁹
+sup0        :⁰
+sub1        :₁
+sub2        :₂
+sub3        :₃
+sub4        :₄
+sub5        :₅
+sub6        :₆
+sub7        :₇
+sub8        :₈
+sub9        :₉
+sub0        :₀
+
+superscript n         : ⁿ
+superscript i         : ⁱ
+superscript theta     : ᶿ
+
+subscript minus -     : ₋
+subscript a           : ₐ
+subscript e           : ₑ
+subscript o           : ₒ
+subscript x           : ₓ
+subscript e inverted  : ₔ
+subscript h           : ₕ
+subscript k           : ₖ
+subscript l           : ₗ
+subscript m           : ₘ
+subscript n           : ₙ
+subscript p           : ₚ
+subscript s           : ₛ
+subscript t           : ₜ
+
+bto  batio3           :BaTiO₃
+tio2                  :TiO₂
+e=mc2                 :E = m·c²
+
+
+smiley_hug_r1              : (っ´ω｀)っ
+smiley_hug_l1              : ⊂(´Д`⊂)
+smiley_hug_r2              : (つﾟ⊿ﾟ)つ
+smiley_hug_r3              : (っ^_^)っ
+smiley_hug_r4              : (⊃｡•́‿•̀｡)⊃
+smiley_hug_r5              : (っಠ‿ಠ)っ
+smiley_hug_l2              : ⊂(´• ω •`⊂)
+smiley_hug_l3              : ⊂(･ω･*⊂
+smiley_hug_g               : ⊂(￣▽￣)⊃
+smiley_mischevious         : (｡◕‿‿◕｡)
+smiley_frustrated          : (屮ﾟДﾟ)屮
+smiley_fight               : (ง •̀_•́)ง
+smiley_fight_srz           : (ง ͠° ͟ʖ ͡°)ง
+smiley_fightL              : L(° O °L)
+smiley_fight2              : (」＞＜)」
+smiley_fight               : (งಠ_ಠ)ง
+smiley_fight               : σ( •̀ ω •́ σ)
+smiley_fight               : O-(`⌒´Q)
+smiley_fight               : Q(`⌒´Q)
+smiley_fight_punch         : (`⌒*)O-(`⌒´Q)
+smiley_fin_adventure_time  : | (• ◡•)|
+smiley_dunno               : ¯\(°_o)/¯
+smiley_dunno2              : ┐( ﾟーﾟ)┌
+smiley_dunno3              : ¯\(°◡ﾟ)/¯
+smiley dunno4              : ┐('～`；)┌
+smiley dunno5              : ¯\_(ツ)_/¯
+smiley_dunno6              : ┐(￣ヘ￣)┌
+smiley_dunno7              : ╮(￣_￣)╭
+smiley_dunno8              : ╮(︶︿︶)╭
+smiley_dunno9              : ┐( ˘ ､ ˘ )┌
+smiley_dunno10             : ┐( ˘_˘ )┌
+smiley_jake_adventure_time : (❍ᴥ❍ʋ)
+smiley wtf mad             : (ಠ_ಠ)
+smiley_crying              : (ಥ_ಥ)
+smiley_smug                : (￣ω￣)
+smiley_smug2               : （￣へ￣）
+smiley_surprised_nose      : ( °  ʖ ° )
+smiley lenny               : ( ͡° ͜ʖ ͡°)
+smiley shrug               : ┐(ツ)┌
+smiley_koala               : ʕ•ᴥ•ʔ
+smiley_koala_celebrating   : \ʕ•ᴥ•ʔ/
+smiley_playful_cat         : ✧٩(•w•๑)
+smiley_cuddly              : (っ´ω`c)♡
+smiley_tableflip           : (╯°□°)╯ ┻━┻
+smiley_singing             : ヾ(*´Д｀*)ﾉ
+smiley_cute_dunno          : ╮ (.❛ᴗ❛.) ╭
+smiley_pow_cat             : ٩( 'ω' )و
+smiley_nervous_sweating    : (-_-;)
+smiley_happy_smile         : (^.^)
+smiley_happy_smile_drugs   : (◕‿◕)
+smiley_:3_blushing         : (*´ω｀*)
+smiley_:3                  : (　^ω^)
+smiley_:3_sad              : (´；ω；｀)
+smiley_:3_surprised        : (´・ω・｀)
+smiley_:3_goodbye          : (ヽ´ω`)
+smiley_:3_blushing_2       : (*´▽｀*)
+smiley_happy               : (^-^)
+smiley_smoking             : ( ´ー`)y─┛
+smiley_smoking_omg         : (,,ﾟДﾟ)y─┛
+
+smiley_cat_happy           : =^.^=
+smiley_cat_:3              : (=ﾟωﾟ=)
+smiley_cat                 : (=^･ω･^=)
+smiley_cat                 : ( =ω=)..nyaa
+smiley_cat                 : ଲ(ⓛ ω ⓛ)ଲ
+
+
+smiley_surprised           : o_0
+
+smiley_cute_smile          : (´｡• ᵕ •｡`)
+smiey_smile_satisfied      : (*¯︶¯*)
+smiley_nervous_smile       : (⌒_⌒;)
+smiley_tiny_smile          : (ᵔ.ᵔ)
+smiley_embarassed          : (*/ω＼)
+smiley_embarassed2         : (⁄ ⁄•⁄ω⁄•⁄ ⁄)
+smiley_wtf                 : (；￣Д￣)
+smiley_wtf2                : (＃￣ω￣)
+smiley_unimpressed         : =_=
+smiley_unimpressed2        : (︶︹︺)
+smiley_unimpressed3        : (￣ヘ￣)
+smiley_unimpressed4        : (￣︿￣)
+smiley_unimpressed_fu      : 凸(￣ヘ￣)
+
+smiley_sour_giggle         : (＞﹏＜)
+
+
+smiley_angry               : (益)
+smiley_angry_scream        : ( #｀Д´)
+smiley_angry_scream2       : (＃`Д´)
+smiley_angry_shakefist     : ヾ(`ヘ´)ﾉﾞ
+smiley_angry_punch         : ☆ｏ(＞＜；)○
+
+smiley_facepalm            : (ノ_<。)
+smiley_sad                 : (｡╯︵╰｡)
+smiley_sad_cry_nose        : ( ﾟ，_ゝ｀)
+smiley_sad_crying          : (╥_╥)
+smiley_sad_crying2         : (╥﹏╥)
+smiley_sad_cry_hug         : (っ˘̩╭╮˘̩)っ
+smiley-sad                 : (｡•́︿•̀｡)
+
+
+smiley_confused            : σ(￣、￣〃)
+smiley_confused2           : (・_・;)
+smiley_confused3           : (・・ ) ?
+smiley_confused4           : (￣_￣)・・・
+smiley_confused5           : (ー.ー;)
+
+smiley_doubt               : (￢_￢)
+smiley_doubt               : (￢‿￢)
+smiley_doubt               : (↼_↼)
+smiley_doubt               : (⇀_⇀)
+
+smiley_surprise            : ヽ(°〇°)ﾉ
+smiley_surprise            : (⊙_⊙)
+smiley_surprise            : (O_O;)
+smiley_surprise            : ( : ౦ ‸ ౦ : )
+smiley-surprise            : (o_O) !
+
+smiley_wave                : (*・ω・)ﾉ
+smiley_wave                : (￣▽￣)ノ
+smiley_wave                : (^-^*)/
+smiley_wave                : (´• ω •`)ﾉ
+smiley_wave                : ( ´ ▽ ` )ﾉ
+smiley_wave                : ~ヾ(・ω・)
+smiley_wave                : ヾ(^ω^*)
+smiley_wave                : (・_・)ノ
+smiley_wave                : (o´ω`o)ﾉ
+smiley_wave                : (⌒ω⌒)ﾉ
+smiley_wave                : (o´▽`o)ﾉ
+
+smiley_wink                : (^_−)
+smiley_wink                : (^_~)
+
+smiley_hide_wave           : |ω･)ﾉ
+smiley_hide_wave           : ヾ(･|
+smiley_hide_wave           : ┬┴┬┴┤･ω･)ﾉ
+smiley_hide_:3             : |･ω･)
+smiley_hide_scared         : |д･)
+smiley_hide_lenny          : ┬┴┬┴┤( ͡° ͜ʖ├┬┴┬┴
+smiley_hide                : ┬┴┬┴┤(･_├┬┴┬┴
+smiley_hide_wave_creepy    : |ʘ‿ʘ)╯
+
+smiley_running             : ε=ε=ε=ε=┌(;￣▽￣)┘
+smiley_running             : ε=ε=┌( >_<)┘
+smiley_running             : ヽ(￣д￣;)ノ=3=3=3
+smiley_running_hug         : ε===(っ≧ω≦)っ
+smiley_running             : 。。。ミヽ(。＞＜)ノ
+
+smiley_sleep               : [(－－)]..zzZ
+smiley_sleep               : (－_－) zzZ
+smiley_sleep               : (∪｡∪)｡｡｡zzZ
+smiley_sleep               : (－ω－) zzZ
+smiley_sleep               : (￣ρ￣)..zzZZ
+smiley_sleep               : (－.－)...zzz
+smiley_sleep               : (＿ ＿*) Z z z
+
+smiley_magic               : ╰( ͡° ͜ʖ ͡° )つ──☆*:・ﾟ
+smiley_magic               : (ノ ˘_˘)ノ　ζ|||ζ　ζ|||ζ　ζ|||ζ
+smiley_magic               : (∩` ﾛ ´)⊃━炎炎炎炎炎
+
+smiley_food                : (っ˘ڡ˘ς)
+
+smiley_music               : (〜￣▽￣)〜
+smiley_music               : 〜(￣▽￣〜)
+smiley_music               : ♪(/_ _ )/♪
+smiley_music               : └(＾＾)┐
+smiley_music               : ┌(＾＾)┘
+smiley_music               : ヾ(⌐■_■)ノ♪
+smiley_music               : (~˘▽˘)~
+smiley_music               : ~(˘▽˘~)
+smiley_music               : (~‾▽‾)~
+smiley_music               : ~(˘▽˘)~
+smiley_music               : (〜￣△￣)〜
+smiley_music               : ( ˘ ɜ˘) ♬ ♪ ♫
+
+smiley_wake_up             : ٩(ˊ〇ˋ*)و
+smiley_military_salute     : (￣^￣)ゞ
+smiley_furious_tableflip   : (╯°益°)╯彡┻━┻
+smiley_tableflip           : ( ╯°□°)╯ ┻━━┻
+
+smiley_hungry              : (￣﹃￣)
+
+smiley_lying               : _(:3 」∠)_
+smiley_lying               : ∠( ᐛ 」∠)＿
+
+
+
+inverted wut               : ¿ʇnʍ
+
+rebels                     : 
+empire                     : 
+
+wide a                     :Ａ
+wide b                     :Ｂ
+wide c                     :Ｃ
+wide d                     :Ｄ
+wide e                     :Ｅ
+wide f                     :Ｆ
+wide g                     :Ｇ
+wide h                     :Ｈ
+wide i                     :Ｉ
+wide j                     :Ｊ
+wide k                     :Ｋ
+wide l                     :Ｌ
+wide m                     :Ｍ
+wide n                     :Ｎ
+wide o                     :Ｏ
+wide p                     :Ｐ
+wide q                     :Ｑ
+wide r                     :Ｒ
+wide s                     :Ｓ
+wide t                     :Ｔ
+wide u                     :Ｕ
+wide v                     :Ｖ
+wide w                     :Ｗ
+wide x                     :Ｘ
+wide y                     :Ｙ
+wide z                     :Ｚ
+wide 0                     :０
+wide 1                     :１
+wide 2                     :２
+wide 3                     :３
+wide 4                     :４
+wide 5                     :５
+wide 6                     :６
+wide 7                     :７
+wide 8                     :８
+wide 9                     :９
+wide .                     :．
+wide ,                     :，
+wide (                     :（
+wide )                     :）
+wide ?                     :？
+wide !                     :！
+wide '                     :＇
+wide space                 : 　
+

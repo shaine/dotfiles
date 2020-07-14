@@ -7,8 +7,8 @@ i3-msg workspace 1
 
 terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena; zsh"
 
-xterm -e "$terminal_command" &
-xterm -e "$terminal_command" &
+urxvt -e /bin/zsh -c "$terminal_command" &
+urxvt -e /bin/zsh -c "$terminal_command" &
 
 sleep 1
 
@@ -16,8 +16,8 @@ i3-msg split v
 
 sleep 1
 
-xterm -e "$terminal_command" &
-xterm -e "$terminal_command" &
+urxvt -e /bin/zsh -c "$terminal_command" &
+urxvt -e /bin/zsh -c "$terminal_command" &
 
 sleep 1
 

@@ -31,8 +31,8 @@ font 6x13
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id xterm
-bindsym $mod+Shift+Return exec --no-startup-id xterm -name floatingTerm
+bindsym $mod+Return exec --no-startup-id urxvt
+bindsym $mod+Shift+Return exec --no-startup-id urxvt -name floatingTerm
 for_window [instance="^floatingTerm$"] floating enable
 
 # kill focused window
@@ -120,10 +120,10 @@ bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-msg exit"
 
-bindsym $mod+Shift+i exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
-bindsym $mod+Shift+v exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.vim/init.vim'
-bindsym $mod+Shift+z exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
-bindsym $mod+Shift+n exec --no-startup-id xterm -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/linux-notes.md'
+bindsym $mod+Shift+i exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
+bindsym $mod+Shift+v exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.vim/init.vim'
+bindsym $mod+Shift+z exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
+bindsym $mod+Shift+n exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/linux-notes.md'
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
 bindsym $mod+backslash exec --no-startup-id $HOME/.config/i3/special_characters
 bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur

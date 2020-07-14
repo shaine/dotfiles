@@ -79,7 +79,7 @@ get_updates(){
     if (( $P_updates > 4 )); then
       echo "UPDATE $label_color$icon_pacman $warning_value_color$P_updates$spacer$reset"
     else
-      echo "UPDATE ${}"
+      echo "UPDATE %{}"
     fi
     sleep $UPDATE_SLEEP
   done
@@ -200,5 +200,5 @@ while read -r line; do
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |
-  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -d -u 2 |
+  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -u 2 |
   sh > /dev/null

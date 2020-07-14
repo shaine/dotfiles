@@ -35,6 +35,9 @@ alias k=kubectl
 alias vim="nvim"
 export EDITOR="vim"
 
+# Fix urxvt over SSH brokeness
+export TERM='xterm-256color'
+
 function gitwatch() {
     watch -c -t -n 1 "basename $PWD | head -c 7 | figlet; echo ''; git branch; echo ''; git st"
 }

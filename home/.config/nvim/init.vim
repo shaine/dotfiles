@@ -1,5 +1,5 @@
 " vim-plug
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'shaine/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
@@ -72,7 +72,7 @@ augroup END
 
 " Shortcuts
 " Reload configuration
-nnoremap <leader>S :so ~/.vim/init.vim<cr>
+nnoremap <leader>S :so ~/.config/nvim/init.vim<cr>
 " Sudo write me a sandiwch
 if !exists(":Write")
   command Write w !sudo tee % > /dev/null
@@ -134,7 +134,7 @@ nnoremap ` '
 set history=1000
 set undolevels=1000
 set undofile
-set undodir=~/.vim/tmp/undo//
+set undodir=~/.config/nvim/tmp/undo//
 set noswapfile
 set nobackup
 set nowb
@@ -389,7 +389,7 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " Yankring
-let g:yankring_history_dir = '~/.vim/tmp/yank'
+let g:yankring_history_dir = '~/.config/nvim/tmp/yank'
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y

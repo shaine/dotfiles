@@ -167,7 +167,7 @@ gaps outer 0
 
 # Execs
 set $wallpaper_path $HOME/.local/wallpaper.jpg
-exec --no-startup-id python3.6 -m pywal -i $(readlink -f $wallpaper_path) # -a90
+exec --no-startup-id python -m pywal -i $(readlink -f $wallpaper_path) # -a90
 exec --no-startup-id feh --bg-scale $wallpaper_path
 exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec --no-startup-id xbindkeys

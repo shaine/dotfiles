@@ -8,18 +8,19 @@ source ~/.cache/wal/colors.sh
 
 # Sleep constants
 MUSIC_SLEEP=3
+BATTERY_SLEEP=60
 UPDATE_SLEEP=30
 WORKSPACE_SLEEP=0.3
 DATE_SLEEP=1
 VOLUME_SLEEP=1
 
 # Icons
-#                          
 icon_cpu="CPU"
 icon_mem="RAM"
 icon_vol="VOL"
 icon_pacman="APT"
 icon_space="SDD"
+icon_battery="BAT"
 
 # Colors
 BBG="#D0${color0/'#'}"
@@ -42,6 +43,22 @@ fi
 mkfifo $PANEL_FIFO
 
 conky -c $(dirname $0)/lemonbar_conky > $PANEL_FIFO &
+
+battery() {
+  while true; do
+    BATTERY_PERCENTAGE=$(acpitool | head -n 1 | cut -f 1 -d . | cut -f 2 -d , | tr -d '[:space:]')
+
+    if [[ "$BATTERY_PERCENTAGE" == *"notavailable"* ]]; then
+      return
+    else
+      echo "BATTERY $label_color$icon_battery $value_color$BATTERY_PERCENTAGE%$spacer$reset"
+    fi
+
+    sleep $BATTERY_SLEEP
+  done
+}
+
+battery > $PANEL_FIFO &
 
 music() {
   while true; do
@@ -73,8 +90,6 @@ get_updates(){
   while true; do
     P_updates=`apt list --upgradeable | wc -l`
     P_updates="$(($P_updates-1))"
-    # P_updates=$P_updates%%
-    # P_updates=$P_updates##
 
     if (( $P_updates > 4 )); then
       echo "UPDATE $label_color$icon_pacman $warning_value_color$P_updates$spacer$reset"
@@ -178,6 +193,9 @@ while read -r line; do
     MUSIC*)
       fn_music="${line#MUSIC }"
       ;;
+    BATTERY*)
+      fn_battery="${line#BATTERY }"
+      ;;
     UPDATE*)
       fn_update="${line#UPDATE }"
       ;;
@@ -196,7 +214,7 @@ while read -r line; do
   esac
 
   left="$fn_work  $fn_win"
-  right="$fn_update$fn_music$fn_space$fn_mem$fn_cpu$fn_vol$fn_date  "
+  right="$fn_update$fn_music$fn_space$fn_mem$fn_cpu$fn_vol$fn_battery$fn_date  "
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |

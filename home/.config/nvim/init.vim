@@ -172,6 +172,19 @@ set ttimeoutlen=10
 set backupskip=/tmp/*,/private/tmp/*"
 set mouse=a
 
+" For privacy
+function Private()
+  set history=0
+  set nobackup
+  set nomodeline
+  set noshelltemp
+  set noswapfile
+  set noundofile
+  set nowritebackup
+  set secure
+  set viminfo=""
+endfunction
+
 " Close quickfix if it's the only open window
 aug QFClose
   au!

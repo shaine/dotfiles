@@ -1,4 +1,4 @@
-URxvt.background: #0c090a
+# include "/home/shaine/.cache/wal/colors.Xresources"
 URxvt.scrollBar: false
 URxvt.font: 6x13
 URXvt.boldFont: 6x13B

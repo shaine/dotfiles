@@ -167,7 +167,9 @@ gaps outer 0
 
 # Execs
 set $wallpaper_path $HOME/.local/wallpaper.jpg
-exec --no-startup-id python -m pywal -i $(readlink -f $wallpaper_path) # -a90
+set $run_lemonbar $HOME/.config/lemonbar/run_lemonbar.sh
+set $run_lock betterlockscreen --lock dimblur
+exec_always --no-startup-id wal --backend colorthief -i $(readlink -f $wallpaper_path) -o $run_lemonbar; killall dunst; dunst &
 exec --no-startup-id feh --bg-scale $wallpaper_path
 exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec --no-startup-id xbindkeys
@@ -177,4 +179,4 @@ exec_always --no-startup-id compton
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift
-exec_always --no-startup-id $HOME/.config/lemonbar/run_lemonbar.sh
+exec --no-startup-id xautolock -corners 0-0+ -cornerdelay 0 -time 5 -locker '$run_lock'

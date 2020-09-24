@@ -5,10 +5,11 @@ export SSH_AUTH_SOCK
 
 i3-msg workspace 1
 
-terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena.local; zsh"
+# terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena.local; zsh"
+# urxvt -e /bin/zsh -c "$terminal_command" &
 
-urxvt -e /bin/zsh -c "$terminal_command" &
-urxvt -e /bin/zsh -c "$terminal_command" &
+urxvt &
+urxvt &
 
 sleep 1
 
@@ -16,8 +17,8 @@ i3-msg split v
 
 sleep 1
 
-urxvt -e /bin/zsh -c "$terminal_command" &
-urxvt -e /bin/zsh -c "$terminal_command" &
+urxvt &
+urxvt &
 
 sleep 1
 

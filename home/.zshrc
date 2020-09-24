@@ -1,7 +1,7 @@
-if [ -f ~/.cache/wal/sequences ] ; then
-  (cat ~/.cache/wal/sequences &)
-  clear
-fi
+# if [ -f ~/.cache/wal/sequences ] ; then
+  # (cat ~/.cache/wal/sequences &)
+  # clear
+# fi
 
 ZSH_CUSTOM=$HOME/.omz-custom
 ZSH=$HOME/.oh-my-zsh

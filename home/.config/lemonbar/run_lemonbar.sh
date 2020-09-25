@@ -13,6 +13,7 @@ UPDATE_SLEEP=30
 WORKSPACE_SLEEP=0.3
 DATE_SLEEP=1
 VOLUME_SLEEP=1
+NETWORK_SLEEP=30
 
 # Icons
 icon_cpu="CPU"
@@ -21,15 +22,18 @@ icon_vol="VOL"
 icon_pacman="APT"
 icon_space="SDD"
 icon_battery="BAT"
+icon_network="NET"
 
 # Colors
 BBG="#D0${color0/'#'}"
 BFG="#${color15/'#'}"
 silver_color="#${color7/'#'}"
 green_color="#${color2/'#'}"
+blue_color="#${color12/'#'}"
 red_color="#${color9/'#'}"
 label_color="%{F$silver_color}"
 value_color="%{F$green_color}"
+title_color="%{F$blue_color}"
 warning_value_color="%{F$red_color}"
 reset="%{F- B-}"
 
@@ -60,22 +64,38 @@ battery() {
 
 battery > $PANEL_FIFO &
 
+network() {
+  while true; do
+    NETWORK_NAME=$(iwgetid -r)
+
+    if [ ! -z "$NETWORK_NAME" ]; then
+      echo "NETWORK $label_color$icon_network $value_color$NETWORK_NAME$spacer$reset"
+    else
+      return
+    fi
+
+    sleep $NETWORK_SLEEP
+  done
+}
+
+network > $PANEL_FIFO &
+
 music() {
   while true; do
     NCMP=$(spotifycli --status)
     NUM_NCMP=$(echo $NCMP | head -1 | wc -c )
-    S_NCMP=$(echo $NCMP | head -1 | head -c 30)
+    # S_NCMP=$(echo $NCMP | head -1 | head -c 30)
     PLAYBACK_STATUS=$(spotifycli --playbackstatus)
 
     str=""
 
     if [[ "▶" = $PLAYBACK_STATUS ]]; then
-      if [[ $NUM_NCMP -le 31 ]]; then
+      # if [[ $NUM_NCMP -le 31 ]]; then
         str=$NCMP
-      else
-        str="$S_NCMP..."
-      fi
-      echo "MUSIC $value_color$str$spacer$reset"
+      # else
+        # str="$S_NCMP..."
+      # fi
+      echo "MUSIC $title_color$str$spacer$reset"
     else
       echo "MUSIC %{}"
     fi
@@ -168,7 +188,7 @@ title()
   done
 }
 
-title > $PANEL_FIFO &
+# title > $PANEL_FIFO &
 
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
 WIDTH=$res_w # bar width
@@ -196,6 +216,9 @@ while read -r line; do
     BATTERY*)
       fn_battery="${line#BATTERY }"
       ;;
+    NETWORK*)
+      fn_network="${line#NETWORK }"
+      ;;
     UPDATE*)
       fn_update="${line#UPDATE }"
       ;;
@@ -213,8 +236,8 @@ while read -r line; do
       ;;
   esac
 
-  left="$fn_work  $fn_win"
-  right="$fn_update$fn_music$fn_space$fn_mem$fn_cpu$fn_vol$fn_battery$fn_date  "
+  left="$fn_work  $fn_music"
+  right="$fn_update$fn_space$fn_mem$fn_cpu$fn_network$fn_vol$fn_battery$fn_date  "
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |

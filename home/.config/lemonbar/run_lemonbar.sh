@@ -136,7 +136,7 @@ datez()
 {
   while true; do
     local dates="$(date +'%Y.%m.%d %T')"
-    echo "DATE $value_color$dates$reset"
+    echo "DATE $title_color$dates$reset"
     sleep $DATE_SLEEP
   done
 }

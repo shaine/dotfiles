@@ -2,10 +2,20 @@
 
 echo "Starting to mount network drives"
 
+echo "Mounting geshtinanna"
 sshfs geshtinanna: /media/shaine/geshtinanna
 
+echo "Mounting Documents"
 bindfs /media/shaine/geshtinanna/documents Documents
+
+echo "Mounting Pictures"
 bindfs /media/shaine/geshtinanna/images Pictures
+
+echo "Mounting Music"
 bindfs /media/shaine/geshtinanna/music Music
+
+echo "Mounting Projects"
 bindfs /media/shaine/geshtinanna/projects Projects
+
+echo "Mounting Video"
 bindfs /media/shaine/geshtinanna/video Video

@@ -170,8 +170,8 @@ set $wallpaper_path $HOME/.local/wallpaper.jpg
 set $run_lemonbar $HOME/.config/lemonbar/run_lemonbar.sh
 set $run_lock betterlockscreen --lock dimblur
 exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network &>> $HOME/mount.log"
-exec_always --no-startup-id wal --backend colorthief -i $(readlink -f $wallpaper_path) -o $run_lemonbar; killall dunst; dunst &
-exec --no-startup-id feh --bg-scale $wallpaper_path
+exec_always --no-startup-id wal --backend colorz -i $(readlink -f $wallpaper_path) -o $run_lemonbar; killall dunst; dunst &
+# exec --no-startup-id feh --bg-scale $wallpaper_path
 exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
 exec --no-startup-id xbindkeys
 exec_always --no-startup-id compton
@@ -181,3 +181,4 @@ exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift
 exec --no-startup-id xautolock -corners 0-0+ -cornerdelay 0 -time 10 -locker '$run_lock'
+exec --no-startup-id xautolock -time 30 -locker 'systemctl suspend'

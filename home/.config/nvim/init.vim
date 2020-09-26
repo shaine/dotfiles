@@ -20,7 +20,6 @@ Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
 Plug 'chmp/mdnav' " Navigate markdown links
-" Plug 'gregsexton/MatchTag' " Match the end of a tag
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
@@ -29,7 +28,6 @@ Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
 Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
 Plug 'sjl/gundo.vim', " Undo UI
-" Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'

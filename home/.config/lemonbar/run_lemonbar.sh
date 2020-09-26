@@ -55,7 +55,12 @@ battery() {
     if [[ "$BATTERY_PERCENTAGE" == *"notavailable"* ]]; then
       return
     else
-      echo "BATTERY $label_color$icon_battery $value_color$BATTERY_PERCENTAGE%$spacer$reset"
+      if (( BATTERY_PERCENTAGE < 20 )); then
+        color=$warning_value_color
+      else
+        color=$value_color
+      fi
+      echo "BATTERY $label_color$icon_battery $color$BATTERY_PERCENTAGE%$spacer$reset"
     fi
 
     sleep $BATTERY_SLEEP
@@ -149,22 +154,17 @@ volume()
 
   while true; do
     local vol=$(pulsemixer --get-volume | head -n1 | cut -d " " -f1)
+    local mute=$(pulsemixer --get-mute)
 
-    # if (( vol > 100 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # elif (( vol == 0 )); then
-      # echo "VOLUME $icon_vol_mute $vol% "
-    # elif (( vol > 70 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # elif (( vol > 55 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # elif (( vol > 10 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # else
-      # echo "VOLUME $icon_vol $vol% "
-    # fi
+    if (( mute == 1 )); then
+      value="${warning_value_color}MUTE"
+    elif (( vol > 100 )); then
+      value="$warning_value_color$vol%"
+    else
+      value="$value_color$vol%"
+    fi
 
-    echo "VOLUME $label_color$icon_vol $value_color$vol%$spacer$reset"
+    echo "VOLUME $label_color$icon_vol $value$spacer$reset"
 
     sleep $VOLUME_SLEEP
   done

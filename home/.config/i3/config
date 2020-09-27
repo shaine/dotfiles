@@ -187,5 +187,4 @@ exec_always --no-startup-id compton
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift
-exec --no-startup-id xautolock -corners 0-0+ -cornerdelay 0 -locker 'betterlockscreen --lock dimblur'
 exec --no-startup-id $HOME/.config/i3/lock.sh

@@ -131,9 +131,9 @@ bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
 # media keys
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 60 -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 60 -dec 10
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 
 # resize window (you can also use the mouse for that)
@@ -176,7 +176,6 @@ gaps outer 0
 # Execs
 set $wallpaper_path $HOME/.local/wallpaper.jpg
 set $run_lemonbar $HOME/.config/lemonbar/run_lemonbar.sh
-set $run_lock betterlockscreen --lock dimblur
 exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network &>> $HOME/mount.log"
 exec_always --no-startup-id wal --backend colorz -i $(readlink -f $wallpaper_path) -o $run_lemonbar; killall dunst; dunst &
 # exec --no-startup-id feh --bg-scale $wallpaper_path
@@ -188,5 +187,5 @@ exec_always --no-startup-id compton
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift
-exec --no-startup-id xautolock -corners 0-0+ -cornerdelay 0 -time 10 -locker '$run_lock'
-# exec --no-startup-id xautolock -time 30 -locker '$run_lock; systemctl suspend'
+exec --no-startup-id xautolock -corners 0-0+ -cornerdelay 0 -locker 'betterlockscreen --lock dimblur'
+exec --no-startup-id $HOME/.config/i3/lock.sh

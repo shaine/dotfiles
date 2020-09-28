@@ -11,7 +11,7 @@ fusermount -uz ~/Documents
 umount /media/shaine/geshtinanna
 
 echo "Mounting geshtinanna"
-sshfs geshtinanna: /media/shaine/geshtinanna
+sshfs -o reconnect geshtinanna: /media/shaine/geshtinanna
 
 echo "Mounting Documents"
 bindfs /media/shaine/geshtinanna/documents ~/Documents

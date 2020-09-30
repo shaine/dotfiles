@@ -1,5 +1,5 @@
 " vim-plug
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'shaine/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
@@ -20,7 +20,7 @@ Plug 'fatih/vim-go'
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
-" Plug 'gregsexton/MatchTag' " Match the end of a tag
+Plug 'chmp/mdnav' " Navigate markdown links
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
@@ -29,7 +29,6 @@ Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
 Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
 Plug 'sjl/gundo.vim', " Undo UI
-" Plug 'airblade/vim-gitgutter' " Git status in gutter
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
@@ -73,7 +72,7 @@ augroup END
 
 " Shortcuts
 " Reload configuration
-nnoremap <leader>S :so ~/.vim/init.vim<cr>
+nnoremap <leader>S :so ~/.config/nvim/init.vim<cr>
 " Sudo write me a sandiwch
 if !exists(":Write")
   command Write w !sudo tee % > /dev/null
@@ -135,7 +134,7 @@ nnoremap ` '
 set history=1000
 set undolevels=1000
 set undofile
-set undodir=~/.vim/tmp/undo//
+set undodir=~/.config/nvim/tmp/undo//
 set noswapfile
 set nobackup
 set nowb
@@ -172,6 +171,19 @@ set ttimeoutlen=10
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
 set mouse=a
+
+" For privacy
+function Private()
+  set history=0
+  set nobackup
+  set nomodeline
+  set noshelltemp
+  set noswapfile
+  set noundofile
+  set nowritebackup
+  set secure
+  set viminfo=""
+endfunction
 
 " Close quickfix if it's the only open window
 aug QFClose
@@ -390,7 +402,7 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " Yankring
-let g:yankring_history_dir = '~/.vim/tmp/yank'
+let g:yankring_history_dir = '~/.config/nvim/tmp/yank'
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y

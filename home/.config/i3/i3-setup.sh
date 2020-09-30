@@ -5,10 +5,11 @@ export SSH_AUTH_SOCK
 
 i3-msg workspace 1
 
-terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena; zsh"
+# terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena.local; zsh"
+# urxvt -e /bin/zsh -c "$terminal_command" &
 
-xterm -e "$terminal_command" &
-xterm -e "$terminal_command" &
+urxvt &
+urxvt &
 
 sleep 1
 
@@ -16,8 +17,8 @@ i3-msg split v
 
 sleep 1
 
-xterm -e "$terminal_command" &
-xterm -e "$terminal_command" &
+urxvt &
+urxvt &
 
 sleep 1
 
@@ -31,18 +32,24 @@ i3-msg workspace 2
 chromium-browser &
 slack &
 
-sleep 10
+sleep 30
 
 i3-msg workspace 3
 
 minetime &
 mailspring &
 
-sleep 10
+sleep 20
 
 i3-msg workspace 4
 
 spotify &
+
+sleep 10
+
+i3-msg workspace 5
+
+pritunl-client-electron
 
 sleep 10
 

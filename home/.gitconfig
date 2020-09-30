@@ -6,7 +6,7 @@
     editor = nvim
     excludesfile = ~/.gitignore_global
 	repositoryformatversion = 0
-	filemode = true
+	fileMode = false
 	bare = false
 	logallrefupdates = true
 	ignorecase = true

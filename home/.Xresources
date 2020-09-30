@@ -1,7 +1,13 @@
-URxvt.background: #0c090a
+# include "/home/shaine/.cache/wal/colors.Xresources"
 URxvt.scrollBar: false
 URxvt.font: 6x13
 URXvt.boldFont: 6x13B
 *internalBorder: 40
 URxvt.lineSpace: 1
-XTerm*selectToClipboard: true
+*selectToClipboard: true
+URxvt.perl-ext-common: ...,font-size,clipboard
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped

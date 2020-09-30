@@ -8,27 +8,32 @@ source ~/.cache/wal/colors.sh
 
 # Sleep constants
 MUSIC_SLEEP=3
+BATTERY_SLEEP=60
 UPDATE_SLEEP=30
 WORKSPACE_SLEEP=0.3
 DATE_SLEEP=1
 VOLUME_SLEEP=1
+NETWORK_SLEEP=30
 
 # Icons
-#                          
 icon_cpu="CPU"
 icon_mem="RAM"
 icon_vol="VOL"
 icon_pacman="APT"
 icon_space="SDD"
+icon_battery="BAT"
+icon_network="NET"
 
 # Colors
 BBG="#D0${color0/'#'}"
 BFG="#${color15/'#'}"
 silver_color="#${color7/'#'}"
 green_color="#${color2/'#'}"
+blue_color="#${color12/'#'}"
 red_color="#${color9/'#'}"
 label_color="%{F$silver_color}"
 value_color="%{F$green_color}"
+title_color="%{F$blue_color}"
 warning_value_color="%{F$red_color}"
 reset="%{F- B-}"
 
@@ -43,22 +48,59 @@ mkfifo $PANEL_FIFO
 
 conky -c $(dirname $0)/lemonbar_conky > $PANEL_FIFO &
 
+battery() {
+  while true; do
+    BATTERY_PERCENTAGE=$(acpitool | head -n 1 | cut -f 1 -d . | cut -f 2 -d , | tr -d '[:space:]')
+
+    if [[ "$BATTERY_PERCENTAGE" == *"notavailable"* ]]; then
+      return
+    else
+      if (( BATTERY_PERCENTAGE < 20 )); then
+        color=$warning_value_color
+      else
+        color=$value_color
+      fi
+      echo "BATTERY $label_color$icon_battery $color$BATTERY_PERCENTAGE%$spacer$reset"
+    fi
+
+    sleep $BATTERY_SLEEP
+  done
+}
+
+battery > $PANEL_FIFO &
+
+network() {
+  while true; do
+    NETWORK_NAME=$(iwgetid -r)
+
+    if [ ! -z "$NETWORK_NAME" ]; then
+      echo "NETWORK $label_color$icon_network $value_color$NETWORK_NAME$spacer$reset"
+    else
+      return
+    fi
+
+    sleep $NETWORK_SLEEP
+  done
+}
+
+network > $PANEL_FIFO &
+
 music() {
   while true; do
     NCMP=$(spotifycli --status)
     NUM_NCMP=$(echo $NCMP | head -1 | wc -c )
-    S_NCMP=$(echo $NCMP | head -1 | head -c 30)
+    # S_NCMP=$(echo $NCMP | head -1 | head -c 30)
     PLAYBACK_STATUS=$(spotifycli --playbackstatus)
 
     str=""
 
     if [[ "▶" = $PLAYBACK_STATUS ]]; then
-      if [[ $NUM_NCMP -le 31 ]]; then
+      # if [[ $NUM_NCMP -le 31 ]]; then
         str=$NCMP
-      else
-        str="$S_NCMP..."
-      fi
-      echo "MUSIC $value_color$str$spacer$reset"
+      # else
+        # str="$S_NCMP..."
+      # fi
+      echo "MUSIC $title_color$str$spacer$reset"
     else
       echo "MUSIC %{}"
     fi
@@ -73,13 +115,11 @@ get_updates(){
   while true; do
     P_updates=`apt list --upgradeable | wc -l`
     P_updates="$(($P_updates-1))"
-    # P_updates=$P_updates%%
-    # P_updates=$P_updates##
 
     if (( $P_updates > 4 )); then
       echo "UPDATE $label_color$icon_pacman $warning_value_color$P_updates$spacer$reset"
     else
-      echo "UPDATE ${}"
+      echo "UPDATE %{}"
     fi
     sleep $UPDATE_SLEEP
   done
@@ -101,7 +141,7 @@ datez()
 {
   while true; do
     local dates="$(date +'%Y.%m.%d %T')"
-    echo "DATE $value_color$dates$reset"
+    echo "DATE $title_color$dates$reset"
     sleep $DATE_SLEEP
   done
 }
@@ -114,22 +154,17 @@ volume()
 
   while true; do
     local vol=$(pulsemixer --get-volume | head -n1 | cut -d " " -f1)
+    local mute=$(pulsemixer --get-mute)
 
-    # if (( vol > 100 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # elif (( vol == 0 )); then
-      # echo "VOLUME $icon_vol_mute $vol% "
-    # elif (( vol > 70 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # elif (( vol > 55 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # elif (( vol > 10 )); then
-      # echo "VOLUME $icon_vol $vol% "
-    # else
-      # echo "VOLUME $icon_vol $vol% "
-    # fi
+    if (( mute == 1 )); then
+      value="${warning_value_color}MUTE"
+    elif (( vol > 100 )); then
+      value="$warning_value_color$vol%"
+    else
+      value="$value_color$vol%"
+    fi
 
-    echo "VOLUME $label_color$icon_vol $value_color$vol%$spacer$reset"
+    echo "VOLUME $label_color$icon_vol $value$spacer$reset"
 
     sleep $VOLUME_SLEEP
   done
@@ -153,7 +188,7 @@ title()
   done
 }
 
-title > $PANEL_FIFO &
+# title > $PANEL_FIFO &
 
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
 WIDTH=$res_w # bar width
@@ -178,6 +213,12 @@ while read -r line; do
     MUSIC*)
       fn_music="${line#MUSIC }"
       ;;
+    BATTERY*)
+      fn_battery="${line#BATTERY }"
+      ;;
+    NETWORK*)
+      fn_network="${line#NETWORK }"
+      ;;
     UPDATE*)
       fn_update="${line#UPDATE }"
       ;;
@@ -195,10 +236,10 @@ while read -r line; do
       ;;
   esac
 
-  left="$fn_work  $fn_win"
-  right="$fn_update$fn_music$fn_space$fn_mem$fn_cpu$fn_vol$fn_date  "
+  left="$fn_work  $fn_music"
+  right="$fn_update$fn_space$fn_mem$fn_cpu$fn_network$fn_vol$fn_battery$fn_date  "
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |
-  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -d -u 2 |
+  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -u 2 |
   sh > /dev/null

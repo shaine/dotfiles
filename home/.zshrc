@@ -1,4 +1,3 @@
-# if [ -f ~/.cache/wal/sequences ] ; then
   # (cat ~/.cache/wal/sequences &)
   # clear
 # fi
@@ -22,9 +21,9 @@ plugins=(git vi-mode brew zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+export GO111MODULE=auto
 export GOPATH=$HOME/go
 
-# Customize to your needs...
 export PATH=$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.local/bin:$HOME/.rbenv/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
 
 export FZF_DEFAULT_COMMAND='ag --follow --ignore .fzf --ignore .dropbox-dist --ignore Pictures --ignore .kube --ignore Books --ignore Adium --ignore .npm --ignore .oh-my-zsh --ignore .minecraft --ignore .nvm --ignore .omz-custom --ignore minecraft --ignore .dropbox --ignore .proxyman --ignore .local --ignore .java --ignore Dropbox --ignore snap --ignore www --ignore Photos\ Library.photoslibrary --ignore ruby-advisory-db --ignore .mix --hidden --ignore .node-gyp --ignore Music --ignore Library --ignore .ivy2 --ignore .config/nvim --ignore .hex --ignore .rbenv --ignore .zoom --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache -g ""'
@@ -53,6 +52,9 @@ tm() {
   if [[ -z $* ]]; then
     tmux ls;
   else
+    tmux new-session -d -s side_top > /dev/null
+    tmux new-session -d -s side_middle > /dev/null
+    tmux new-session -d -s side_bottom > /dev/null
     tmux new-session -d -s $* > /dev/null
 
     # If the session is a "side" session, then don't bind connection triggers

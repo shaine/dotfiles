@@ -176,16 +176,16 @@ gaps inner 30
 gaps outer 0
 
 # Execs
+# set $wallpaper_path $HOME/Pictures/BGs/wallpaper-1005266.png
 set $wallpaper_path $HOME/.local/wallpaper.jpg
 set $run_lemonbar $HOME/.config/lemonbar/run_lemonbar.sh
-exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network &>> $HOME/mount.log"
-exec_always --no-startup-id wal --backend colorz -i $(readlink -f $wallpaper_path) -o $run_lemonbar; killall dunst; dunst &
+exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network"
+exec_always --no-startup-id wal --backend colorz -i $(readlink -f $wallpaper_path) -o $run_lemonbar; killall dunst; dunst
 # exec --no-startup-id feh --bg-scale $wallpaper_path
-exec --no-startup-id betterlockscreen -u $wallpaper_path -b 1
-exec --no-startup-id xbindkeys
+exec_always --no-startup-id betterlockscreen -u $wallpaper_path -b 1
+# exec --no-startup-id xbindkeys
 exec_always --no-startup-id compton
-#exec --no-startup-id ~/.dropbox-dist/dropboxd
-#exec --no-startup-id stalonetray
+# exec --no-startup-id stalonetray
 exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift

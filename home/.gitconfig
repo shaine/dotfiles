@@ -11,6 +11,7 @@
 	logallrefupdates = true
 	ignorecase = true
 	precomposeunicode = true
+	pager = less -r
 [color]
     ui = auto
 [merge]

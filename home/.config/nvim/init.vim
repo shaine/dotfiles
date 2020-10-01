@@ -54,6 +54,13 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
+augroup markdown
+    autocmd!
+    autocmd BufNewFile,BufReadPost *.md setlocal tw=120
+    autocmd BufNewFile,BufReadPost *.md setlocal fo+=t
+    autocmd BufNewFile,BufReadPost *.md setlocal fo-=l
+augroup
+
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")

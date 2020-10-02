@@ -129,8 +129,8 @@ bindsym $mod+backslash exec --no-startup-id $HOME/.config/i3/special_characters
 bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
 
 # media keys
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 60 -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 60 -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 60 -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 60 -dec 5
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle

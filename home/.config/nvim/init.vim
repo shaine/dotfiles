@@ -57,9 +57,12 @@ au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
 augroup markdown
     autocmd!
-    autocmd BufNewFile,BufReadPost *.md setlocal tw=120
-    autocmd BufNewFile,BufReadPost *.md setlocal fo+=t
-    autocmd BufNewFile,BufReadPost *.md setlocal fo-=l
+    autocmd FileType markdown
+          \ set tw=120 |
+          \ set formatoptions-=q |
+          \ set fo-=l |
+          \ set fo+=t |
+          \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
 augroup
 
 function! <SID>StripTrailingWhitespaces()

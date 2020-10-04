@@ -41,6 +41,9 @@ export EDITOR="vim"
 # Fix urxvt over SSH brokeness
 export TERM='xterm-256color'
 
+# Fix other-writeable directory colors
+export LS_COLORS=$LS_COLORS:'ow=1;36'
+
 function gitwatch() {
     watch -c -t -n 1 "basename $PWD | head -c 7 | figlet; echo ''; git branch; echo ''; git st"
 }

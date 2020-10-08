@@ -1,6 +1,6 @@
 # include "/home/shaine/.cache/wal/colors.Xresources"
 URxvt.scrollBar: false
-URxvt.font: 6x13
+URxvt.font: xft:Terminus (TTF):size=9
 URXvt.boldFont: 6x13B
 *internalBorder: 40
 URxvt.lineSpace: 1

@@ -195,8 +195,8 @@ WIDTH=$res_w # bar width
 HEIGHT=18 # bar height
 XOFF=0 # x offset
 YOFF=0 # y offset
-FONT1="6x13"
-ICONFONT="FontAwesome:size=9"
+# FONT1="6x13"
+FONT1="Terminus (TTF):size=9"
 GEOMETRY="${WIDTH}x${HEIGHT}+${XOFF}+${YOFF}"
 
 while read -r line; do
@@ -241,5 +241,5 @@ while read -r line; do
 
   printf "%s\n" "$left%{r}$right"
 done < $PANEL_FIFO |
-  lemonbar -f $FONT1 -g $GEOMETRY -B $BBG -u 2 |
+  lemonbar -f "$FONT1" -g $GEOMETRY -B $BBG -u 2 |
   sh > /dev/null

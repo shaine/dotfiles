@@ -55,15 +55,12 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
-augroup markdown
-    autocmd!
-    autocmd FileType markdown
-          \ set tw=120 |
-          \ set formatoptions-=q |
-          \ set fo-=l |
-          \ set fo+=t |
-          \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
-augroup
+autocmd FileType markdown
+      \ set tw=120 |
+      \ set formatoptions-=q |
+      \ set fo-=l |
+      \ set fo+=t |
+      \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -412,6 +409,8 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " Yankring
+" fix for yankring and neovim
+let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '~/.config/nvim/tmp/yank'
 " Yank text to the OS X clipboard
 noremap <leader>y "*y

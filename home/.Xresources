@@ -1,11 +1,11 @@
 # include "/home/shaine/.cache/wal/colors.Xresources"
 URxvt.scrollBar: false
-URxvt.font: xft:Terminus (TTF):size=9
-URXvt.boldFont: 6x13B
+URxvt.font: terminus-12
+! URXvt.boldFont: 6x13B
 *internalBorder: 40
 URxvt.lineSpace: 1
 *selectToClipboard: true
-URxvt.perl-ext-common: ...,font-size,clipboard
+URxvt.perl-ext-common: font-size,clipboard
 URxvt.clipboard.copycmd:  xclip -i -selection clipboard
 URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 URxvt.keysym.M-c:   perl:clipboard:copy

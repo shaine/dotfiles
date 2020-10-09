@@ -45,12 +45,3 @@ i3-msg workspace 4
 
 spotify &
 
-sleep 10
-
-i3-msg workspace 5
-
-pritunl-client-electron
-
-sleep 10
-
-i3-msg workspace 1

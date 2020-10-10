@@ -15,6 +15,7 @@ Plug 'dylanaraps/wal'
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
+Plug 'mboughaba/i3config.vim'
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring

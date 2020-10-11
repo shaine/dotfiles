@@ -158,6 +158,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+w exec --no-startup-id $HOME/.config/i3/wallpaper.sh
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -175,17 +177,14 @@ gaps inner 30
 gaps outer 0
 
 # Execs
-set $wallpaper_path $(ls $HOME/.config/bg/* | shuf -n 1)
-set $wal_backend $(cat $HOME/.config/bg/.wal-backend)
 exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network"
-exec_always --no-startup-id wal -c; wal --backend $wal_backend -i $wallpaper_path -o $HOME/.config/lemonbar/run_lemonbar.sh; betterlockscreen -u $wallpaper_path -b 1; killall dunst; dunst
+exec --no-startup-id $HOME/.config/i3/wallpaper.sh
 exec_always --no-startup-id compton
-exec_always --no-startup-id ~/.config/i3/gnome-keyring.sh
+exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift
 exec --no-startup-id $HOME/.config/i3/lock.sh
 exec --no-startup-id setxkbmap -option compose:caps
 
-# exec --no-startup-id feh --bg-scale $wallpaper_path
 # exec --no-startup-id xbindkeys
 # exec --no-startup-id stalonetray

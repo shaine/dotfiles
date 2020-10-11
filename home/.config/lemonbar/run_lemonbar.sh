@@ -196,7 +196,7 @@ HEIGHT=18 # bar height
 XOFF=0 # x offset
 YOFF=0 # y offset
 # FONT1="6x13"
-FONT1="Terminus (TTF):size=9"
+FONT1="terminus-12"
 GEOMETRY="${WIDTH}x${HEIGHT}+${XOFF}+${YOFF}"
 
 while read -r line; do

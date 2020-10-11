@@ -56,21 +56,21 @@ tm() {
   if [[ -z $* ]]; then
     tmux ls;
   else
-    tmux new-session -d -s side_top > /dev/null
-    tmux new-session -d -s side_middle > /dev/null
-    tmux new-session -d -s side_bottom > /dev/null
+    # tmux new-session -d -s side_top > /dev/null
+    # tmux new-session -d -s side_middle > /dev/null
+    # tmux new-session -d -s side_bottom > /dev/null
     tmux new-session -d -s $* > /dev/null
 
     # If the session is a "side" session, then don't bind connection triggers
-    if [[ $1 != side* ]]; then
-      change_command="SESSION=$1 ~/.tmux/change_session.sh"
-      hook_command="run '$change_command'"
+    # if [[ $1 != side* ]]; then
+      # change_command="SESSION=$1 ~/.tmux/change_session.sh"
+      # hook_command="run '$change_command'"
 
-      tmux set-hook -t $1 client-attached $hook_command
-      tmux set-hook -t $1 client-session-changed $hook_command
+      # tmux set-hook -t $1 client-attached $hook_command
+      # tmux set-hook -t $1 client-session-changed $hook_command
 
-      eval $change_command
-    fi
+      # eval $change_command
+    # fi
 
     tmux attach-session -d -t $*
   fi

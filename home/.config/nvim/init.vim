@@ -56,12 +56,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
+" autocmd FileType markdown
+      " \ set tw=120 |
+      " \ set formatoptions-=q |
+      " \ set fo-=l |
+      " \ set fo+=t |
+      " \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+ |
+      " \ set wm=4
 autocmd FileType markdown
-      \ set tw=120 |
-      \ set formatoptions-=q |
-      \ set fo-=l |
-      \ set fo+=t |
-      \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
+      \ set wrap linebreak
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")

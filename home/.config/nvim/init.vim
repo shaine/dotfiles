@@ -13,15 +13,17 @@ Plug 'dylanaraps/wal'
 " Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot',
 Plug 'fatih/vim-go'
 Plug 'mboughaba/i3config.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
 Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
-Plug 'chmp/mdnav' " Navigate markdown links
+" Plug 'chmp/mdnav' " Navigate markdown links
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
@@ -64,7 +66,10 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes -
       " \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+ |
       " \ set wm=4
 autocmd FileType markdown
-      \ set wrap linebreak
+      \ set wrap linebreak |
+      \ set autoread |
+      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
+      \ DelimitMateOff
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -74,6 +79,10 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
 let mapleader = ","
+
+function! InsertDate()
+      put =strftime('%Y-%m-%d %H:%M')
+endfun
 
 augroup nvim_term
   au!
@@ -411,6 +420,23 @@ let g:space_no_jump = 1
 nmap <Tab> <Plug>SmartspaceNext
 nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
+
+" vimwiki
+function! s:insert_id()
+      if exists("g:zettel_current_id")
+            return g:zettel_current_id
+      else
+            return "unnamed"
+      endif
+endfunction
+
+" Vimwiki and vim-zettel
+
+let g:vimwiki_auto_header = 1
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_list = [{'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'}, {'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'}]
+let g:zettel_options = [{'front_matter' : [['tags', '']]}]
+let g:zettel_format = '%Y%m%d-%H%M-%title'
 
 " Yankring
 " fix for yankring and neovim

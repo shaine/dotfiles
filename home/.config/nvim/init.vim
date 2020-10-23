@@ -425,13 +425,17 @@ function! s:insert_id()
             return "unnamed"
       endif
 endfunction
-
-" Vimwiki and vim-zettel
-
 function! InsertDate()
       put =strftime('%Y-%m-%d %H:%M')
 endfun
+" ZettelCapture + add wiki header first
+command! ZC :norm gg0lly$O---title: "date: jj:call InsertDate()k,Jo---jj:w:ZettelCapture
+
 nmap <Leader>zd :call InsertDate()<cr>
+nmap <Leader>zc :ZC<cr>
+nmap <Leader>zn :ZettelNew<space>
+vmap zn y:ZettelNew "
+
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_list = [{'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'}, {'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'}]
@@ -446,6 +450,7 @@ let g:yankring_history_dir = '~/.config/nvim/tmp/yank'
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>T :Tags<CR>
 " Paste at the end of the line
 nnoremap <Leader>P ma$p`a
 

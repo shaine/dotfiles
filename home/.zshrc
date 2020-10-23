@@ -126,6 +126,18 @@ eval "$(rbenv init -)"
 # Enable IEx history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+slugify() {
+  echo "$*" | iconv -t ascii//TRANSLIT | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z
+}
+
+inbox_file() {
+  filename=$(basename -- "$1")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+  cp --no-preserve=mode,ownership $1 "$HOME/Documents/notes/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
+  rm $1
+}
+
 # Ensure SSH Agent is running
 # if [ -f ~/.ssh/agent.env ] ; then
     # . ~/.ssh/agent.env > /dev/null

@@ -425,6 +425,8 @@ function! s:insert_id()
             return "unnamed"
       endif
 endfunction
+
+" Vimwiki and vim-zettel
 function! InsertDate()
       put =strftime('%Y-%m-%d %H:%M')
 endfun

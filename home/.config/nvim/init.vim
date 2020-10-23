@@ -80,10 +80,6 @@ endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
 let mapleader = ","
 
-function! InsertDate()
-      put =strftime('%Y-%m-%d %H:%M')
-endfun
-
 augroup nvim_term
   au!
   au TermOpen * startinsert
@@ -431,6 +427,11 @@ function! s:insert_id()
 endfunction
 
 " Vimwiki and vim-zettel
+function! InsertDate()
+      put =strftime('%Y-%m-%d %H:%M')
+endfun
+nmap <Leader>zd :call InsertDate()<cr>
+let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_list = [{'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'}, {'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'}]
 let g:zettel_options = [{'front_matter' : [['tags', '']]}]

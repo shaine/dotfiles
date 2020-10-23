@@ -36,6 +36,7 @@ sub on_start {
 
 	$self->{copy_cmd} = $self->x_resource('clipboard.copycmd') || 'xsel -ib';
 	$self->{paste_cmd} = $self->x_resource('clipboard.pastecmd') || 'xsel -ob';
+	$self->{paste_sel_cmd} = $self->x_resource('clipboard.pasteselcmd') || 'xsel -ob';
 
 	if ($self->x_resource('clipboard.autocopy') eq 'true') {
 		$self->enable(sel_grab => \&sel_grab);
@@ -72,6 +73,19 @@ sub paste {
 	()
 }
 
+sub paste_sel {
+	my ($self) = @_;
+
+	my $str = `$self->{paste_sel_cmd}`;
+	if ($? == 0) {
+		$self->tt_paste($str);
+	} else {
+		print STDERR "error running '$self->{paste_sel_cmd}': $!\n";
+	}
+
+	()
+}
+
 sub paste_escaped {
 	my ($self) = @_;
 
@@ -93,6 +107,8 @@ sub on_user_command {
 	   $self->copy;
 	} elsif ($cmd eq "clipboard:paste") {
 	   $self->paste;
+	} elsif ($cmd eq "clipboard:paste_sel") {
+	   $self->paste_sel;
 	} elsif ($cmd eq "clipboard:paste_escaped") {
 	   $self->paste_escaped;
 	}

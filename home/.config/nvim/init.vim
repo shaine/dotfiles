@@ -431,8 +431,6 @@ function! s:insert_id()
 endfunction
 
 " Vimwiki and vim-zettel
-
-let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_list = [{'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'}, {'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'}]
 let g:zettel_options = [{'front_matter' : [['tags', '']]}]

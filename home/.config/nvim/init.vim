@@ -432,9 +432,14 @@ function! InsertDate()
 endfun
 " ZettelCapture + add wiki header first
 command! ZC :norm gg0lly$O---title: "date: jj:call InsertDate()k,Jo---jj:w:ZettelCapture
+" Fix chrome markdown clipper links
+command! ZL :norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g
 
+nmap <Leader> zi :ZettelInbox<cr>
+nmap <Leader> zs :ZettelOpen<cr>
 nmap <Leader>zd :call InsertDate()<cr>
-nmap <Leader>zc :ZC<cr>
+nmap <Leader>zc :ZL<cr>:ZC<cr>
+nmap <Leader>zl :ZL<cr>
 nmap <Leader>zn :ZettelNew<space>
 vmap zn y:ZettelNew "
 
@@ -443,6 +448,12 @@ let g:vimwiki_hl_headers = 1
 let g:vimwiki_list = [{'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'}, {'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'}]
 let g:zettel_options = [{'front_matter' : [['tags', '']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
+let g:vimwiki_key_mappings =
+\ {
+\   'table_mappings': 0
+\ }
+" Make tab into tag autocompletion
+imap <Tab> <c-X><c-O>
 
 " Yankring
 " fix for yankring and neovim

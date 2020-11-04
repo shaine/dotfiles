@@ -17,7 +17,7 @@ Plug 'sheerun/vim-polyglot',
 Plug 'fatih/vim-go'
 Plug 'mboughaba/i3config.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vim-zettel'
+Plug 'shaine/vim-zettel'
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
@@ -58,13 +58,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
-" autocmd FileType markdown
-      " \ set tw=120 |
-      " \ set formatoptions-=q |
-      " \ set fo-=l |
-      " \ set fo+=t |
-      " \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+ |
-      " \ set wm=4
 autocmd FileType markdown
       \ set wrap linebreak |
       \ set autoread |
@@ -426,6 +419,14 @@ function! s:insert_id()
       endif
 endfunction
 
+function! VimwikiLinkHandler(link)
+      if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
+            call vimwiki#base#open_link(':e ', 'file:'.a:link)
+            return 1
+      endif
+      return 0
+endfunction
+
 " Vimwiki and vim-zettel
 function! InsertDate()
       put =strftime('%Y-%m-%d %H:%M')
@@ -445,7 +446,13 @@ vmap zn y:ZettelNew "
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
-let g:vimwiki_list = [{'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'}, {'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'}]
+let g:vimwiki_list = [{
+\'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+\}, {
+\'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+\}, {
+\'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+\}]
 let g:zettel_options = [{'front_matter' : [['tags', '']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
 let g:vimwiki_key_mappings =

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Obsidian
+GenericName=Obsidian
+Exec=/home/shaine/.bin/obsidian.appimage
+NoDisplay=false
+Icon=obsidian
+MimeType=x-scheme-handler/obsidian;text/markdown

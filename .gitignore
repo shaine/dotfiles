@@ -13,3 +13,5 @@ home/.config/nvim/tmp/*
 home/.config/nvim/.netrwhist
 home/.config/nvim/plugged/*
 home/.config/nvim/bundle/*
+*.AppImage
+*.appimage

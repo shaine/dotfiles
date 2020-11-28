@@ -61,7 +61,11 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes -
 autocmd FileType markdown
       \ set wrap linebreak |
       \ set autoread |
-      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
+      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+
+" Sort nerdtree by time when in the notes directory, and change other annoying options
+autocmd VimEnter *
+      \ if getcwd() =~ "Documents/notes" | let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] | endif |
       \ DelimitMateOff |
       \ map <Leader>f :ZettelOpen<CR>
 
@@ -400,6 +404,13 @@ map <Leader>u :GundoToggle<CR>
 
 " NERDTree
 nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+" Auto close when only window remaining
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Paste toggle
 nnoremap <Leader>v :set invpaste paste?<CR>

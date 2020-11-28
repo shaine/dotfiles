@@ -138,6 +138,11 @@ inbox_file() {
   rm $1
 }
 
+inbox_md() {
+  vim -c "ZL" -c "ZC" -c "q" $1
+  rm $1
+}
+
 # Ensure SSH Agent is running
 # if [ -f ~/.ssh/agent.env ] ; then
     # . ~/.ssh/agent.env > /dev/null

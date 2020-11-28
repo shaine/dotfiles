@@ -62,7 +62,8 @@ autocmd FileType markdown
       \ set wrap linebreak |
       \ set autoread |
       \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
-      \ DelimitMateOff
+      \ DelimitMateOff |
+      \ map <Leader>f :ZettelOpen<CR>
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -436,13 +437,14 @@ command! ZC :norm gg0lly$O---title: "date: jj:call InsertDate()k,Jo---jj:w
 " Fix chrome markdown clipper links
 command! ZL :norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g
 
-nmap <Leader> zi :ZettelInbox<cr>
-nmap <Leader> zs :ZettelOpen<cr>
-nmap <Leader>zd :call InsertDate()<cr>
+nmap <Leader>zi :ZettelInbox<cr>
+nmap <Leader>zo :ZettelOpen<cr>
+" nmap <Leader>zd :call InsertDate()<cr>
+nmap <Leader>zd :VimwikiDiaryGenerateLinks<cr>
 nmap <Leader>zc :ZL<cr>:ZC<cr>
 nmap <Leader>zl :ZL<cr>
 nmap <Leader>zn :ZettelNew<space>
-vmap zn y:ZettelNew "
+" vmap zn y:ZettelNew "
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1

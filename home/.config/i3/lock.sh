@@ -6,7 +6,7 @@ killall xidlehook
 xidlehook \
   `# Don't lock when there's a fullscreen application` \
   --not-when-fullscreen \
-  --timer 600 \
+  --timer 3600 \
     'betterlockscreen --lock dimblur' \
     '' \
   &
@@ -16,7 +16,7 @@ xidlehook \
   --not-when-fullscreen \
   `# Don't suspend when there's audio playing` \
   --not-when-audio \
-  --timer 1800 \
+  --timer 5400 \
     'systemctl suspend' \
     '' \
   &

@@ -61,13 +61,13 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes -
 autocmd FileType markdown
       \ set wrap linebreak |
       \ set autoread |
-      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
+      \ DelimitMateOff
 
 " Sort nerdtree by time when in the notes directory, and change other annoying options
 autocmd VimEnter *
-      \ if getcwd() =~ "Documents/notes" | let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] | endif |
-      \ DelimitMateOff |
-      \ map <Leader>f :ZettelOpen<CR>
+      \ map <Leader>f :ZettelOpen<CR> |
+      \ if getcwd() =~ "Documents/notes" | let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] | endif
 
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -418,6 +418,7 @@ nnoremap <Leader>v :set invpaste paste?<CR>
 " Space.vim related
 let g:space_no_second_prev_mapping = 1
 let g:space_no_jump = 1
+let g:space_no_section = 1
 nmap <Tab> <Plug>SmartspaceNext
 nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
@@ -439,6 +440,36 @@ function! VimwikiLinkHandler(link)
       return 0
 endfunction
 
+function! ZettelVisualLink(line,...)
+  silent! normal! gvx
+  let filename = substitute(a:line, ":[0-9]\*:[0-9]\*:.\*$", "", "")
+  let title = @"
+  " insert the filename and title into the current buffer
+  let wikiname = s:get_wiki_file(filename)
+  " if the title is empty, the link will be hidden by vimwiki, use the filename
+  " instead
+  if empty(title)
+    let title = wikiname
+  end
+  let link = zettel#vimwiki#format_search_link(wikiname, title)
+  let line = getline('.')
+  " replace the [[ with selected link and title
+  let caret = col('.')
+  let length = strlen(title)
+  call setline('.', strpart(line, 0, caret - 1) . link .  strpart(line, caret - 1))
+  call cursor(line('.'), caret + len(link) - 1)
+endfunction
+
+function! s:get_wiki_file(filename)
+   let fileparts = split(a:filename, '\V.')
+   return join(fileparts[0:-2],".")
+endfunction
+
+vmap <leader>[ <Plug>Markdown_MoveToPreviousHeader
+vmap g <Plug>VimwikiGoToPrevHeader
+vmap [[ :ZettelVisualSearch<cr>
+command! -range -bang -nargs=* ZettelVisualSearch call zettel#fzf#sink_onefile(<q-args>, 'ZettelVisualLink')
+
 " Vimwiki and vim-zettel
 function! InsertDate()
       put =strftime('%Y-%m-%d %H:%M')
@@ -450,24 +481,26 @@ command! ZL :norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extensi
 
 nmap <Leader>zi :ZettelInbox<cr>
 nmap <Leader>zo :ZettelOpen<cr>
-" nmap <Leader>zd :call InsertDate()<cr>
 nmap <Leader>zd :VimwikiDiaryGenerateLinks<cr>
 nmap <Leader>zc :ZL<cr>:ZC<cr>
-nmap <Leader>zl :ZL<cr>
 nmap <Leader>zn :ZettelNew<space>
+" nmap <Leader>zd :call InsertDate()<cr>
+" nmap <Leader>zl :ZL<cr>
 " vmap zn y:ZettelNew "
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
+let g:vimwiki_create_link = 0
 let g:vimwiki_list = [{
-\'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+  \'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
 \}, {
-\'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+  \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
 \}, {
-\'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+  \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
 \}]
 let g:zettel_options = [{'front_matter' : [['tags', '']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
+let g:zettel_link_format="[%title](%link)"
 let g:vimwiki_key_mappings =
 \ {
 \   'all_maps': 1,

@@ -2,10 +2,10 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'shaine/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rakr/vim-one'
+" Plug 'rakr/vim-one'
 Plug 'dylanaraps/ryuuko'
-Plug 'dylanaraps/crayon'
-Plug 'dylanaraps/wal'
+" Plug 'dylanaraps/crayon'
+" Plug 'dylanaraps/wal'
 
 " Languages
 " Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
@@ -14,7 +14,7 @@ Plug 'dylanaraps/wal'
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot',
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'mboughaba/i3config.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'shaine/vim-zettel'
@@ -22,16 +22,15 @@ Plug 'shaine/vim-zettel'
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
-Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
-" Plug 'chmp/mdnav' " Navigate markdown links
+" Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
-Plug 'mattn/webapi-vim' " For gist-vim
-Plug 'mattn/gist-vim' " Publish to github gists
+" Plug 'mattn/webapi-vim' " For gist-vim
+" Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
 Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
-Plug 'sjl/gundo.vim', " Undo UI
+" Plug 'sjl/gundo.vim', " Undo UI
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
@@ -58,22 +57,22 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
-autocmd FileType markdown
-      \ set wrap linebreak |
+autocmd FileType markdown set wrap linebreak |
       \ set autoread |
       \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
-      \ DelimitMateOff
+    \ DelimitMateOff
 
 " Sort nerdtree by time when in the notes directory, and change other annoying options
-autocmd VimEnter *
-      \ map <Leader>f :ZettelOpen<CR> |
-      \ if getcwd() =~ "Documents/notes" | let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] | endif
+autocmd VimEnter * if getcwd() =~ "Documents/notes" |
+      \ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
+      \ map <Leader>f :ZettelOpen title:<CR> |
+      \ endif
 
 function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces() " Remove trailing space on save
 let mapleader = ","
@@ -208,85 +207,85 @@ aug END
 " Awesome arrow bindings
 " ------------------
 function! DelEmptyLineAbove()
-    if line(".") == 1
-        return
-    endif
-    let l:line = getline(line(".") - 1)
-    if l:line =~ '^\s*$'
-        let l:colsave = col(".")
-        .-1d
-        silent normal! <C-y>
-        call cursor(line("."), l:colsave)
-    endif
+  if line(".") == 1
+    return
+  endif
+  let l:line = getline(line(".") - 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .-1d
+    silent normal! <C-y>
+    call cursor(line("."), l:colsave)
+  endif
 endfunction
 
 function! AddEmptyLineAbove()
-    let l:scrolloffsave = &scrolloff
-    " Avoid jerky scrolling with ^E at top of window
-    set scrolloff=0
-    call append(line(".") - 1, "")
-    if winline() != winheight(0)
-        silent normal! <C-e>
-    endif
-    let &scrolloff = l:scrolloffsave
+  let l:scrolloffsave = &scrolloff
+  " Avoid jerky scrolling with ^E at top of window
+  set scrolloff=0
+  call append(line(".") - 1, "")
+  if winline() != winheight(0)
+    silent normal! <C-e>
+  endif
+  let &scrolloff = l:scrolloffsave
 endfunction
 
 function! DelEmptyLineBelow()
-    if line(".") == line("$")
-        return
-    endif
-    let l:line = getline(line(".") + 1)
-    if l:line =~ '^\s*$'
-        let l:colsave = col(".")
-        .+1d
-        ''
-        call cursor(line("."), l:colsave)
-    endif
+  if line(".") == line("$")
+    return
+  endif
+  let l:line = getline(line(".") + 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .+1d
+    ''
+    call cursor(line("."), l:colsave)
+  endif
 endfunction
 
 function! AddEmptyLineBelow()
-    call append(line("."), "")
+  call append(line("."), "")
 endfunction
 
 " Arrow key remapping: Up/Dn = move line up/dn; Left/Right = indent/unindent
 function! SetArrowKeysAsTextShifters()
-    " normal mode
-    nmap <silent> <Left> <<
-    nmap <silent> <Right> >>
-    nnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>
-    nnoremap <silent> <Down>    <Esc>:call AddEmptyLineAbove()<CR>
-    nnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>
-    nnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>
+  " normal mode
+  nmap <silent> <Left> <<
+  nmap <silent> <Right> >>
+  nnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>
+  nnoremap <silent> <Down>    <Esc>:call AddEmptyLineAbove()<CR>
+  nnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>
+  nnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>
 
-    " visual mode
-    vmap <silent> <Left> <
-    vmap <silent> <Right> >
-    vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
-    vnoremap <silent> <Down>    <Esc>:call AddEmptyLineAbove()<CR>gv
-    vnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
-    vnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>gv
+  " visual mode
+  vmap <silent> <Left> <
+  vmap <silent> <Right> >
+  vnoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>gv
+  vnoremap <silent> <Down>    <Esc>:call AddEmptyLineAbove()<CR>gv
+  vnoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>gv
+  vnoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>gv
 
-    " insert mode
-    imap <silent> <Left> <C-D>
-    imap <silent> <Right> <C-T>
-    inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
-    inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
-    inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
-    inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+  " insert mode
+  imap <silent> <Left> <C-D>
+  imap <silent> <Right> <C-T>
+  inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
+  inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+  inoremap <silent> <D-Up> <Esc>:call DelEmptyLineBelow()<CR>a
+  inoremap <silent> <D-Down> <Esc>:call AddEmptyLineBelow()<CR>a
 
-    " disable modified versions we are not using
-    " nnoremap    <S-Up>         <NOP>
-    " nnoremap    <S-Down>     <NOP>
-    " nnoremap    <S-Left>     <NOP>
-    " nnoremap    <S-Right>    <NOP>
-    " vnoremap    <S-Up>         <NOP>
-    " vnoremap    <S-Down>     <NOP>
-    " vnoremap    <S-Left>     <NOP>
-    " vnoremap    <S-Right>    <NOP>
-    " inoremap    <S-Up>         <NOP>
-    " inoremap    <S-Down>     <NOP>
-    " inoremap    <S-Left>     <NOP>
-    " inoremap    <S-Right>    <NOP>
+  " disable modified versions we are not using
+  " nnoremap    <S-Up>         <NOP>
+  " nnoremap    <S-Down>     <NOP>
+  " nnoremap    <S-Left>     <NOP>
+  " nnoremap    <S-Right>    <NOP>
+  " vnoremap    <S-Up>         <NOP>
+  " vnoremap    <S-Down>     <NOP>
+  " vnoremap    <S-Left>     <NOP>
+  " vnoremap    <S-Right>    <NOP>
+  " inoremap    <S-Up>         <NOP>
+  " inoremap    <S-Down>     <NOP>
+  " inoremap    <S-Left>     <NOP>
+  " inoremap    <S-Right>    <NOP>
 endfunction
 call SetArrowKeysAsTextShifters()
 
@@ -319,25 +318,25 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#fnametruncate = 15
 let g:airline_mode_map = {
-  \ '__' : '------',
-  \ 'c'  : 'C',
-  \ 'i'  : 'I',
-  \ 'ic' : 'IC',
-  \ 'ix' : 'IC',
-  \ 'multi' : 'M',
-  \ 'n'  : 'N',
-  \ 'ni' : 'I',
-  \ 'no' : 'OP PENDING',
-  \ 'R'  : 'R',
-  \ 'Rv' : 'VR',
-  \ 's'  : 'S',
-  \ 'S'  : 'SL',
-  \ '' : 'SB',
-  \ 't'  : 'T',
-  \ 'v'  : 'V',
-  \ 'V'  : 'VL',
-  \ '' : 'VB',
-  \ }
+      \ '__' : '------',
+      \ 'c'  : 'C',
+      \ 'i'  : 'I',
+      \ 'ic' : 'IC',
+      \ 'ix' : 'IC',
+      \ 'multi' : 'M',
+      \ 'n'  : 'N',
+      \ 'ni' : 'I',
+      \ 'no' : 'OP PENDING',
+      \ 'R'  : 'R',
+      \ 'Rv' : 'VR',
+      \ 's'  : 'S',
+      \ 'S'  : 'SL',
+      \ '' : 'SB',
+      \ 't'  : 'T',
+      \ 'v'  : 'V',
+      \ 'V'  : 'VL',
+      \ '' : 'VB',
+      \ }
 
 let g:airline_section_y = ''
 let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr', ':%3v'])
@@ -379,16 +378,16 @@ let g:ale_linters_ignore = ['reek']
 map <Leader>f :FZF<CR>
 nnoremap <silent> <leader>G :Ag <C-R><C-W><CR>
 function! s:build_quickfix_list(lines)
-    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-    copen
-    cc
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
 endfunction
 
 let g:fzf_action = {
-    \ 'ctrl-q': function('s:build_quickfix_list'),
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-x': 'split',
-    \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-q': function('s:build_quickfix_list'),
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
@@ -425,19 +424,19 @@ nnoremap <Space> a_<Esc>r
 
 " vimwiki
 function! s:insert_id()
-      if exists("g:zettel_current_id")
-            return g:zettel_current_id
-      else
-            return "unnamed"
-      endif
+  if exists("g:zettel_current_id")
+    return g:zettel_current_id
+  else
+    return "unnamed"
+  endif
 endfunction
 
 function! VimwikiLinkHandler(link)
-      if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
-            call vimwiki#base#open_link(':e ', 'file:'.a:link)
-            return 1
-      endif
-      return 0
+  if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
+    call vimwiki#base#open_link(':e ', 'file:'.a:link)
+    return 1
+  endif
+  return 0
 endfunction
 
 function! ZettelVisualLink(line,...)
@@ -461,29 +460,32 @@ function! ZettelVisualLink(line,...)
 endfunction
 
 function! s:get_wiki_file(filename)
-   let fileparts = split(a:filename, '\V.')
-   return join(fileparts[0:-2],".")
+  let fileparts = split(a:filename, '\V.')
+  return join(fileparts[0:-2],".")
 endfunction
 
 vmap <leader>[ <Plug>Markdown_MoveToPreviousHeader
-vmap g <Plug>VimwikiGoToPrevHeader
+vmap [\| <Plug>VimwikiGoToPrevHeader
 vmap [[ :ZettelVisualSearch<cr>
 command! -range -bang -nargs=* ZettelVisualSearch call zettel#fzf#sink_onefile(<q-args>, 'ZettelVisualLink')
 
 " Vimwiki and vim-zettel
 function! InsertDate()
-      put =strftime('%Y-%m-%d %H:%M')
+  put =strftime('%Y-%m-%d %H:%M')
 endfun
-" ZettelCapture + add wiki header first
-command! ZC :norm gg0lly$O---title: "date: jj:call InsertDate()k,Jo---jj:w:ZettelCapture
-" Fix chrome markdown clipper links
-command! ZL :norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g
+
+function! CaptureDownloadedMarkdown()
+  " ZettelCapture + add wiki header first
+  silent! normal! gg0lly$O---title: "date: jj:call InsertDate()k,Jo---jj:w:ZettelCapture
+  " Fix chrome markdown clipper links
+  silent! normal! G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g
+endfun
 
 nmap <Leader>zi :ZettelInbox<cr>
-nmap <Leader>zo :ZettelOpen<cr>
-nmap <Leader>zd :VimwikiDiaryGenerateLinks<cr>
-nmap <Leader>zc :ZL<cr>:ZC<cr>
+nmap <Leader>zc :call CaptureDownloadedMarkdown()
 nmap <Leader>zn :ZettelNew<space>
+" nmap <Leader>zd :VimwikiDiaryGenerateLinks<cr>
+" nmap <Leader>zo :ZettelOpen title:<cr>
 " nmap <Leader>zd :call InsertDate()<cr>
 " nmap <Leader>zl :ZL<cr>
 " vmap zn y:ZettelNew "
@@ -492,28 +494,28 @@ let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_create_link = 0
 let g:vimwiki_list = [{
-  \'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
-\}, {
-  \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
-\}, {
-  \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
-\}]
+      \'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
+      \}, {
+      \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+      \}, {
+      \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+      \}]
 let g:zettel_options = [{'front_matter' : [['tags', '']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
 let g:zettel_link_format="[%title](%link)"
 let g:vimwiki_key_mappings =
-\ {
-\   'all_maps': 1,
-\   'global': 1,
-\   'headers': 1,
-\   'text_objs': 1,
-\   'table_format': 0,
-\   'table_mappings': 0,
-\   'lists': 1,
-\   'links': 1,
-\   'html': 0,
-\   'mouse': 0,
-\ }
+      \ {
+      \   'all_maps': 1,
+      \   'global': 1,
+      \   'headers': 1,
+      \   'text_objs': 1,
+      \   'table_format': 0,
+      \   'table_mappings': 0,
+      \   'lists': 1,
+      \   'links': 1,
+      \   'html': 0,
+      \   'mouse': 0,
+      \ }
 " Make tab into tag autocompletion
 imap <Tab> <c-X><c-O>
 

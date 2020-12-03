@@ -62,6 +62,8 @@ autocmd FileType markdown set wrap linebreak |
       \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
     \ DelimitMateOff
 
+autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
+
 " Sort nerdtree by time when in the notes directory, and change other annoying options
 autocmd VimEnter * if getcwd() =~ "Documents/notes" |
       \ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
@@ -476,16 +478,16 @@ endfun
 
 function! CaptureDownloadedMarkdown()
   " ZettelCapture + add wiki header first
-  silent! normal! gg0lly$O---title: "date: jj:call InsertDate()k,Jo---jj:w:ZettelCapture
+  norm gg0lly$O---title: "date: :call InsertDate()k,Jo---:w
   " Fix chrome markdown clipper links
-  silent! normal! G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g
+  norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g:w
 endfun
 
 nmap <Leader>zi :ZettelInbox<cr>
 nmap <Leader>zc :call CaptureDownloadedMarkdown()
 nmap <Leader>zn :ZettelNew<space>
 " nmap <Leader>zd :VimwikiDiaryGenerateLinks<cr>
-" nmap <Leader>zo :ZettelOpen title:<cr>
+nmap <Leader>zo :ZettelOpen<cr>
 " nmap <Leader>zd :call InsertDate()<cr>
 " nmap <Leader>zl :ZL<cr>
 " vmap zn y:ZettelNew "
@@ -500,7 +502,7 @@ let g:vimwiki_list = [{
       \}, {
       \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
       \}]
-let g:zettel_options = [{'front_matter' : [['tags', '']]}]
+let g:zettel_options = [{'front_matter' : [['tags', ':to-write:to-revise:']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
 let g:zettel_link_format="[%title](%link)"
 let g:vimwiki_key_mappings =

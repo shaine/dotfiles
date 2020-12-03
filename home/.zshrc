@@ -134,13 +134,17 @@ inbox_file() {
   filename=$(basename -- "$1")
   extension="${filename##*.}"
   filename="${filename%.*}"
-  cp --no-preserve=mode,ownership $1 "$HOME/Documents/notes/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
+  cp --no-preserve=mode,ownership $1 "$HOME/Documents/notes/inbox/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
   rm $1
 }
 
 inbox_md() {
-  vim -c "ZL" -c "ZC" -c "q" $1
-  rm $1
+  filename=$(basename -- "$1")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+  dest="$HOME/Documents/notes/inbox/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
+  mv $1 $dest
+  vim -c "call CaptureDownloadedMarkdown()" -c "q" $dest
 }
 
 # Ensure SSH Agent is running

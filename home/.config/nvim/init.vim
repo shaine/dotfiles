@@ -62,6 +62,7 @@ autocmd FileType markdown set wrap linebreak |
       \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
     \ DelimitMateOff
 
+" Force each buffer to be set to the default vimwiki so files can be created/searched
 autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
 
 " Sort nerdtree by time when in the notes directory, and change other annoying options
@@ -69,6 +70,9 @@ autocmd VimEnter * if getcwd() =~ "Documents/notes" |
       \ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
       \ map <Leader>f :ZettelOpen title:<CR> |
       \ endif
+
+" Prevent vimwiki from injecting unwanted headings
+autocmd VimEnter * autocmd! vimwiki BufNewFile *.md
 
 function! <SID>StripTrailingWhitespaces()
   let l = line(".")
@@ -502,7 +506,7 @@ let g:vimwiki_list = [{
       \}, {
       \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
       \}]
-let g:zettel_options = [{'front_matter' : [['tags', ':to-write:to-revise:']]}]
+let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:to-link:']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
 let g:zettel_link_format="[%title](%link)"
 let g:vimwiki_key_mappings =

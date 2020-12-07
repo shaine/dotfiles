@@ -131,20 +131,27 @@ slugify() {
 }
 
 inbox_file() {
-  filename=$(basename -- "$1")
-  extension="${filename##*.}"
-  filename="${filename%.*}"
-  cp --no-preserve=mode,ownership $1 "$HOME/Documents/notes/inbox/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
-  rm $1
+  for file in "$@"
+  do
+    filename=$(basename -- $file)
+    extension="${filename##*.}"
+    filename="${filename%.*}"
+    cp --no-preserve=mode,ownership $file "$HOME/Documents/notes/inbox/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension" 2>/dev/null
+    rm $file
+  done
 }
 
 inbox_md() {
-  filename=$(basename -- "$1")
-  extension="${filename##*.}"
-  filename="${filename%.*}"
-  dest="$HOME/Documents/notes/inbox/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
-  mv $1 $dest
-  vim -c "call CaptureDownloadedMarkdown()" -c "q" $dest
+  for file in "$@"
+  do
+    echo "Inboxing $file"
+    filename=$(basename -- "$file")
+    extension="${filename##*.}"
+    filename="${filename%.*}"
+    dest="$HOME/Documents/notes/inbox/$(strftime %Y%m%d-%H%M)-$(slugify $filename).$extension"
+    mv $file $dest 2>/dev/null
+    vim -c "call CaptureDownloadedMarkdown()" -c "q" $dest
+  done
 }
 
 # Ensure SSH Agent is running

@@ -17,3 +17,5 @@ URxvt.clipboard.pasteselcmd: xclip -o -selection primary
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_sel
+URxvt.keysym.S-Return: \033[13;2u
+URxvt.keysym.C-Return: \033[13;5u

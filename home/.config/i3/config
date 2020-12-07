@@ -130,7 +130,6 @@ bindsym $mod+Shift+v exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -
 bindsym $mod+Shift+z exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
 bindsym $mod+Shift+n exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/notes/computers/linux-setup-notes.md'
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
-bindsym $mod+backslash exec --no-startup-id $HOME/.config/i3/special_characters
 bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
 
 # media keys
@@ -140,6 +139,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym $mod+Shift+braceright exec --no-startup-id playerctl next
+bindsym $mod+Shift+braceleft exec --no-startup-id playerctl previous
+bindsym $mod+backslash exec --no-startup-id playerctl play-pause
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

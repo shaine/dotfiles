@@ -446,7 +446,9 @@ function! VimwikiLinkHandler(link)
 endfunction
 
 function! ZettelVisualLink(line,...)
-  silent! normal! gvx
+  " Mark the start, cut the text, insert a buffer character at the end of the line (in case the cut went through to the
+  " end of the line, which will cause an off-by-one error), then jump back to the location of the start of the selection
+  silent! normal! m<gvxA0`<
   let filename = substitute(a:line, ":[0-9]\*:[0-9]\*:.\*$", "", "")
   let title = @"
   " insert the filename and title into the current buffer
@@ -461,8 +463,12 @@ function! ZettelVisualLink(line,...)
   " replace the [[ with selected link and title
   let caret = col('.')
   let length = strlen(title)
-  call setline('.', strpart(line, 0, caret - 1) . link .  strpart(line, caret - 1))
-  call cursor(line('.'), caret + len(link) - 1)
+  echom caret
+  call setline('.', strpart(line, 0, caret-1) . link .  strpart(line, caret-1))
+  " Remove the buffer character
+  silent! normal! $x
+  " Jump to the end of the replacement
+  call cursor(line('.'), caret-1 + len(link))
 endfunction
 
 function! s:get_wiki_file(filename)

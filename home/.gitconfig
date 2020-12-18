@@ -49,3 +49,5 @@
     template = ~/.gitmessage
 [include]
 	path = ~/.gitconfig.local
+[url "git@git.nav.com:"]
+	insteadOf = https://git.nav.com/

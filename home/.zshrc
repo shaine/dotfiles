@@ -7,7 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="squidtree"
 export ZSH=$HOME/.oh-my-zsh
 
-export PAGER='nvim -c "set syntax=dbout" -R -'
+# export PAGER='nvim -c "set syntax=dbout" -R -'
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"

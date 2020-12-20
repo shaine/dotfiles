@@ -190,7 +190,8 @@ exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
 exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift
 exec --no-startup-id $HOME/.config/i3/lock.sh
-exec --no-startup-id setxkbmap -option compose:caps -option compose:rctrl
+exec --no-startup-id setxkbmap -option compose:rctrl
+# exec --no-startup-id v4l2-ctl -c focus_auto=0 && v4l2-ctl -c focus_absolute=35
 
 # exec --no-startup-id xbindkeys
 # exec --no-startup-id stalonetray

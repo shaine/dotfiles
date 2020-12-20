@@ -8,6 +8,12 @@ i3-msg workspace 1
 # terminal_command="(cat ~/.cache/wal/sequences &); clear; ssh athena.local; zsh"
 # urxvt -e /bin/zsh -c "$terminal_command" &
 
+tmux new -d -c ~/Documents/notes -s notes
+tmux send-keys -t notes "vim" ENTER
+
+tmux new -d -c ~/.homesick/repos/dotfiles/home -s system
+tmux send-keys -t system "vim" ENTER
+
 urxvt &
 urxvt &
 

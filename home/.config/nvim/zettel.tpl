@@ -7,9 +7,3 @@ tags: %tags
 # %title
 
 
-
-## Links
-
-- [ ] More General
-- [ ] More Specific
-- [ ] Related

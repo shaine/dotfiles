@@ -512,7 +512,7 @@ let g:vimwiki_list = [{
       \}, {
       \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
       \}]
-let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:to-link:']]}]
+let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:']]}]
 let g:zettel_format = '%Y%m%d-%H%M-%title'
 let g:zettel_link_format="[%title](%link)"
 let g:vimwiki_key_mappings =

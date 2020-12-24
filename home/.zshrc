@@ -154,6 +154,12 @@ inbox_md() {
   done
 }
 
+qrcode() {
+  v4l2-ctl -c focus_absolute=80 -c focus_auto=0 -c exposure_auto=1 -c exposure_absolute=50
+  zbarcam
+  v4l2-ctl -c focus_absolute=35 -c exposure_auto=3
+}
+
 # Ensure SSH Agent is running
 # if [ -f ~/.ssh/agent.env ] ; then
     # . ~/.ssh/agent.env > /dev/null

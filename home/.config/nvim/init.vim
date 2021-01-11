@@ -481,7 +481,6 @@ vmap [\| <Plug>VimwikiGoToPrevHeader
 vmap [[ :ZettelVisualSearch<cr>
 command! -range -bang -nargs=* ZettelVisualSearch call zettel#fzf#sink_onefile(<q-args>, 'ZettelVisualLink')
 
-" Vimwiki and vim-zettel
 function! InsertDate()
   put =strftime('%Y-%m-%d %H:%M')
 endfun
@@ -496,7 +495,6 @@ endfun
 nmap <Leader>zi :ZettelInbox<cr>
 nmap <Leader>zc :call CaptureDownloadedMarkdown()
 nmap <Leader>zn :ZettelNew<space>
-" nmap <Leader>zd :VimwikiDiaryGenerateLinks<cr>
 nmap <Leader>zo :ZettelOpen<cr>
 " nmap <Leader>zd :call InsertDate()<cr>
 " nmap <Leader>zl :ZL<cr>

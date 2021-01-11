@@ -496,7 +496,7 @@ nmap <Leader>zi :ZettelInbox<cr>
 nmap <Leader>zc :call CaptureDownloadedMarkdown()
 nmap <Leader>zn :ZettelNew<space>
 nmap <Leader>zo :ZettelOpen<cr>
-" nmap <Leader>zd :call InsertDate()<cr>
+nmap <Leader>zd :call InsertDate()<cr>
 " nmap <Leader>zl :ZL<cr>
 " vmap zn y:ZettelNew "
 

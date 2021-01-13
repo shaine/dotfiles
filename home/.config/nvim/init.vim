@@ -67,7 +67,7 @@ autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
 
 " Sort nerdtree by time when in the notes directory, and change other annoying options
 autocmd VimEnter * if getcwd() =~ "Documents/notes" |
-      \ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
+      " "\ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
       \ map <Leader>f :ZettelOpen title:<CR> |
       \ endif
 
@@ -502,17 +502,17 @@ nmap <Leader>zd :call InsertDate()<cr>
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
-let g:vimwiki_create_link = 0
+let g:vimwiki_create_link = 1
 let g:vimwiki_list = [{
-      \'path': '~/Documents/notes/', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
+      \'path': '~/Documents/notes/', 'syntax': 'default', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
       \}, {
-      \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+      \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'default', 'ext': '.md', 'links_space_char': '-'
       \}, {
-      \'path': '~/Downloads/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+      \'path': '~/Downloads/', 'syntax': 'default', 'ext': '.md', 'links_space_char': '-'
       \}]
 let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:']]}]
-let g:zettel_format = '%Y%m%d-%H%M-%title'
-let g:zettel_link_format="[%title](%link)"
+let g:zettel_format = '%title'
+let g:zettel_link_format="[[%link]]"
 let g:vimwiki_key_mappings =
       \ {
       \   'all_maps': 1,

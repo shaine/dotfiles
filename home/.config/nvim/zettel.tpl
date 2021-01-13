@@ -1,9 +1,10 @@
 ---
-title: %title
+id: %title
+title:
 date: %date
 tags: %tags
 ---
 
-# %title
+#
 
 

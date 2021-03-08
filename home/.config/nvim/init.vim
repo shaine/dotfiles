@@ -492,11 +492,16 @@ function! CaptureDownloadedMarkdown()
   norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g:w
 endfun
 
+function! ZettelFromTitle()
+  norm Ititle: jjO---id: =expand('%:t')jj0f.DjyypOdate: jj,zdk,Jotags:---jjjcf # jjggjyyGo---jjpkddcf:Parentjjex:w3koki
+endfun
+
 nmap <Leader>zi :ZettelInbox<cr>
 nmap <Leader>zc :call CaptureDownloadedMarkdown()
 nmap <Leader>zn :ZettelNew<space>
 nmap <Leader>zo :ZettelOpen<cr>
 nmap <Leader>zd :call InsertDate()<cr>
+nmap <Leader>zt :call ZettelFromTitle()<cr>
 " nmap <Leader>zl :ZL<cr>
 " vmap zn y:ZettelNew "
 

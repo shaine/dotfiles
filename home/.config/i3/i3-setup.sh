@@ -9,7 +9,7 @@ i3-msg workspace 1
 # urxvt -e /bin/zsh -c "$terminal_command" &
 
 tmux new -d -c ~/Documents/notes -s notes
-tmux send-keys -t notes "vim -c VimwikiMakeDiaryNote -c \"vsplit index.md\"" ENTER
+tmux send-keys -t notes "vim" ENTER
 
 tmux new -d -c ~/.homesick/repos/dotfiles/home -s system
 tmux send-keys -t system "vim -O .zshrc .config/nvim/init.vim" ENTER
@@ -35,7 +35,7 @@ sleep 2
 
 i3-msg workspace 2
 
-chromium-browser &
+google-chrome &
 slack &
 
 sleep 30

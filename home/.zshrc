@@ -160,6 +160,31 @@ qrcode() {
   v4l2-ctl -c focus_absolute=35 -c exposure_auto=3
 }
 
+fix_camera() {
+  v4l2-ctl -c focus_auto=0
+  v4l2-ctl -c focus_absolute=35
+}
+
+vpnint() {
+  openvpn3 session-start --config int.ovpn
+}
+
+vpnprod() {
+  openvpn3 session-start --config prod.ovpn
+}
+
+regenerate_grub_iso() {
+  cd /tmp
+  mkdir -p iso/boot/grub
+  cp /usr/lib/grub/i386-pc/* iso/boot/grub
+  cp /boot/grub/grub.cfg iso/boot/grub
+  vim iso/boot/grub/grub.cfg
+  grub-mkrescue --xorriso=/home/shaine/Documents/matter/xorriso-1.5.0/xorriso/xorriso -o boot.iso iso
+  rm -rf iso
+  mv boot.iso ~/Documents
+  cd -
+}
+
 # Ensure SSH Agent is running
 # if [ -f ~/.ssh/agent.env ] ; then
     # . ~/.ssh/agent.env > /dev/null

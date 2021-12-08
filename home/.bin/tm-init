@@ -1,0 +1,10 @@
+#!/bin/bash
+
+tmux new -d -c ~/Documents/notes/zk -s zk
+tmux send-keys -t zk "vim" ENTER
+
+tmux new -d -c ~/Documents/notes -s notes
+tmux send-keys -t notes "vim" ENTER
+
+tmux new -d -c ~/.homesick/repos/dotfiles/home -s system
+tmux send-keys -t system "vim -O .zshrc .config/nvim/init.vim" ENTER

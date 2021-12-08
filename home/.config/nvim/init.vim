@@ -67,9 +67,9 @@ autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
 
 " Sort nerdtree by time when in the notes directory, and change other annoying options
 autocmd VimEnter * if getcwd() =~ "Documents/notes" |
-      " "\ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
       \ map <Leader>f :ZettelOpen title:<CR> |
       \ endif
+      " "\ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
 
 " Prevent vimwiki from injecting unwanted headings
 autocmd VimEnter * autocmd! vimwiki BufNewFile *.md
@@ -398,7 +398,7 @@ let g:fzf_action = {
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " Fugitive
-map <Leader>g :Gstatus<CR>
+map <Leader>g :Git<CR>
 
 " Gist
 let g:gist_open_browser_after_post = 1
@@ -412,7 +412,7 @@ nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeQuitOnOpen = 1
+" let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 " Auto close when only window remaining
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -493,7 +493,7 @@ function! CaptureDownloadedMarkdown()
 endfun
 
 function! ZettelFromTitle()
-  norm Ititle: jjO---id: =expand('%:t')jj0f.DjyypOdate: jj,zdk,Jotags:---jjjcf # jjggjyyGo---jjpkddcf:Parentjjex:w3koki
+  norm Ititle: jjO---id: =expand('%:t')jj0f.DjyypOdate: jj,zdk,Jocitation:---jjjcf # jjggjyyGo---jjpkddcf:- ParentjjexA.jjb:w3koki
 endfun
 
 nmap <Leader>zi :ZettelInbox<cr>
@@ -508,16 +508,17 @@ nmap <Leader>zt :call ZettelFromTitle()<cr>
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_create_link = 1
+      " "\'path': '~/Documents/notes', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
 let g:vimwiki_list = [{
-      \'path': '~/Documents/notes/', 'syntax': 'default', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
+      \'path': '~/Documents/notes/zk', 'syntax': 'default', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
       \}, {
-      \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'default', 'ext': '.md', 'links_space_char': '-'
+      \'path': '~/Documents/notes/zk-staging', 'syntax': 'default', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
       \}, {
-      \'path': '~/Downloads/', 'syntax': 'default', 'ext': '.md', 'links_space_char': '-'
+      \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
       \}]
 let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:']]}]
 let g:zettel_format = '%title'
-let g:zettel_link_format="[[%link]]"
+" let g:zettel_link_format="[[%link]]"
 let g:vimwiki_key_mappings =
       \ {
       \   'all_maps': 1,

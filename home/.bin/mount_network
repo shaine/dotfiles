@@ -8,7 +8,8 @@ fusermount -uz ~/Video
 fusermount -uz ~/Music
 fusermount -uz ~/Pictures
 fusermount -uz ~/Documents
-umount /media/shaine/geshtinanna
+fusermount -uz /media/shaine/geshtinanna
+# umount /media/shaine/geshtinanna
 
 echo "Mounting geshtinanna"
 sshfs -o reconnect geshtinanna: /media/shaine/geshtinanna
@@ -22,8 +23,8 @@ bindfs /media/shaine/geshtinanna/images ~/Pictures
 echo "Mounting Music"
 bindfs /media/shaine/geshtinanna/music ~/Music
 
-echo "Mounting Projects"
-bindfs /media/shaine/geshtinanna/projects ~/Projects
+# echo "Mounting Projects"
+# bindfs /media/shaine/geshtinanna/projects ~/Projects
 
 echo "Mounting Video"
 bindfs /media/shaine/geshtinanna/video ~/Video

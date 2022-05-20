@@ -35,6 +35,8 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id urxvt
 bindsym $mod+Shift+Return exec --no-startup-id urxvt -name floatingTerm
 for_window [instance="^floatingTerm$"] floating enable
+for_window [class="^join.*$"] floating enable
+for_window [title="Zoom Meeting"] floating disable
 
 # kill focused window
 bindsym $mod+Shift+q kill

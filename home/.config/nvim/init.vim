@@ -14,7 +14,7 @@ Plug 'dylanaraps/ryuuko'
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot',
-Plug 'fatih/vim-go', { 'for': 'go' }
+" Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'mboughaba/i3config.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'shaine/vim-zettel'
@@ -57,10 +57,9 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "
 au BufNewFile,BufRead *.tmux set filetype=tmux " Explicit filetypes - tmux
 au BufNewFile,BufRead *.conf set filetype=xml " Explicit filetypes - conf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes - markdown
-autocmd FileType markdown set wrap linebreak |
-      \ set autoread |
-      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif |
-    \ DelimitMateOff
+autocmd FileType markdown setlocal wrap linebreak |
+      \ setlocal autoread |
+      \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 
 " Force each buffer to be set to the default vimwiki so files can be created/searched
 autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
@@ -134,7 +133,7 @@ inoremap ! !<c-g>u
 inoremap , ,<c-g>u
 
 " Other bindings
-nmap <silent> // :nohlsearch<CR>" Clear search
+nmap <silent> // :nohlsearch<CR>
 " Don't jump when setting current word to search
 nnoremap n nzz
 nnoremap N Nzz
@@ -493,7 +492,7 @@ function! CaptureDownloadedMarkdown()
 endfun
 
 function! ZettelFromTitle()
-  norm Ititle: jjO---id: =expand('%:t')jj0f.DjyypOdate: jj,zdk,Jocitation:---jjjcf # jjggjyyGo---jjpkddcf:- ParentjjexA.jjb:w3koki
+  norm Ititle: jjO---id: =expand('%:t')jj0f.DjyypOdate: jj,zdk,Jocitation:---jjjcf # jjggjyyGo---jjpkddcf:-jjexA.jjb:w3koki
 endfun
 
 nmap <Leader>zi :ZettelInbox<cr>
@@ -510,15 +509,14 @@ let g:vimwiki_hl_headers = 1
 let g:vimwiki_create_link = 1
       " "\'path': '~/Documents/notes', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
 let g:vimwiki_list = [{
-      \'path': '~/Documents/notes/zk', 'syntax': 'default', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+      \'path': '~/Documents/notes/zk', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
       \}, {
-      \'path': '~/Documents/notes/zk-staging', 'syntax': 'default', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
-      \}, {
-      \'path': '~/Documents/dungeons-and-dragons/', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+      \'path': '~/Documents/notes/zk-staging', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
       \}]
 let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:']]}]
 let g:zettel_format = '%title'
 " let g:zettel_link_format="[[%link]]"
+let g:zettel_link_format="(%link)"
 let g:vimwiki_key_mappings =
       \ {
       \   'all_maps': 1,

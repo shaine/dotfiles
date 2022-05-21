@@ -21,8 +21,9 @@ plugins=(git vi-mode brew zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-export GO111MODULE=auto
+export GO111MODULE=on
 export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
 
 export PATH=$HOME/.local/bin:$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rbenv/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
 
@@ -170,6 +171,7 @@ screen_off() {
 }
 
 vpnint() {
+  vpnintdc
   openvpn3 session-start --config int.ovpn
 }
 

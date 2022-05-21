@@ -6,6 +6,8 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+popup_during_fullscreen smart
+
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -123,25 +125,28 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-msg exit"
+# bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Shift+e exec "/usr/bin/gnome-session-quit --logout"
+bindsym $mod+Shift+s exec "systemctl suspend"
 
+bindsym $mod+Escape exec --no-startup-id "dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock"
+bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
 bindsym $mod+Shift+i exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
 bindsym $mod+Shift+v exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/nvim/init.vim'
 bindsym $mod+Shift+z exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
 bindsym $mod+Shift+n exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/notes/computers/linux-setup-notes.md'
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
-bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
 
 # media keys
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 60 -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 60 -dec 5
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
-bindsym $mod+Shift+braceright exec --no-startup-id playerctl next
-bindsym $mod+Shift+braceleft exec --no-startup-id playerctl previous
-bindsym $mod+backslash exec --no-startup-id playerctl play-pause
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 60 -inc 5
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 60 -dec 5
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+# bindsym $mod+Shift+braceright exec --no-startup-id playerctl next
+# bindsym $mod+Shift+braceleft exec --no-startup-id playerctl previous
+# bindsym $mod+backslash exec --no-startup-id playerctl play-pause
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -183,15 +188,25 @@ gaps inner 30
 gaps outer 0
 
 # Execs
-exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network"
-exec --no-startup-id $HOME/.config/i3/wallpaper.sh
-exec_always --no-startup-id compton
-exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
-exec --no-startup-id ulauncher --hide-window
-exec --no-startup-id redshift
-exec --no-startup-id $HOME/.config/i3/lock.sh
-exec --no-startup-id setxkbmap -option compose:rctrl
-exec --no-startup-id v4l2-ctl -c focus_auto=0 && v4l2-ctl -c focus_absolute=35
+# Copied from regolith
+bindsym $mod+space exec --no-startup-id rofi -show drun -theme /etc/regolith/styles/lascaille/rofi.rasi
+# exec_always --no-startup-id /usr/share/regolith-compositor/init
+exec_always --no-startup-id /usr/bin/rofication-daemon
+exec_always --no-startup-id /usr/bin/unclutter -b
+exec --no-startup-id /usr/bin/nm-applet
 
+# My own
+# exec --no-startup-id $HOME/.config/i3/wallpaper.sh
+exec --no-startup-id $HOME/.config/i3/wallpaper_after_hook.sh
+exec_always --no-startup-id compton
+# exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
+# exec --no-startup-id ulauncher --hide-window
+# exec --no-startup-id redshift
+# exec --no-startup-id $HOME/.config/i3/lock.sh
+exec --no-startup-id setxkbmap -option compose:rctrl
+exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network"
+
+# Unused
+# exec --no-startup-id v4l2-ctl -c focus_auto=0 && v4l2-ctl -c focus_absolute=35
 # exec --no-startup-id xbindkeys
 # exec --no-startup-id stalonetray

@@ -1,4 +1,4 @@
-# include "/home/shaine/.cache/wal/colors.Xresources"
+#include "/home/shaine/.cache/wal/colors.Xresources"
 URxvt.scrollBar: false
 ! urxvt*font: xft:Terminus:pixelsize=12
 URxvt.font: terminus-12

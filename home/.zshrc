@@ -205,3 +205,4 @@ regenerate_grub_iso() {
 
 # Run external commands after startup
 eval "$RUN"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

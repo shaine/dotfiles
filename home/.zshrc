@@ -27,6 +27,9 @@ export GOBIN=$HOME/go/bin
 
 export PATH=$HOME/.local/bin:$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/bin:$HOME/.bin:/opt/local/bin:/opt/local/sbin:$HOME/.rbenv/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
 
+# Temporary! Force Ubuntu 22.04 to work with ruby installation 2.7.*
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/openssl-1.1.1o/"
+
 export FZF_DEFAULT_COMMAND='ag --follow --ignore .fzf --ignore .dropbox-dist --ignore Pictures --ignore .kube --ignore Books --ignore Adium --ignore .npm --ignore .oh-my-zsh --ignore .minecraft --ignore .nvm --ignore .omz-custom --ignore minecraft --ignore .dropbox --ignore .proxyman --ignore .local --ignore .java --ignore Dropbox --ignore snap --ignore www --ignore Photos\ Library.photoslibrary --ignore ruby-advisory-db --ignore .mix --hidden --ignore .node-gyp --ignore Music --ignore Library --ignore .ivy2 --ignore .config/nvim/tmp --ignore .config/nvim/autoload --ignore .config/nvim/plugged --ignore .hex --ignore .rbenv --ignore .zoom --ignore .git --ignore node_modules --ignore .vim/plugged --ignore dist --ignore reports --ignore tmp --ignore docs --ignore .cache --ignore note_contents --ignore reference_contents --ignore .mozilla --ignore .nix-defexpr --ignore Zotero --ignore go -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

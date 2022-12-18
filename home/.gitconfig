@@ -34,7 +34,7 @@
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
     uncommit = reset --soft HEAD^
     yolo = !git reset HEAD --hard && git clean -f
-    sm = !git stash && git checkout master && git fetch origin master && git reset --hard origin/master && git ocd
+    sm = !git stash && git checkout main && git fetch origin main && git reset --hard origin/main && git ocd
 [github]
     user = shaine
 [url "https://"]
@@ -51,3 +51,11 @@
 	path = ~/.gitconfig.local
 [url "git@git.nav.com:"]
 	insteadOf = https://git.nav.com/
+[safe]
+	directory = /home/shaine/Documents/notes
+	directory = /home/shaine/Documents/notes
+	directory = *
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

@@ -1,10 +1,19 @@
 #!/bin/bash
 
-tmux new -d -c ~/Documents/notes/zk -s zk
-tmux send-keys -t zk "vim" ENTER
+tmux new -d -c ~/Documents/zk -s zkprod
+tmux send-keys -t zkprod "vim" ENTER
 
-tmux new -d -c ~/Documents/notes -s notes
+tmux new -d -c ~/Documents/zk-staging -s zkstage
+tmux send-keys -t zkstage "vim" ENTER
+
+tmux new -d -c ~/Documents -s notes
 tmux send-keys -t notes "vim" ENTER
 
+tmux new -d -c ~/projects/squidtree-elixir -s squidtree
+tmux send-keys -t squidtree "vim" ENTER
+
+tmux new -d -c ~/projects/palantimeter -s palantir
+tmux send-keys -t palantir "vim" ENTER
+
 tmux new -d -c ~/.homesick/repos/dotfiles/home -s system
-tmux send-keys -t system "vim -O .zshrc .config/nvim/init.vim" ENTER
+tmux send-keys -t system "vim -O .zshrc .config/nvim/init.vim .config/i3/i3-setup.sh" ENTER

@@ -12,38 +12,24 @@ i3-msg workspace 1
 
 urxvt &
 urxvt &
-
-sleep 1
-
+sleep 0.5
 i3-msg split v
-
-sleep 1
-
+sleep 0.5
 urxvt &
 urxvt &
-
-sleep 1
-
+sleep 0.5
 i3-msg split h
 i3-msg resize shrink width 25 px or 25 ppt
 
-sleep 2
-
-i3-msg workspace 2
-
+# sleep 0.5
+# i3-msg workspace 2
 firefox &
-slack &
-
-sleep 30
-
-i3-msg workspace 3
-
-minetime &
+# sleep 30
+# i3-msg workspace 3
 mailspring &
-
-sleep 20
-
-i3-msg workspace 4
-
+slack &
+# sleep 20
+# i3-msg workspace 4
 spotify &
+zotero &
 

@@ -41,6 +41,14 @@ for_window [class="^join.*$"] floating enable
 for_window [class="^zoom.*$"] floating enable
 for_window [title="Zoom Meeting"] floating disable
 
+# Assign workspaces
+assign [class="firefox"] "2"
+assign [class="Slack"] "3"
+assign [class="Mailspring"] "3"
+# assign [class="Spotify"] "4"
+for_window [class="Spotify"] move to workspace "4"
+assign [class="Zotero"] "5"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -172,7 +180,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+w exec --no-startup-id $HOME/.config/i3/wallpaper.sh
+# bindsym $mod+w exec --no-startup-id $HOME/.config/i3/wallpaper.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -193,6 +201,8 @@ gaps outer 0
 # Execs
 # Copied from regolith
 bindsym $mod+space exec --no-startup-id rofi -show drun -theme /etc/regolith/styles/lascaille/rofi.rasi
+# Switched to rofi
+# exec --no-startup-id ulauncher --hide-window
 exec_always --no-startup-id /usr/bin/unclutter -b
 exec --no-startup-id /usr/bin/nm-applet
 
@@ -214,8 +224,6 @@ exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_n
 # exec --no-startup-id stalonetray
 # This should be managed by gnome...flashback I think?
 # exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
-# Switched to rofi
-# exec --no-startup-id ulauncher --hide-window
 # Built into gnome
 # exec --no-startup-id redshift
 # Replaced with gnome lockscreen

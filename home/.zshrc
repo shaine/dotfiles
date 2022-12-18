@@ -31,9 +31,6 @@ export FZF_DEFAULT_COMMAND='ag --follow --ignore .fzf --ignore .dropbox-dist --i
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [ -x "$(command -v thefuck)" ]; then
-  eval "$(thefuck --alias)"
-fi
 alias tmux="tmux -2 -u"
 alias k=kubectl
 alias vim="nvim"

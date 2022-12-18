@@ -109,7 +109,7 @@ music() {
   done
 }
 
-music > $PANEL_FIFO &
+# music > $PANEL_FIFO &
 
 get_updates(){
   while true; do

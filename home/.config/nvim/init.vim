@@ -13,11 +13,13 @@ Plug 'dylanaraps/ryuuko'
 " Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'sheerun/vim-polyglot',
+" Plug 'sheerun/vim-polyglot',
 " Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'mboughaba/i3config.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'shaine/vim-zettel'
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
@@ -35,7 +37,7 @@ Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale' " Linter
+" Plug 'w0rp/ale' " Linter
 call plug#end()
 
 " Colorscheme
@@ -60,12 +62,15 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown " Explicit filetypes -
 autocmd FileType markdown setlocal wrap linebreak |
       \ setlocal autoread |
       \ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
 
 " Force each buffer to be set to the default vimwiki so files can be created/searched
 autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
 
 " Sort nerdtree by time when in the notes directory, and change other annoying options
-autocmd VimEnter * if getcwd() =~ "Documents/notes" |
+autocmd VimEnter * if getcwd() =~ "Documents/zk" |
       \ map <Leader>f :ZettelOpen title:<CR> |
       \ endif
       " "\ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
@@ -300,7 +305,7 @@ hi Normal guibg=NONE ctermbg=NONE
 " Ack.vim
 if executable('ag')
   " Configure ack.vim to use ag
-  let g:ackprg = 'ag --vimgrep --smart-case'
+  let g:ackprg = 'ag --ignore archive --ignore .git --vimgrep --smart-case'
   " Don't open first file by default
   cnoreabbrev Ag Ack!
   cnoreabbrev Ack Ack!
@@ -378,6 +383,10 @@ let g:airline_symbols.maxlinenr = ''
 
 " ALE
 let g:ale_linters_ignore = ['reek']
+
+" Elixir
+let g:mix_format_silent_errors = 1
+let g:mix_format_on_save = 1
 
 " FZF
 map <Leader>f :FZF<CR>
@@ -484,34 +493,60 @@ function! InsertDate()
   put =strftime('%Y-%m-%d %H:%M')
 endfun
 
-function! CaptureDownloadedMarkdown()
-  " ZettelCapture + add wiki header first
-  norm gg0lly$O---title: "date: :call InsertDate()k,Jo---:w
-  " Fix chrome markdown clipper links
-  norm G$?Source%%ll"zy3t/o":s/\//\\\//g0"zy$dd:%s/chrome-extension:\/\/.\{-}\//z\//g:w
+function! ZettelFromTitle()
+  norm Ititle: O---id: =expand('%:t')0f.DjyypOdate: :call InsertDate()k,Jo---jcf # $:w
 endfun
 
-function! ZettelFromTitle()
-  norm Ititle: jjO---id: =expand('%:t')jj0f.DjyypOdate: jj,zdk,Jocitation:---jjjcf # jjggjyyGo---jjpkddcf:-jjexA.jjb:w3koki
+function! MacroInput(prompt)
+    call inputsave()
+    let text = input(a:prompt)
+    call inputrestore()
+    return text
+endfun
+function! IdInput()
+    return MacroInput('ID: ')
+endfun
+function! TitleInput()
+    return MacroInput('Title: ')
+endfun
+
+function! NewNote()
+  norm :e =IdInput().mdi=TitleInput():call ZettelFromTitle()
+endfun
+
+function! MarkdownLink()
+  norm a[=TitleInput()](=IdInput())
+endfun
+
+function! MarkdownLinkList()
+  norm S- :call MarkdownLink().:redraw!:call MarkdownLinkList()
+endfun
+
+function! MoveLink()
+  norm yst[]$''xds]cs])
 endfun
 
 nmap <Leader>zi :ZettelInbox<cr>
-nmap <Leader>zc :call CaptureDownloadedMarkdown()
-nmap <Leader>zn :ZettelNew<space>
+nmap <Leader>zn :call NewNote()<cr>
 nmap <Leader>zo :ZettelOpen<cr>
-nmap <Leader>zd :call InsertDate()<cr>
 nmap <Leader>zt :call ZettelFromTitle()<cr>
+nmap <Leader>zm :call MoveLink()<cr>
+imap <Leader>zl :call MarkdownLink()<cr>
+imap <Leader>zk :call MarkdownLinkList()<cr>
+imap <Leader>zt :call ZettelFromTitle()<cr>
+imap <Leader>zc [^r=IdInput()<cr>]
+nmap <Leader>zc norm a[^r=IdInput()<cr>]
 " nmap <Leader>zl :ZL<cr>
 " vmap zn y:ZettelNew "
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_create_link = 1
-      " "\'path': '~/Documents/notes', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
+      " "\'path': '~/Documents', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
 let g:vimwiki_list = [{
-      \'path': '~/Documents/notes/zk', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+      \'path': '~/Documents/zk', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
       \}, {
-      \'path': '~/Documents/notes/zk-staging', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+      \'path': '~/Documents/zk-staging', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
       \}]
 let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:']]}]
 let g:zettel_format = '%title'
@@ -537,9 +572,10 @@ imap <Tab> <c-X><c-O>
 " fix for yankring and neovim
 let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '~/.config/nvim/tmp/yank'
-" Yank text to the OS X clipboard
+" Yank text to the clipboard
 noremap <leader>y "*y
-noremap <leader>yy "*Y
+noremap <leader>yy "*yy
+noremap <leader>dd "*dd
 noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>T :Tags<CR>
 " Paste at the end of the line

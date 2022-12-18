@@ -38,7 +38,16 @@ bindsym $mod+Return exec --no-startup-id urxvt
 bindsym $mod+Shift+Return exec --no-startup-id urxvt -name floatingTerm
 for_window [instance="^floatingTerm$"] floating enable
 for_window [class="^join.*$"] floating enable
+for_window [class="^zoom.*$"] floating enable
 for_window [title="Zoom Meeting"] floating disable
+
+# Assign workspaces
+assign [class="firefox"] "2"
+assign [class="Slack"] "3"
+assign [class="Mailspring"] "3"
+# assign [class="Spotify"] "4"
+for_window [class="Spotify"] move to workspace "4"
+assign [class="Zotero"] "5"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -125,18 +134,18 @@ bindsym $mod+bracketright scratchpad show
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
+bindsym $mod+Shift+r exec --no-startup-id pkill picom; restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-msg exit"
 bindsym $mod+Shift+e exec "/usr/bin/gnome-session-quit --logout"
 bindsym $mod+Shift+s exec "systemctl suspend"
 
 bindsym $mod+Escape exec --no-startup-id "dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock"
-bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
-bindsym $mod+Shift+i exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
-bindsym $mod+Shift+v exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/nvim/init.vim'
-bindsym $mod+Shift+z exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
-bindsym $mod+Shift+n exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/notes/computers/linux-setup-notes.md'
+# bindsym Control+Mod1+l exec --no-startup-id betterlockscreen --lock dimblur
+# bindsym $mod+Shift+i exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/i3/config'
+# bindsym $mod+Shift+v exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.config/nvim/init.vim'
+# bindsym $mod+Shift+z exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/.zshrc'
+# bindsym $mod+Shift+n exec --no-startup-id urxvt -name floatingTerm -e /bin/zsh -c '. ~/.zshrc && nvim $HOME/Documents/notes/computers/linux-setup-notes.md'
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
 
 # media keys
@@ -171,7 +180,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+w exec --no-startup-id $HOME/.config/i3/wallpaper.sh
+# bindsym $mod+w exec --no-startup-id $HOME/.config/i3/wallpaper.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -192,23 +201,30 @@ gaps outer 0
 # Execs
 # Copied from regolith
 bindsym $mod+space exec --no-startup-id rofi -show drun -theme /etc/regolith/styles/lascaille/rofi.rasi
-# exec_always --no-startup-id /usr/share/regolith-compositor/init
-exec_always --no-startup-id /usr/bin/rofication-daemon
+# Switched to rofi
+# exec --no-startup-id ulauncher --hide-window
 exec_always --no-startup-id /usr/bin/unclutter -b
 exec --no-startup-id /usr/bin/nm-applet
 
 # My own
 # exec --no-startup-id $HOME/.config/i3/wallpaper.sh
 exec --no-startup-id $HOME/.config/i3/wallpaper_after_hook.sh
-exec_always --no-startup-id compton
-# exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
-# exec --no-startup-id ulauncher --hide-window
-# exec --no-startup-id redshift
-# exec --no-startup-id $HOME/.config/i3/lock.sh
+exec_always --no-startup-id picom
 exec --no-startup-id setxkbmap -option compose:rctrl
 exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network"
 
 # Unused
+# I don't think this is necessary
+# exec_always --no-startup-id /usr/bin/rofication-daemon
+# Don't need this for controlling the camera, maybe?
 # exec --no-startup-id v4l2-ctl -c focus_auto=0 && v4l2-ctl -c focus_absolute=35
+# Using setxkbmap instead
 # exec --no-startup-id xbindkeys
+# Don't need a tray
 # exec --no-startup-id stalonetray
+# This should be managed by gnome...flashback I think?
+# exec_always --no-startup-id $HOME/.config/i3/gnome-keyring.sh
+# Built into gnome
+# exec --no-startup-id redshift
+# Replaced with gnome lockscreen
+# exec --no-startup-id $HOME/.config/i3/lock.sh

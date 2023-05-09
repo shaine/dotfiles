@@ -41,6 +41,8 @@
 	insteadOf = git://
 [push]
 	default = current
+	autoSetupRemote = true
+	default = current
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [diff]

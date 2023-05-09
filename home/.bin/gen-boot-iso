@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm /media/shaine/underworld/boot.iso
+rm -rf /media/shaine/underworld/iso
+mkdir -p /media/shaine/underworld/iso/boot/grub
+cp /usr/lib/grub/i386-pc/* /media/shaine/underworld/iso/boot/grub
+cp /boot/grub/grub.cfg /media/shaine/underworld/iso/boot/grub
+chmod +w /media/shaine/underworld/iso/boot/grub/grub.cfg
+vim -c ":norm /menuentry \"Windowsd%:w:q" /media/shaine/underworld/iso/boot/grub/grub.cfg
+grub-mkrescue -o /media/shaine/underworld/boot.iso /media/shaine/underworld/iso/

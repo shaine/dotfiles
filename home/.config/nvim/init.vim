@@ -17,27 +17,21 @@ Plug 'dylanaraps/ryuuko'
 " Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'mboughaba/i3config.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'shaine/vim-zettel'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
 Plug 'ervandew/supertab' " Auto-complete with tab
-" Plug 'sitaktif/vim-space' " Some sort of tab/delete motion repeat
 Plug 'tpope/vim-surround' " Operate with surrounds or within surrounds
 Plug 'Raimondi/delimitMate' " Auto-close quotes
 Plug 'tpope/vim-fugitive' " Git integration
-" Plug 'mattn/webapi-vim' " For gist-vim
-" Plug 'mattn/gist-vim' " Publish to github gists
 Plug 'scrooloose/nerdtree', " File explorer
 Plug 'jistr/vim-nerdtree-tabs' " NERDTree across tabs
-" Plug 'sjl/gundo.vim', " Undo UI
+Plug 'sjl/gundo.vim', " Undo UI
 Plug 'tpope/vim-repeat' " Better . repeating
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
-" Plug 'w0rp/ale' " Linter
 call plug#end()
 
 " Colorscheme
@@ -65,15 +59,6 @@ autocmd FileType markdown setlocal wrap linebreak |
 au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
 au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
 au BufRead,BufNewFile mix.lock set filetype=elixir
-
-" Force each buffer to be set to the default vimwiki so files can be created/searched
-autocmd BufEnter * call zettel#vimwiki#initialize_wiki_number()
-
-" Sort nerdtree by time when in the notes directory, and change other annoying options
-autocmd VimEnter * if getcwd() =~ "Documents/zk" |
-      \ map <Leader>f :ZettelOpen title:<CR> |
-      \ endif
-      " "\ let NERDTreeSortOrder=['\/$', '*', '[[-timestamp]]'] |
 
 " Prevent vimwiki from injecting unwanted headings
 autocmd VimEnter * autocmd! vimwiki BufNewFile *.md
@@ -148,6 +133,9 @@ nmap <leader>r :redraw!<CR>
 nnoremap Q <nop>
 nnoremap <Space> a_<Esc>r
 command! Q q
+
+" Copy line c ontent
+nnoremap <leader>Y :normal! ^yg_<CR>
 
 " Swap ` and ' for better tmux integration
 nnoremap ' `
@@ -302,15 +290,6 @@ call SetArrowKeysAsTextShifters()
 hi Normal guibg=NONE ctermbg=NONE
 " hi! Search term=standout gui=standout guibg=#96c475 guifg=#000000
 
-" Ack.vim
-if executable('ag')
-  " Configure ack.vim to use ag
-  let g:ackprg = 'ag --ignore archive --ignore .git --vimgrep --smart-case'
-  " Don't open first file by default
-  cnoreabbrev Ag Ack!
-  cnoreabbrev Ack Ack!
-endif
-
 " Airline
 set laststatus=2
 let g:airline_powerline_fonts = 0
@@ -389,7 +368,15 @@ let g:mix_format_silent_errors = 1
 let g:mix_format_on_save = 1
 
 " FZF
-map <Leader>f :FZF<CR>
+" map <Leader>f :FZF<CR>
+map <Leader>f :Files<CR>
+autocmd VimEnter * if getcwd() =~ "Documents" |
+      \ map <Leader>f :Ag<CR> |
+      \ endif
+autocmd VimEnter * if getcwd() =~ "Documents/zk" |
+      \ map <Leader>f :Ag title:<CR> |
+      \ endif
+
 nnoremap <silent> <leader>G :Ag <C-R><C-W><CR>
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -412,8 +399,23 @@ map <Leader>g :Git<CR>
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
 
+" Grep
+set grepprg=ag\ --no-group\ --vimgrep
+function! Grep(...)
+    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+endfunction
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost cgetexpr cwindow
+    autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
+cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
+
 " Gundo configuration
 map <Leader>u :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
 
 " NERDTree
 nnoremap <silent> <leader>F :NERDTreeTabsToggle<CR>
@@ -437,46 +439,12 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " vimwiki
-function! s:insert_id()
-  if exists("g:zettel_current_id")
-    return g:zettel_current_id
-  else
-    return "unnamed"
-  endif
-endfunction
-
 function! VimwikiLinkHandler(link)
   if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
     call vimwiki#base#open_link(':e ', 'file:'.a:link)
     return 1
   endif
   return 0
-endfunction
-
-function! ZettelVisualLink(line,...)
-  " Mark the start, cut the text, insert a buffer character at the end of the line (in case the cut went through to the
-  " end of the line, which will cause an off-by-one error), then jump back to the location of the start of the selection
-  silent! normal! m<gvxA0`<
-  let filename = substitute(a:line, ":[0-9]\*:[0-9]\*:.\*$", "", "")
-  let title = @"
-  " insert the filename and title into the current buffer
-  let wikiname = s:get_wiki_file(filename)
-  " if the title is empty, the link will be hidden by vimwiki, use the filename
-  " instead
-  if empty(title)
-    let title = wikiname
-  end
-  let link = zettel#vimwiki#format_search_link(wikiname, title)
-  let line = getline('.')
-  " replace the [[ with selected link and title
-  let caret = col('.')
-  let length = strlen(title)
-  echom caret
-  call setline('.', strpart(line, 0, caret-1) . link .  strpart(line, caret-1))
-  " Remove the buffer character
-  silent! normal! $x
-  " Jump to the end of the replacement
-  call cursor(line('.'), caret-1 + len(link))
 endfunction
 
 function! s:get_wiki_file(filename)
@@ -486,8 +454,6 @@ endfunction
 
 vmap <leader>[ <Plug>Markdown_MoveToPreviousHeader
 vmap [\| <Plug>VimwikiGoToPrevHeader
-vmap [[ :ZettelVisualSearch<cr>
-command! -range -bang -nargs=* ZettelVisualSearch call zettel#fzf#sink_onefile(<q-args>, 'ZettelVisualLink')
 
 function! InsertDate()
   put =strftime('%Y-%m-%d %H:%M')
@@ -526,9 +492,6 @@ function! MoveLink()
   norm yst[]$''xds]cs])
 endfun
 
-nmap <Leader>zi :ZettelInbox<cr>
-nmap <Leader>zn :call NewNote()<cr>
-nmap <Leader>zo :ZettelOpen<cr>
 nmap <Leader>zt :call ZettelFromTitle()<cr>
 nmap <Leader>zm :call MoveLink()<cr>
 imap <Leader>zl :call MarkdownLink()<cr>
@@ -536,22 +499,17 @@ imap <Leader>zk :call MarkdownLinkList()<cr>
 imap <Leader>zt :call ZettelFromTitle()<cr>
 imap <Leader>zc [^r=IdInput()<cr>]
 nmap <Leader>zc norm a[^r=IdInput()<cr>]
-" nmap <Leader>zl :ZL<cr>
-" vmap zn y:ZettelNew "
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_create_link = 1
-      " "\'path': '~/Documents', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-', 'auto_diary_index': 1
 let g:vimwiki_list = [{
-      \'path': '~/Documents/zk', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+      \'path': '~/Documents', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-', 'auto_diary_index': 1
       \}, {
-      \'path': '~/Documents/zk-staging', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1, 'links_space_char': '-'
+      \'path': '~/Documents/zk', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
+      \}, {
+      \'path': '~/Documents/zk-staging', 'syntax': 'markdown', 'ext': '.md', 'links_space_char': '-'
       \}]
-let g:zettel_options = [{'template': '~/.config/nvim/zettel.tpl', 'disable_front_matter': 1, 'front_matter' : [['tags', ':to-write:']]}]
-let g:zettel_format = '%title'
-" let g:zettel_link_format="[[%link]]"
-let g:zettel_link_format="(%link)"
 let g:vimwiki_key_mappings =
       \ {
       \   'all_maps': 1,
@@ -592,4 +550,3 @@ function! RemoveQFItem()
 endfunction
 :command! RemoveQFItem :call RemoveQFItem()
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
-autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>

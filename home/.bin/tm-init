@@ -12,8 +12,8 @@ tmux send-keys -t notes "vim" ENTER
 tmux new -d -c ~/projects/squidtree-elixir -s squidtree
 tmux send-keys -t squidtree "vim" ENTER
 
-tmux new -d -c ~/projects/palantimeter -s palantir
-tmux send-keys -t palantir "vim" ENTER
+tmux new -d -c ~/projects/seven -s seven
+tmux send-keys -t seven "vim" ENTER
 
 tmux new -d -c ~/.homesick/repos/dotfiles/home -s system
 tmux send-keys -t system "vim -O .zshrc .config/nvim/init.vim .config/i3/i3-setup.sh" ENTER

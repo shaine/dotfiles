@@ -30,10 +30,13 @@ export PATH=$HOME/.local/bin:$HOME/.mix/escripts:$HOMEPY/bin:/usr/local/bin:$HOM
 # Temporary! Force Ubuntu 22.04 to work with ruby installation 2.7.*
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/openssl-1.1.1o/"
 
-export FZF_DEFAULT_COMMAND='ag --follow -g ""'
+export FZF_DEFAULT_COMMAND='ag --follow --hidden -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+if [ -x "$(command -v thefuck)" ]; then
+  eval "$(thefuck --alias)"
+fi
 alias tmux="tmux -2 -u"
 alias k=kubectl
 alias vim="nvim"

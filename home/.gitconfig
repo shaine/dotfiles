@@ -40,9 +40,8 @@
 [url "https://"]
 	insteadOf = git://
 [push]
-	default = current
+	default = matching
 	autoSetupRemote = true
-	default = current
 [url "https://github.com/"]
 	insteadOf = git://github.com/
 [diff]
@@ -54,7 +53,6 @@
 [url "git@git.nav.com:"]
 	insteadOf = https://git.nav.com/
 [safe]
-	directory = /home/shaine/Documents/notes
 	directory = /home/shaine/Documents/notes
 	directory = *
 [pull]

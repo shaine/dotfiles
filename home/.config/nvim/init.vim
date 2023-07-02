@@ -368,14 +368,16 @@ let g:mix_format_silent_errors = 1
 let g:mix_format_on_save = 1
 
 " FZF
+map <Leader>s :Ag<CR>
 " map <Leader>f :FZF<CR>
 map <Leader>f :Files<CR>
 autocmd VimEnter * if getcwd() =~ "Documents" |
-      \ map <Leader>f :Ag<CR> |
-      \ endif
-autocmd VimEnter * if getcwd() =~ "Documents/zk" |
       \ map <Leader>f :Ag title:<CR> |
       \ endif
+" Prior state: Docs didn't include title:, only zk did
+" autocmd VimEnter * if getcwd() =~ "Documents/zk" |
+      " \ map <Leader>f :Ag title:<CR> |
+      " \ endif
 
 nnoremap <silent> <leader>G :Ag <C-R><C-W><CR>
 function! s:build_quickfix_list(lines)

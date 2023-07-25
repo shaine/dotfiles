@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vpnintdc
+openvpn3 session-start --config int.ovpn

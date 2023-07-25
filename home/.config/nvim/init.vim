@@ -15,7 +15,7 @@ Plug 'dylanaraps/ryuuko'
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 " Plug 'sheerun/vim-polyglot',
 " Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'mboughaba/i3config.vim'
+Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 Plug 'vimwiki/vimwiki'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
@@ -361,7 +361,7 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
 
 " ALE
-let g:ale_linters_ignore = ['reek']
+" let g:ale_linters_ignore = ['reek']
 
 " Elixir
 let g:mix_format_silent_errors = 1

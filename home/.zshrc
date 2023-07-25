@@ -173,15 +173,6 @@ screen_off() {
   xset dpms force off
 }
 
-vpnint() {
-  vpnintdc
-  openvpn3 session-start --config int.ovpn
-}
-
-vpnintdc() {
-  openvpn3 session-manage --disconnect --config int.ovpn
-}
-
 regenerate_grub_iso() {
   cd /tmp
   mkdir -p iso/boot/grub

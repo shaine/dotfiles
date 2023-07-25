@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vpnint
+
+sdm login
+
+sdm connect Redshift-analysts
+
+psql -h 127.0.0.1 -p 15500

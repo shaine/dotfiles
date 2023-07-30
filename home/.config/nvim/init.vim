@@ -536,10 +536,11 @@ let g:yankring_history_dir = '~/.config/nvim/tmp/yank'
 noremap <leader>y "*y
 noremap <leader>yy "*yy
 noremap <leader>dd "*dd
-noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR> " Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put    *<CR>:set nopaste<CR>
+noremap <leader>P :set paste<CR>:norm"+p<CR>:set nopaste<CR>
 noremap <leader>T :Tags<CR>
 " Paste at the end of the line
-nnoremap <Leader>P ma$p`a
+" nnoremap <Leader>P ma$p`a
 
 " When using `dd` in the quickfix list, remove the item from the quickfix list.
 function! RemoveQFItem()

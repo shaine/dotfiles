@@ -27,4 +27,4 @@ bindfs /media/shaine/geshtinanna/music ~/Music
 # bindfs /media/shaine/geshtinanna/projects ~/Projects
 
 echo "Mounting Video"
-bindfs /media/shaine/geshtinanna/video ~/Video
+bindfs /media/shaine/geshtinanna/video ~/Videos

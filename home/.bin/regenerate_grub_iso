@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd /tmp
+mkdir -p iso/boot/grub
+cp /usr/lib/grub/i386-pc/* iso/boot/grub
+cp /boot/grub/grub.cfg iso/boot/grub
+vim iso/boot/grub/grub.cfg
+grub-mkrescue --xorriso=/home/shaine/Documents/matter/xorriso-1.5.0/xorriso/xorriso -o boot.iso iso
+rm -rf iso
+mv boot.iso ~/Documents
+cd -

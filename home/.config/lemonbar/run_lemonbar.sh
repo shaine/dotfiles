@@ -25,7 +25,8 @@ icon_battery="BAT"
 icon_network="NET"
 
 # Colors
-BBG="#D0${color0/'#'}"
+#BBG="#D0${color0/'#'}"
+BBG="#${color0/'#'}"
 BFG="#${color15/'#'}"
 silver_color="#${color7/'#'}"
 green_color="#${color2/'#'}"

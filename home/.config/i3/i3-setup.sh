@@ -31,5 +31,5 @@ slack &
 # sleep 20
 # i3-msg workspace 4
 spotify &
-zotero &
+i3-msg 'workspace 5; exec zotero; workspace 1'
 

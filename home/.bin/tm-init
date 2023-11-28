@@ -12,9 +12,6 @@ tmux send-keys -t notes "vim" ENTER
 tmux new -d -c ~/projects/squidtree-elixir -s squidtree
 tmux send-keys -t squidtree "vim" ENTER
 
-tmux new -d -c ~/projects/seven -s seven
-tmux send-keys -t seven "vim" ENTER
-
 tmux new -d -c ~/projects/tres -s tres
 tmux send-keys -t tres "vim" ENTER
 

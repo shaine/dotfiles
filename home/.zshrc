@@ -3,7 +3,10 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="squidtree"
 export ZSH=$HOME/.oh-my-zsh
 
-# export PAGER='nvim -c "set syntax=dbout" -R -'
+XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/home/shaine/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
+
+# For psql
+export PAGER='nvim -c "set syntax=dbout" -R -'
 
 COMPLETION_WAITING_DOTS="true"
 

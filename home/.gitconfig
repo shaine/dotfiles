@@ -46,8 +46,6 @@
 	insteadOf = git://github.com/
 [diff]
     compactionHeuristic = true
-[commit]
-    template = ~/.gitmessage
 [include]
 	path = ~/.gitconfig.local
 [url "git@git.nav.com:"]

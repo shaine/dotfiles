@@ -5,6 +5,7 @@ bindsym $mod+bracketright scratchpad show
 
 for_window [class="^join.*$"] floating enable
 for_window [class="^zoom.*$"] floating enable
+for_window [class="zoom"] floating enable
 for_window [title="Zoom Meeting"] floating disable
 
 assign [class="firefox"] $ws2
@@ -21,3 +22,5 @@ bindsym $mod+Shift+minus split v
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/i3/i3-setup.sh
 
 focus_follows_mouse yes
+
+exec --no-startup-id "eval $(gnome-keyring-daemon --start) && $HOME/.bin/mount_network"

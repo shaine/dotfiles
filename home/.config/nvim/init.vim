@@ -18,7 +18,7 @@ Plug 'dylanaraps/ryuuko'
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 Plug 'vimwiki/vimwiki'
 Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
+Plug 'sbennett33/vim-mix-format', { 'branch': 'sbennett/support-heex-templates' }
 
 " Tools
 Plug 'vim-scripts/YankRing.vim' " Yank/paste ring
@@ -441,6 +441,7 @@ nmap <BS> <Plug>SmartspacePrev
 nnoremap <Space> a_<Esc>r
 
 " vimwiki
+au BufNewFile ~/Documents/diary/*.md :silent 0r !~/.config/nvim/bin/generate-vimwiki-diary-template '%'
 function! VimwikiLinkHandler(link)
   if a:link =~ '\.\(pdf\|jpg\|jpeg\|png\|gif\)$'
     call vimwiki#base#open_link(':e ', 'file:'.a:link)

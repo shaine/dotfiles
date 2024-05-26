@@ -40,7 +40,7 @@
 [url "https://"]
 	insteadOf = git://
 [push]
-	default = matching
+	default = current
 	autoSetupRemote = true
 [url "https://github.com/"]
 	insteadOf = git://github.com/
@@ -57,3 +57,5 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[branch]
+	sort = -committerdate

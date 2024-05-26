@@ -43,3 +43,5 @@ tm() {
     tmux attach-session -d -t $*
   fi
 }
+
+eval "$(atuin init zsh)"

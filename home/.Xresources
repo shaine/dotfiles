@@ -1,5 +1,5 @@
 #include "/home/shaine/.cache/wal/colors.Xresources"
-#include "/usr/share/regolith-look/default/root"
+!#include "/usr/share/regolith-look/default/root"
 URxvt.scrollBar: false
 ! urxvt*font: xft:Terminus:pixelsize=12
 URxvt.font: terminus-12

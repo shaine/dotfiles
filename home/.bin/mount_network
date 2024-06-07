@@ -3,7 +3,7 @@
 echo "Starting to mount network drives"
 
 echo "Resetting mounts"
-fusermount -uz ~/Video
+fusermount -uz ~/Videos
 # fusermount -uz ~/Projects
 fusermount -uz ~/Music
 fusermount -uz ~/Pictures

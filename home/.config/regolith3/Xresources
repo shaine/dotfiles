@@ -1,0 +1,10 @@
+wm.gaps.inner.size: 40
+wm.binding.dec_gaps_big: Shift+Alt+minus
+wm.binding.shutdown: Shift+Alt+p
+wm.gaps.smart: off
+wm.gaps.inner.size: 30
+wm.gaps.outer.size: 0
+regolith.wallpaper.file: ~/.config/wal/wallpaper.jpg
+regolith.lockscreen.wallpaper.file: ~/.config/wal/wallpaper.jpg
+!regolith.look.path: /usr/share/regolith-look/default
+regolith.look.path: /usr/share/regolith-look/squidtree

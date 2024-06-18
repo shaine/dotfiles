@@ -1,0 +1,2 @@
+#!/bin/bash
+v4l2-ctl -c focus_auto=0; v4l2-ctl -c focus_absolute=35

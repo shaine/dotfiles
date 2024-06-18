@@ -1,10 +1,41 @@
+regolith.wallpaper.file: ~/.config/wal/wallpaper.jpg
+regolith.lockscreen.wallpaper.file: ~/.config/wal/wallpaper.jpg
+
+#define font Terminus 8
+gtk.font_name: font
+gtk.document_font_name: font
+gtk.monospace_font_name: font
+gnome.terminal.font: font
+i3xrocks.value.font: font
+wm.bar.font: font
+
+wm.bar.position: top
+wm.gaps.smart: off
+wm.gaps.outer.size: 0
 wm.gaps.inner.size: 40
 wm.binding.dec_gaps_big: Shift+Alt+minus
 wm.binding.shutdown: Shift+Alt+p
-wm.gaps.smart: off
-wm.gaps.inner.size: 30
-wm.gaps.outer.size: 0
-regolith.wallpaper.file: ~/.config/wal/wallpaper.jpg
-regolith.lockscreen.wallpaper.file: ~/.config/wal/wallpaper.jpg
-!regolith.look.path: /usr/share/regolith-look/default
-regolith.look.path: /usr/share/regolith-look/squidtree
+wm.window.border.size: 0
+wm.floatingwindow.border.size: 0
+
+wm.workspace.01.name: 1
+wm.workspace.02.name: 2
+wm.workspace.03.name: 3
+wm.workspace.04.name: 4
+wm.workspace.05.name: 5
+wm.workspace.06.name: 6
+wm.workspace.07.name: 7
+wm.workspace.08.name: 8
+wm.workspace.09.name: 9
+wm.workspace.10.name: 10
+wm.workspace.11.name: 11
+wm.workspace.12.name: 12
+wm.workspace.13.name: 13
+wm.workspace.14.name: 14
+wm.workspace.15.name: 15
+wm.workspace.16.name: 16
+wm.workspace.17.name: 17
+wm.workspace.18.name: 18
+wm.workspace.19.name: 19
+
+regolith.look.path: /usr/share/regolith-look/nord

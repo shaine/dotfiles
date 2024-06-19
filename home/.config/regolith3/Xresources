@@ -61,10 +61,12 @@ i3xrocks.date.format2: %Y-%m-%d %H:%M:%S
 i3xrocks.time.interval: 1
 i3xrocks.weather.units: M
 i3xrocks.weather.format: %m+%c%t
+i3xrocks.weather.error_message:
 i3xrocks.value.spacing: 15
 
+
+
+
+
+!regolith.look.path: /usr/share/regolith-look/solarized-dark
 regolith.look.path: /usr/share/regolith-look/nord
-
-
-
-

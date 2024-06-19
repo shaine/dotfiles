@@ -220,7 +220,7 @@ wintypes:
         focus = true;
     };
     menu = { shadow = false; };
-    dock = { shadow = false; }
+    dock = { shadow = false; opacity = 0.85 }
     dnd = { shadow = false; }
     popup_menu = {
         opacity = 0.8;

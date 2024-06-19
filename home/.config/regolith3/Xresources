@@ -1,15 +1,17 @@
-regolith.wallpaper.file: ~/.config/wal/wallpaper.jpg
-regolith.lockscreen.wallpaper.file: ~/.config/wal/wallpaper.jpg
+!regolith.wallpaper.file: ~/.config/wal/wallpaper.jpg
+regolith.wallpaper.file:
+regolith.lockscreen.wallpaper.file:
 
-#define font Terminus 8
-gtk.font_name: font
-gtk.document_font_name: font
-gtk.monospace_font_name: font
-gnome.terminal.font: font
-i3xrocks.value.font: font
-wm.bar.font: font
+#define gtk_font_name Terminus 8
+gtk.font_name: gtk_font_name
+gtk.document_font_name: gtk_font_name
+gtk.monospace_font_name: gtk_font_name
+wm.bar.font: gtk_font_name
+gnome.terminal.font: gtk_font_name
+i3xrocks.value.font: gtk_font_name
 
 wm.bar.position: top
+wm.bar.workspace_min_width: 20
 wm.gaps.smart: off
 wm.gaps.outer.size: 0
 wm.gaps.inner.size: 40
@@ -37,5 +39,21 @@ wm.workspace.16.name: 16
 wm.workspace.17.name: 17
 wm.workspace.18.name: 18
 wm.workspace.19.name: 19
+wm.bar.trayoutput: none
+
+i3xrocks.label.cpu: CPU
+i3xrocks.label.disk: SDD
+i3xrocks.label.memory: RAM
+i3xrocks.label.sound: VOL
+i3xrocks.label.mute: MUT
+i3xrocks.label.mediaplaying: >
+i3xrocks.label.mediapaused: ||
+i3xrocks.label.capslock: CAP
+i3xrocks.label.time:
+i3xrocks.date.format2: %Y-%m-%d %H:%M:%S
+i3xrocks.time.interval: 1
+i3xrocks.weather.units: M
+i3xrocks.weather.format: %m+%c%t
+i3xrocks.value.spacing: 15
 
 regolith.look.path: /usr/share/regolith-look/nord

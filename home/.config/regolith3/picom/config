@@ -56,13 +56,13 @@ xrender-sync-fence = true;
 # Enabled client-side shadows on windows.
 shadow = true;
 # The blur radius for shadows. (default 12)
-shadow-radius = 7;
+shadow-radius = 20;
 # The left offset for shadows. (default -15)
 shadow-offset-x = -5;
 # The top offset for shadows. (default -15)
 shadow-offset-y = -5;
 # The translucency for shadows. (default .75)
-shadow-opacity = 0.8;
+shadow-opacity = 0.3;
 
 # Set if you want different colour shadows
 # shadow-red = 0.0;
@@ -104,7 +104,7 @@ shadow-ignore-shaped = false;
 #
 #################################
 
-inactive-opacity = 0.7;
+inactive-opacity = 0.5;
 active-opacity = 1;
 frame-opacity = 1;
 inactive-opacity-override = false;
@@ -114,15 +114,21 @@ inactive-dim = 0.03;
 # Do not let dimness adjust based on window opacity.
 inactive-dim-fixed = true;
 # Blur background of transparent windows. Bad performance with X Render backend. GLX backend is preferred.
-# blur-background = true;
+blur-background = true;
+blur-strength = 12;
 # Blur background of opaque windows with transparent frames as well.
 # blur-background-frame = true;
 # Do not let blur radius adjust based on window opacity.
 blur-background-fixed = false;
 blur-background-exclude = [
-    "window_type = 'dock'",
     "window_type = 'desktop'"
 ];
+
+blur:
+{
+  method = "dual_kawase";
+  strength = 5;
+};
 
 #################################
 #
@@ -135,9 +141,9 @@ fading = true;
 # The time between steps in a fade in milliseconds. (default 10).
 fade-delta = 3;
 # Opacity change between steps while fading in. (default 0.028).
-fade-in-step = 0.03;
+fade-in-step = 0.04;
 # Opacity change between steps while fading out. (default 0.03).
-fade-out-step = 0.03;
+fade-out-step = 0.02;
 # Fade windows in/out when opening/closing
 # no-fading-openclose = true;
 

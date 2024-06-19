@@ -1,0 +1,26 @@
+#! /bin/sh
+
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+# export SSH_AUTH_SOCK
+
+i3-msg workspace 1
+
+~/.bin/tm-init
+
+gnome-terminal &
+gnome-terminal &
+sleep 0.5
+i3-msg split v
+sleep 0.5
+gnome-terminal &
+gnome-terminal &
+sleep 0.5
+i3-msg split h
+i3-msg resize shrink width 25 px or 25 ppt
+
+firefox &
+mailspring &
+slack &
+spotify &
+i3-msg 'workspace 5; exec zotero; workspace 1'
+

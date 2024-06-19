@@ -10,13 +10,20 @@ wm.bar.font: gtk_font_name
 gnome.terminal.font: gtk_font_name
 i3xrocks.value.font: gtk_font_name
 
+wm.binding.browser: Alt+Return
+wm.binding.split_v: Shift+minus
+wm.binding.split_h: Shift+backslash
+wm.binding.dec_gaps_big: Shift+Alt+minus
+wm.binding.shutdown: Ctrl+e
+wm.binding.move_scratchpad: bracketleft
+wm.binding.scratchpad: bracketright
+wm.binding.launcher.cmd: Shift+Alt+space
+
 wm.bar.position: top
 wm.bar.workspace_min_width: 20
 wm.gaps.smart: off
 wm.gaps.outer.size: 0
 wm.gaps.inner.size: 40
-wm.binding.dec_gaps_big: Shift+Alt+minus
-wm.binding.shutdown: Shift+Alt+p
 wm.window.border.size: 0
 wm.floatingwindow.border.size: 0
 
@@ -57,3 +64,7 @@ i3xrocks.weather.format: %m+%c%t
 i3xrocks.value.spacing: 15
 
 regolith.look.path: /usr/share/regolith-look/nord
+
+
+
+

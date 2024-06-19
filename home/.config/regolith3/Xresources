@@ -56,6 +56,13 @@ i3xrocks.label.mute: MUT
 i3xrocks.label.mediaplaying: >
 i3xrocks.label.mediapaused: ||
 i3xrocks.label.capslock: CAP
+i3xrocks.label.wifi: NET
+i3xrocks.label.battery0: BAT
+i3xrocks.label.battery20: BAT
+i3xrocks.label.battery50: BAT
+i3xrocks.label.battery80: BAT
+i3xrocks.label.battery100: BAT
+i3xrocks.label.updates: APT
 i3xrocks.label.time:
 i3xrocks.date.format2: %Y-%m-%d %H:%M:%S
 i3xrocks.time.interval: 1

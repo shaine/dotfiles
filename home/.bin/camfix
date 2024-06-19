@@ -1,2 +1,4 @@
 #!/bin/bash
-v4l2-ctl -c focus_auto=0; v4l2-ctl -c focus_absolute=35
+v4l2-ctl -c focus_automatic_continuous=0
+v4l2-ctl -c focus_absolute=30 -c brightness=128 -c contrast=128 -c saturation=128 -c sharpness=128 -c zoom_absolute=100
+v4l2-ctl -c focus_automatic_continuous=1

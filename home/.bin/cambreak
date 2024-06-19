@@ -1,0 +1,8 @@
+#!/bin/bash
+v4l2-ctl -c brightness=128 -c contrast=128 -c saturation=128 -c sharpness=128 -c zoom_absolute=128
+sleep 0.2
+v4l2-ctl -c brightness=103 -c contrast=153 -c saturation=140 -c sharpness=153 -c zoom_absolute=150
+sleep 0.2
+v4l2-ctl -c brightness=80 -c contrast=140 -c saturation=140 -c sharpness=203 -c zoom_absolute=170
+sleep 0.2
+v4l2-ctl -c brightness=0 -c contrast=255 -c saturation=255 -c sharpness=255 -c zoom_absolute=500

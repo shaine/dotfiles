@@ -75,5 +75,5 @@ i3xrocks.value.spacing: 15
 
 
 
-!regolith.look.path: /usr/share/regolith-look/solarized-dark
+!regolith.look.path: /usr/share/regolith-look/ayu-dark
 regolith.look.path: /usr/share/regolith-look/nord

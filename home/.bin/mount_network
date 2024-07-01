@@ -7,15 +7,15 @@ fusermount -uz ~/Videos
 # fusermount -uz ~/Projects
 fusermount -uz ~/Music
 fusermount -uz ~/Pictures
-fusermount -uz ~/Documents
+# fusermount -uz ~/Documents
 fusermount -uz /media/shaine/geshtinanna
 # umount /media/shaine/geshtinanna
 
 echo "Mounting geshtinanna"
 sshfs -o reconnect geshtinanna: /media/shaine/geshtinanna
 
-echo "Mounting Documents"
-bindfs /media/shaine/geshtinanna/documents ~/Documents
+# echo "Mounting Documents"
+# bindfs /media/shaine/geshtinanna/documents ~/Documents
 
 echo "Mounting Pictures"
 bindfs /media/shaine/geshtinanna/images ~/Pictures

@@ -59,6 +59,7 @@ autocmd FileType markdown setlocal wrap linebreak |
 au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
 au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
 au BufRead,BufNewFile mix.lock set filetype=elixir
+autocmd FileType vimwiki,markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
 
 " Prevent vimwiki from injecting unwanted headings
 autocmd VimEnter * autocmd! vimwiki BufNewFile *.md

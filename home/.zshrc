@@ -7,6 +7,8 @@ XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/home/shaine/.local/share/flatpak/e
 
 # For psql
 export PAGER='nvim -c "set syntax=dbout" -R -'
+# For manpages
+export MANPAGER='nvim +Man!'
 
 COMPLETION_WAITING_DOTS="true"
 

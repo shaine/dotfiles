@@ -10,6 +10,11 @@ wm.bar.font: gtk_font_name
 gnome.terminal.font: gtk_font_name
 i3xrocks.value.font: gtk_font_name
 
+gtk.theme_name: Nordic
+!gtk.theme_name: Yaru-dark
+!gtk.icon_theme_name: Arc
+gtk.icon_theme_name: Yaru
+
 wm.binding.browser: Alt+Return
 wm.binding.split_v: Shift+minus
 wm.binding.split_h: Shift+backslash
@@ -46,8 +51,8 @@ wm.workspace.16.name: 16
 wm.workspace.17.name: 17
 wm.workspace.18.name: 18
 wm.workspace.19.name: 19
-# wm.bar.trayoutput: none
-wm.bar.trayoutput: primary
+wm.bar.trayoutput: none
+!wm.bar.trayoutput: primary
 
 i3xrocks.label.cpu: CPU
 i3xrocks.label.disk: SDD

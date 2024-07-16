@@ -9,6 +9,9 @@ tmux send-keys -t zkstage "vim" ENTER
 tmux new -d -c ~/Documents -s notes
 tmux send-keys -t notes "vim" ENTER
 
+tmux new -d -c ~/projects/livebook -s notes
+tmux send-keys -t notes "./start" ENTER
+
 # tmux new -d -c ~/projects/squidtree-elixir -s squidtree
 # tmux send-keys -t squidtree "vim" ENTER
 

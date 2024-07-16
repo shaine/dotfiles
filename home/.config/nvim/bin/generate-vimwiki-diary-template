@@ -31,11 +31,11 @@ template = """# {date}
 ## Shutdown notes.
 
 - **2 wins:**
-    -
-    -
+	-
+	-
 - **2 lessons:**
-    -
-    -
+	-
+	-
 """
 
 date = datetime.date.today()

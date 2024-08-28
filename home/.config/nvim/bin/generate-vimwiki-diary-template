@@ -20,23 +20,10 @@ template = """# {date}
 
 ## Shutting down.
 
-- [ ] Kill work apps
-- [ ] Close work tabs
+- [ ] Kill work apps and tabs
 - [ ] Complete day log
-- [ ] Look for any observations
-- [ ] Update project notes
-- [ ] Prepare for tomorrow
-- [ ] Clean desk
-
-## Shutdown notes.
-
-- **2 wins:**
-	-
-	-
-- **2 lessons:**
-	-
-	-
-"""
+- [ ] Reflection and notes
+- [ ] Prepare for tomorrow"""
 
 date = datetime.date.today()
 print(template.format(date=date))

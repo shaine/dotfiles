@@ -375,10 +375,6 @@ map <Leader>f :Files<CR>
 autocmd VimEnter * if getcwd() =~ "Documents" |
       \ map <Leader>f :Ag title:<CR> |
       \ endif
-" Prior state: Docs didn't include title:, only zk did
-" autocmd VimEnter * if getcwd() =~ "Documents/zk" |
-      " \ map <Leader>f :Ag title:<CR> |
-      " \ endif
 
 nnoremap <silent> <leader>G :Ag <C-R><C-W><CR>
 function! s:build_quickfix_list(lines)
@@ -393,7 +389,10 @@ let g:fzf_action = {
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit' }
 
-let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
+
+let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all --bind ctrl-d:deselect-all'
 
 " Fugitive
 map <Leader>g :Git<CR>

@@ -9,7 +9,7 @@ for_window [class="floating"] floating enable
 
 assign [class="firefox"] $ws2
 assign [class="Slack"] $ws3
-assign [class="Mailspring"] $ws3
+assign [class="Evolution"] $ws3
 for_window [class="Spotify"] move to workspace $ws4
 # assign [class="Zotero"] $ws5
 

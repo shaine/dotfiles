@@ -13,13 +13,13 @@ export MANPAGER='nvim +Man!'
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins I want to learn: 1password autoenv
-plugins=(git vi-mode zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git direnv asdf vi-mode zsh-syntax-highlighting zsh-autosuggestions)
 
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/go/bin:/$HOME/.go/bin:$PATH
 
 export FZF_DEFAULT_COMMAND='ag --follow --hidden -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
@@ -48,3 +48,14 @@ tm() {
 
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
+
+# rubby
+[[ -s "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+# golang
+export GOPATH=$HOME/.go
+export GOBIN=$HOME/.go/bin
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

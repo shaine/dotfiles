@@ -1,0 +1,42 @@
+#!/bin/bash
+
+declare -A max_numbers
+
+# Ensure a letter argument is provided
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <letter>"
+  exit 1
+fi
+
+# Get the letter argument
+letter=$1
+
+# Ensure the letter is a single alphabetical character
+if [[ ! $letter =~ ^[A-Za-z]$ ]]; then
+  echo "Error: Argument must be a single letter."
+  exit 1
+fi
+
+# Change to the desired directory (replace with the actual path)
+cd ~/Documents/resources/website/references || exit 1
+
+# Initialize a variable to track the largest number for the provided letter
+max_number=0
+
+# Loop through all .md files and check if they match the specified letter
+for file in *.md; do
+  # Extract the letter and the number from the filename using regex
+  if [[ $file =~ ^$letter([0-9]+)\.md$ ]]; then
+    number="${BASH_REMATCH[1]}"
+
+    # Update max_number if the extracted number is larger
+    if (( number > max_number )); then
+      max_number=$number
+    fi
+  fi
+done
+
+# Output the next filename by incrementing the largest number
+next_number=$((max_number + 1))
+echo "${letter}${next_number}.md"
+

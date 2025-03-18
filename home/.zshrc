@@ -13,6 +13,7 @@ export MANPAGER='nvim +Man!'
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins I want to learn: 1password autoenv
+# direnv: sudo apt install direnv
 plugins=(git direnv asdf vi-mode zsh-syntax-highlighting zsh-autosuggestions)
 
 [[ -s "$HOME/.zshrc.local" ]] && . "$HOME/.zshrc.local" # Load local ZSH config if it exists

@@ -2,4 +2,5 @@
 #
 # Display local weather
 [weather]
+command=curl -Ss 'https://wttr.in/Salt+Lake+City?format=1' | sed 's/..+//' | sed 's/..-/-/'
 interval=3600

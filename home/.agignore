@@ -34,7 +34,6 @@ Library
 node_modules
 .vim/plugged
 dist
-reports
 tmp
 docs
 .cache

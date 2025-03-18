@@ -22,7 +22,6 @@ template = """# {date}
 
 - [ ] Kill work apps and tabs
 - [ ] Complete day log
-- [ ] Reflection and notes
 - [ ] Prepare for tomorrow"""
 
 date = datetime.date.today()

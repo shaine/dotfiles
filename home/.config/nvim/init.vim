@@ -14,7 +14,7 @@ Plug 'dylanaraps/ryuuko'
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 " Plug 'sheerun/vim-polyglot',
-" Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'mboughaba/i3config.vim', { 'for': 'i3config' }
 Plug 'vimwiki/vimwiki'
 Plug 'elixir-editors/vim-elixir'
@@ -391,6 +391,8 @@ let g:fzf_action = {
 
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, '--hidden', fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Ags
+  \ call fzf#vim#ag(<q-args>, '--hidden --case-sensitive', fzf#vim#with_preview(), <bang>0)
 
 let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all --bind ctrl-d:deselect-all'
 
@@ -480,42 +482,36 @@ function! ZettelFromTitle()
   norm Ititle: O---id: =expand('%:t')0f.DjyypOdate: :call InsertDate()k,Jo---jcf # $:w
 endfun
 
-function! MacroInput(prompt)
-    call inputsave()
-    let text = input(a:prompt)
-    call inputrestore()
-    return text
-endfun
-function! IdInput()
-    return MacroInput('ID: ')
-endfun
-function! TitleInput()
-    return MacroInput('Title: ')
+function! Reference()
+  " norm :%s/“/_“/g:%s/”/”_/g//$i>?httpi<//0yypi> kIcitation: yyojyyPr#f_xxf”hC.okyyggP^stitle:O---jf,?[A-Z]y ocitekey: :r! ~/.bin/next_reference "k,J^f l"py$f.Dodate: :call InsertDate()k,Jjo---:w ~/Documents/resources/website/references/p
+  normal! :%s/“/_“/g :%s/”/”_/g //$i>?http i<//0yypi>  kIcitation:  yy o jyyPr# f_xx f”hC. o kyy ggP^stitle: O--- jf, ?[A-Z] y ocitekey: :r! ~/.bin/next_reference " k,J ^f l"py$ f.D odate: :call InsertDate()k,J jo--- :w ~/Documents/resources/website/references/p
 endfun
 
-function! NewNote()
-  norm :e =IdInput().mdi=TitleInput():call ZettelFromTitle()
-endfun
-
-function! MarkdownLink()
-  norm a[=TitleInput()](=IdInput())
-endfun
-
-function! MarkdownLinkList()
-  norm S- :call MarkdownLink().:redraw!:call MarkdownLinkList()
-endfun
-
-function! MoveLink()
-  norm yst[]$''xds]cs])
-endfun
+" :%s/“/_“/g
+" :%s/”/”_/g
+" //$i>?http
+" i<//0yypi> 
+" kIcitation: 
+" yy
+" o
+" jyyPr#
+" f_xx
+" f”hC.
+" o
+" kyy
+" ggP^stitle:
+" O---
+" jf,
+" ?[A-Z]
+" y ocitekey: :r! ~/.bin/next_reference "
+" k,J
+" ^f l"py$
+" f.D
+" odate: :call InsertDate()k,J
+" jo---
+" :w ~/Documents/resources/website/references/p
 
 nmap <Leader>zt :call ZettelFromTitle()<cr>
-nmap <Leader>zm :call MoveLink()<cr>
-imap <Leader>zl :call MarkdownLink()<cr>
-imap <Leader>zk :call MarkdownLinkList()<cr>
-imap <Leader>zt :call ZettelFromTitle()<cr>
-imap <Leader>zc [^r=IdInput()<cr>]
-nmap <Leader>zc norm a[^r=IdInput()<cr>]
 
 let g:vimwiki_auto_header = 1
 let g:vimwiki_hl_headers = 1

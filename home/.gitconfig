@@ -34,7 +34,8 @@
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
     uncommit = reset --soft HEAD^
     yolo = !git reset HEAD --hard && git clean -f
-    sm = !git stash && git checkout main && git fetch origin main && git reset --hard origin/main && git ocd
+    main = !git stash && git checkout main && git fetch origin main && git reset --hard origin/main && git ocd
+    master = !git stash && git checkout master && git fetch origin master && git reset --hard origin/master && git ocd
 [github]
     user = shaine
 [url "https://"]

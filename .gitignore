@@ -1,6 +1,7 @@
 home/tmux-*.log
 home/.subversion/*
 home/.bin/pulse
+home/.bin/asdf
 .netrwhist
 home/.local/share/nvim
 home/.vim/autoload/plug.vim.old

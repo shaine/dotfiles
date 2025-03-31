@@ -19,7 +19,9 @@ plugins=(git direnv asdf vi-mode zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/go/bin:/$HOME/.go/bin:$PATH
+export ASDF_DATA_DIR="$HOME/.asdf"
+
+export PATH=$ASDF_DATA_DIR/shims/:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/go/bin:/$HOME/.go/bin:$PATH
 
 export FZF_DEFAULT_COMMAND='ag --follow --hidden -g ""'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND

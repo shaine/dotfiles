@@ -19,6 +19,9 @@
     tool = opendiff
 	conflictstyle = diff3
 [alias]
+    main = !git stash && git checkout main && git fetch origin main && git reset --hard origin/main && git ocd
+    master = !git stash && git checkout master && git fetch origin master && git reset --hard origin/master && git ocd
+    excise = !git branch | grep -v \"^\\*\\|master\\|main\" | xargs git branch -D
     ocd = !git gc --aggressive && git prune && git remote prune origin && git cleanup
     cleanup = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d > /dev/null 2>&1
     st = status -sb
@@ -34,8 +37,6 @@
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
     uncommit = reset --soft HEAD^
     yolo = !git reset HEAD --hard && git clean -f
-    main = !git stash && git checkout main && git fetch origin main && git reset --hard origin/main && git ocd
-    master = !git stash && git checkout master && git fetch origin master && git reset --hard origin/master && git ocd
 [github]
     user = shaine
 [url "https://"]
